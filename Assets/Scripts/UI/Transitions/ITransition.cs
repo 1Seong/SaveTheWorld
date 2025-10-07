@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class ITransition : MonoBehaviour
+public interface ITransition
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void InTransition();
+    public void OutTransition();
+
+    public void FullTransition()
     {
-        
+        InTransition();
+        OutTransition();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void SceneLoadTransition(string sceneName);
 }

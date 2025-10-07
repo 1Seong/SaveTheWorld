@@ -8,7 +8,17 @@ public class StageManager : MonoBehaviour
         
     }
 
-    private void ConvertView()
+    private void ConvertViewLeft()
+    {
+        ConvertView(90f);
+    }
+
+    private void ConvertViewRight()
+    {
+        ConvertView(-90f);
+    }
+
+    private void ConvertView(float targetRot)
     {
 
     }

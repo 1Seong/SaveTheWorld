@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void StartGame()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenOption()
     {
-        
+
+    }
+
+    public void OpenCredits()
+    {
+
     }
 }

@@ -1,16 +1,17 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private ITransition transition;
+
+    private void Awake()
     {
-        
+        // init transition
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadScene(string sceneName)
     {
-        
+        transition.SceneLoadTransition(sceneName);
     }
 }
