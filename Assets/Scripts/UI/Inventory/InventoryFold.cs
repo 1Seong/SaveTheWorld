@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+public class InventoryFold : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -8,8 +8,9 @@ public class StageManager : MonoBehaviour
         
     }
 
-    private void ConvertView()
+    // Update is called once per frame
+    void Update()
     {
-
+        
     }
 }
