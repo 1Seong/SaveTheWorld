@@ -17,33 +17,39 @@ public class FadeTransition : MonoBehaviour, ITransition
 
     }
 
-    public void FullTransition()
-    {
-
-    }
-
     public void SceneLoadTransition(string sceneName)
     {
         targetImage.transform.localScale = Vector3.zero;
+        targetImage.transform.position = Vector3.zero;
 
-        //example
-        targetImage.transform.DOScale(30f, 0.6f).OnComplete(() =>
+        targetImage.transform.DOScale(200f, 0.6f).OnComplete(() =>
         {
             SceneManager.LoadScene(sceneName);
-            targetImage.transform.localScale = Vector3.one * 30f;
+            targetImage.transform.localScale = Vector3.one * 200f;
             targetImage.transform.DOScale(0f, 0.6f);
         });
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void RoomLeftTransition()
     {
+        targetImage.transform.localScale = new Vector3(200f, 200f, 0);
+        targetImage.transform.localPosition = new Vector3(-2000f, 0, 0);
+        
+        targetImage.transform.DOLocalMoveX(2000f, 0.8f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
+        {
+            targetImage.transform.localPosition = new Vector3(2000f, 0f, 0f);
+        });
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RoomRightTransition()
     {
-        
+        targetImage.transform.localScale = new Vector3(200f, 200f, 0);
+        targetImage.transform.localPosition = new Vector3(2000f, 0, 0);
+
+        targetImage.transform.DOLocalMoveX(-2000f, 0.8f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
+        {
+            targetImage.transform.localPosition = new Vector3(-2000f, 0f, 0f);
+        });
     }
 }

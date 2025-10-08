@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private bool _isPlaying;
+    [SerializeField] private bool _isPlaying;
     public bool IsPlaying
     {
-        get; set;
+        get => _isPlaying;
+        set { _isPlaying = value; }
     }
 
 
