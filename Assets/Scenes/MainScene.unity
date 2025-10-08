@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -402,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -434,6 +435,21 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab000cea9e0cce43b6389ddbccd6e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngle: 3
+  sensitivity: 0.1
+  smooth: 5
 --- !u!1001 &352749167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -813,6 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPlaying: 1
+  _isTurning: 0
 --- !u!1 &631495253
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +971,6 @@ MonoBehaviour:
   planeParent: {fileID: 398776080}
   planes: []
   currentPlaneId: 0
-  isTurning: 0
 --- !u!1 &955098876
 GameObject:
   m_ObjectHideFlags: 0

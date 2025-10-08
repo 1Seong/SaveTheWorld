@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
         set { _isPlaying = value; }
     }
 
+    [SerializeField] private bool _isTurning = false;
+    public bool IsTurning
+    {
+        get => _isTurning;
+        set { _isTurning = value; }
+    }
 
     private static GameManager _instance;
     public static GameManager Instance
