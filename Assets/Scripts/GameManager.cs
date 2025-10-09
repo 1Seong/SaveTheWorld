@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +15,14 @@ public class GameManager : MonoBehaviour
     {
         get => _isTurning;
         set { _isTurning = value; }
+    }
+
+    [SerializeField] private int currentPhase = 0;
+    public event Action PhaseChangedEvent;
+    public void phaseChange()
+    {
+        ++currentPhase;
+        PhaseChangedEvent?.Invoke();
     }
 
     private static GameManager _instance;

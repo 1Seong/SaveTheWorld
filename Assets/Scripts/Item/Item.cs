@@ -4,6 +4,6 @@ public static class Item
 {
     public enum Items
     {
-
+        Example
     };
 }
