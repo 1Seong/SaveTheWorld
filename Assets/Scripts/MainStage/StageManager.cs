@@ -69,19 +69,21 @@ public class StageManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                GameManager.Instance.IsTurning = true;
+                
                 ConvertViewLeft();
             }
             else if(Input.GetKeyDown(KeyCode.E)) 
             {
-                GameManager.Instance.IsTurning = true;
+                
                 ConvertViewRight();
             }
         }
     }
 
-    private void ConvertViewLeft()
+    public void ConvertViewLeft()
     {
+        GameManager.Instance.IsTurning = true;
+
         planes[currentPlaneId].DeactivateInteractives();
 
         ++currentPlaneId;
@@ -93,8 +95,10 @@ public class StageManager : MonoBehaviour
         ConvertView();
     }
 
-    private void ConvertViewRight()
+    public void ConvertViewRight()
     {
+        GameManager.Instance.IsTurning = true;
+
         planes[currentPlaneId].DeactivateInteractives();
 
         --currentPlaneId;
