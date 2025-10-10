@@ -52,6 +52,11 @@ public class InventoryFold : MonoBehaviour
         ItemManager.Instance.ItemAddedToUIEvent += itemAddIndicate;
     }
 
+    private void OnDestroy()
+    {
+        ItemManager.Instance.ItemAddedToUIEvent -= itemAddIndicate;
+    }
+
     private void itemAddIndicate()
     {
         if (!IsFolded) return;

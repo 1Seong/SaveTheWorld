@@ -61,27 +61,10 @@ public class StageManager : MonoBehaviour
         convertRightAction += SceneTransition.Instance.RoomRightTransition;
     }
 
-    private void Update()
-    {
-        if (!GameManager.Instance.IsPlaying) return;
-
-        if(!GameManager.Instance.IsTurning)
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                
-                ConvertViewLeft();
-            }
-            else if(Input.GetKeyDown(KeyCode.E)) 
-            {
-                
-                ConvertViewRight();
-            }
-        }
-    }
-
+    
     public void ConvertViewLeft()
     {
+        if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
         planes[currentPlaneId].DeactivateInteractives();
@@ -97,6 +80,7 @@ public class StageManager : MonoBehaviour
 
     public void ConvertViewRight()
     {
+        if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
         planes[currentPlaneId].DeactivateInteractives();

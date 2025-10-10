@@ -10,6 +10,8 @@ public class ItemObject : MonoBehaviour
 
     public void Collect()
     {
+        if (ItemManager.Instance.IsHolding) return;
+
         gameObject.SetActive(false);
         CollectEvent?.Invoke(data, transform.position);
     }

@@ -6,11 +6,24 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    public event Action ItemHoldEvent;
+    public event Action ItemReleaseEvent;
+
     public event Action ItemAddedToUIEvent;
 
     [SerializeField] private GameObject inventoryItemPrefab;
     [SerializeField] private List<InventoryItem> inventoryItems;
     [SerializeField] private RectTransform targetGroup;
+
+    [SerializeField] private InventoryItem _selectedItem;
+    public InventoryItem SelectedItem
+    {
+        get => _selectedItem;
+        set
+        {
+            _selectedItem = value;
+        }
+    }
 
     private static ItemManager _instance;
     public static ItemManager Instance
@@ -35,6 +48,26 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    private bool _isHolding = false;
+    public bool IsHolding
+    {
+        get => _isHolding;
+        set
+        {
+            _isHolding = value;
+            if (value) // hold item
+            {
+                ItemHoldEvent?.Invoke();
+            }
+            else // release item
+            {
+                SelectedItem.DeactivateItemFollow();
+                SelectedItem = null;
+                ItemReleaseEvent?.Invoke();
+            }
+        }
+    }
+
     private void Awake()
     {
         inventoryItems = new List<InventoryItem>();
@@ -56,6 +89,31 @@ public class ItemManager : MonoBehaviour
         ItemObject.CollectEvent += AddItem;
     }
 
+    private void Update()
+    {
+        if (!GameManager.Instance.IsPlaying) return;
+        
+        if(IsHolding)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    var target = hit.collider.GetComponent<ItemTarget>();
+                    if (target != null)
+                    {
+                        target.OnInteract(SelectedItem.Data);
+                    }
+                }
+
+                IsHolding = false;
+            }
+        }
+    }
+
     public void AddItem(ItemData d, Vector3 startPos)
     {
         StartCoroutine(AddItemCoroutine(d, startPos));
@@ -64,7 +122,7 @@ public class ItemManager : MonoBehaviour
 
     private IEnumerator AddItemCoroutine(ItemData d, Vector3 startPos)
     {
-        Debug.Log(startPos.ToString());
+        //Debug.Log(startPos.ToString());
 
         var itemUi = Instantiate(inventoryItemPrefab, targetGroup).GetComponent<InventoryItem>();
         inventoryItems.Add(itemUi);
@@ -108,8 +166,9 @@ public class ItemManager : MonoBehaviour
         });
     }
 
-    public void RemoveItem(int index) 
+    public void RemoveItem() 
     {
-        
+        inventoryItems.Remove(SelectedItem);
+        Destroy(SelectedItem.gameObject);
     }
 }

@@ -17,13 +17,6 @@ public class GameManager : MonoBehaviour
         set { _isTurning = value; }
     }
 
-    [SerializeField] private bool _isHolding = false;
-    public bool IsHolding
-    {
-        get => _isHolding;
-        set { _isHolding = value; }
-    }
-
     [SerializeField] private int currentPhase = 0;
     public event Action PhaseChangedEvent;
     public void phaseChange()
@@ -69,13 +62,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
+
     public void StopTime()
     {
+        IsPlaying = false;
         Time.timeScale = 0f;
     }
 
     public void ResumeTime()
     {
+        IsPlaying = true;
         Time.timeScale = 1f;
     }
 
