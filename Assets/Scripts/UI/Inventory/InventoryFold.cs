@@ -8,6 +8,9 @@ public class InventoryFold : MonoBehaviour
     [SerializeField] private RectTransform targetObject;
     [SerializeField] private Button targetButton;
     [SerializeField] private bool _isFolded = false;
+
+    [SerializeField] private float itemAddindicateDur = 0.9f;
+    [SerializeField] private float itemAddindicateDis = 15f;
     
     public bool IsFolded
     {
@@ -42,6 +45,21 @@ public class InventoryFold : MonoBehaviour
                 targetButton.interactable = true;
             }
         }
+    }
+
+    private void Start()
+    {
+        ItemManager.Instance.ItemAddedToUIEvent += itemAddIndicate;
+    }
+
+    private void itemAddIndicate()
+    {
+        if (!IsFolded) return;
+
+        targetObject.DOAnchorPosX(targetObject.anchoredPosition.x - itemAddindicateDis, itemAddindicateDur / 2f).SetUpdate(true).SetEase(Ease.InOutSine).OnComplete(() =>
+        {
+            targetObject.DOAnchorPosX(targetObject.anchoredPosition.x + itemAddindicateDis, itemAddindicateDur / 2f).SetUpdate(true).SetEase(Ease.InOutSine);
+        });
     }
 
     public void OnButtonClick()

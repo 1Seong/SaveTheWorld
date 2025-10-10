@@ -1,13 +1,13 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.Rendering;
 
 public class ItemManager : MonoBehaviour
 {
+    public event Action ItemAddedToUIEvent;
+
     [SerializeField] private GameObject inventoryItemPrefab;
     [SerializeField] private List<InventoryItem> inventoryItems;
     [SerializeField] private RectTransform targetGroup;
@@ -104,6 +104,7 @@ public class ItemManager : MonoBehaviour
         {
             Destroy(itemTemp.gameObject);
             item.gameObject.SetActive(true);
+            ItemAddedToUIEvent?.Invoke();
         });
     }
 
