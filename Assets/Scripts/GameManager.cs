@@ -17,6 +17,13 @@ public class GameManager : MonoBehaviour
         set { _isTurning = value; }
     }
 
+    [SerializeField] private bool _isHolding = false;
+    public bool IsHolding
+    {
+        get => _isHolding;
+        set { _isHolding = value; }
+    }
+
     [SerializeField] private int currentPhase = 0;
     public event Action PhaseChangedEvent;
     public void phaseChange()

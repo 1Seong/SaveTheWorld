@@ -6,10 +6,11 @@ public class ItemObject : MonoBehaviour
 {
     [SerializeField] private ItemData data;
 
-    public static event Action<ItemData> CollectEvent;
+    public static event Action<ItemData, Vector3> CollectEvent;
 
     public void Collect()
     {
-        CollectEvent?.Invoke(data);
+        gameObject.SetActive(false);
+        CollectEvent?.Invoke(data, transform.position);
     }
 }
