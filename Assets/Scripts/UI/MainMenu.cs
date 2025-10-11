@@ -21,4 +21,9 @@ public class MainMenu : MonoBehaviour
     {
 
     }
+
+    public void ExitGame()
+    {
+
+    }
 }
