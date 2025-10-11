@@ -19,11 +19,21 @@ public class ButtonScaleEffect : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.DOScale(scaleFactor, duration);
+        transform.DOScale(Vector3.one * scaleFactor, duration);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.DOScale(scaleFactor, duration);
+        transform.DOScale(Vector3.one, duration);
+    }
+
+    private void OnDisable()
+    {
+        transform.localScale = Vector3.one;
+    }
+
+    private void OnEnable()
+    {
+        transform.localScale = Vector3.one;
     }
 }

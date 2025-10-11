@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 public class SceneTransition : MonoBehaviour
 {
     private ITransition[] transitions;
+    private IRoomTransition[] roomTransitions;
 
     public enum TransitionType { Fade }; // IMPORTANT ; ordering should be matched with the gameObject children
+    public enum RoomTransitionType { Fade };
 
     [SerializeField] private TransitionType _type = TransitionType.Fade;
     public TransitionType Type
@@ -24,7 +26,24 @@ public class SceneTransition : MonoBehaviour
         }
     }
 
+    [SerializeField] private RoomTransitionType _rType = RoomTransitionType.Fade;
+    public RoomTransitionType RType
+    {
+        get { return _rType; }
+        set
+        {
+            switch (value)
+            {
+                case RoomTransitionType.Fade:
+                    _rType = value;
+                    roomTransition = roomTransitions[(int)value];
+                    break;
+            }
+        }
+    }
+
     private ITransition transition;
+    private IRoomTransition roomTransition;
 
     private static SceneTransition _instance;
     public static SceneTransition Instance
@@ -63,7 +82,10 @@ public class SceneTransition : MonoBehaviour
         }
 
         transitions = GetComponentsInChildren<ITransition>();
+        roomTransitions = GetComponentsInChildren<IRoomTransition>();
+
         Type = _type;
+        RType = _rType;
     }
 
     public void LoadScene(string sceneName)
@@ -73,12 +95,22 @@ public class SceneTransition : MonoBehaviour
 
     public void RoomLeftTransition()
     {
-        transition.RoomLeftTransition();
+        roomTransition.RoomLeftTransition();
     }
 
     public void RoomRightTransition()
     {
-        transition.RoomRightTransition();
+        roomTransition.RoomRightTransition();
+    }
+
+    public void RoomCeilingTransition()
+    {
+        roomTransition.RoomCeilingTransition();
+    }
+
+    public void RoomSideReturnTransition()
+    {
+        roomTransition.RoomSideReturnTransition();
     }
 
     public void ChangeTransition(TransitionType t)

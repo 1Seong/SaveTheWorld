@@ -12,6 +12,10 @@ public class StageManager : MonoBehaviour
     private Action convertAction;
     private Action convertLeftAction;
     private Action convertRightAction;
+    private Action convertCeilingAction;
+    private Action convertSideReturnAction;
+
+    private int tempPlaneId;
 
     private static StageManager _instance;
     public static StageManager Instance
@@ -59,6 +63,8 @@ public class StageManager : MonoBehaviour
 
         convertLeftAction += SceneTransition.Instance.RoomLeftTransition;
         convertRightAction += SceneTransition.Instance.RoomRightTransition;
+        convertCeilingAction += SceneTransition.Instance.RoomCeilingTransition;
+        convertSideReturnAction += SceneTransition.Instance.RoomSideReturnTransition;
     }
 
     
@@ -92,6 +98,51 @@ public class StageManager : MonoBehaviour
         convertRightAction?.Invoke();
 
         ConvertView();
+    }
+
+    public void ConvertViewCeiling()
+    {
+        if (GameManager.Instance.IsTurning) return;
+        GameManager.Instance.IsTurning = true;
+
+        planes[currentPlaneId].DeactivateInteractives();
+
+        tempPlaneId = currentPlaneId;
+        currentPlaneId = 4;
+
+        convertAction?.Invoke();
+        convertCeilingAction?.Invoke();
+
+        var targetRot = -90f;
+        
+        Camera.main.transform.DORotate(new Vector3(targetRot, -90 * tempPlaneId, 0f), 0.9f).SetUpdate(true).SetEase(Ease.OutExpo).OnComplete(() =>
+        {
+            Camera.main.transform.rotation = Quaternion.Euler(new Vector3(targetRot, -90 * tempPlaneId, 0f));
+            Camera.main.GetComponent<ViewCursorFollow>().ChangeOriginRot(Quaternion.Euler(targetRot, -90 * tempPlaneId, 0f));
+            planes[currentPlaneId].ActivateInteractives();
+            GameManager.Instance.IsTurning = false;
+        });
+    }
+
+    public void ReturnToSide()
+    {
+        if (GameManager.Instance.IsTurning) return;
+        GameManager.Instance.IsTurning = true;
+
+        planes[currentPlaneId].DeactivateInteractives();
+
+        currentPlaneId = tempPlaneId;
+
+        convertAction?.Invoke();
+        convertSideReturnAction?.Invoke();
+
+        Camera.main.transform.DORotate(new Vector3(0f, -90 * tempPlaneId, 0f), 0.9f).SetUpdate(true).SetEase(Ease.OutExpo).OnComplete(() =>
+        {
+            Camera.main.transform.rotation = Quaternion.Euler(new Vector3(0f, -90 * tempPlaneId, 0f));
+            Camera.main.GetComponent<ViewCursorFollow>().ChangeOriginRot(Quaternion.Euler(0f, -90 * tempPlaneId, 0f));
+            planes[currentPlaneId].ActivateInteractives();
+            GameManager.Instance.IsTurning = false;
+        });
     }
 
     private void ConvertView()
