@@ -2926,6 +2926,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5635127029651081186, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6592991375441893040, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -2951,5 +2955,5 @@ SceneRoots:
   - {fileID: 376558212512581888}
   - {fileID: 398776081}
   - {fileID: 893929349340243700}
-  - {fileID: 7485354235089038177}
   - {fileID: 8790701662305822471}
+  - {fileID: 7485354235089038177}
