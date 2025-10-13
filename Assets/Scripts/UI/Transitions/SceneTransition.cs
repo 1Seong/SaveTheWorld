@@ -90,6 +90,13 @@ public class SceneTransition : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if(ItemManager.Instance != null)
+        {
+            if (sceneName == "MainScene")
+                ItemManager.Instance.gameObject.SetActive(true);
+            else
+                ItemManager.Instance.gameObject.SetActive(false);
+        }
         transition.SceneLoadTransition(sceneName);
     }
 

@@ -30,19 +30,7 @@ public class ItemManager : MonoBehaviour
     {
         get
         {
-            if (_instance == null)
-            {
-                // 씬에서 찾기
-                _instance = FindFirstObjectByType<ItemManager>();
-
-                // 없으면 새로 생성
-                if (_instance == null)
-                {
-                    GameObject singletonObj = new GameObject("ItemManager");
-                    _instance = singletonObj.AddComponent<ItemManager>();
-                    DontDestroyOnLoad(singletonObj);
-                }
-            }
+            
 
             return _instance;
         }
@@ -87,6 +75,21 @@ public class ItemManager : MonoBehaviour
     private void Start()
     {
         ItemObject.CollectEvent += AddItem;
+
+        // LoadSavedItems();
+    }
+
+    public void SaveItems()
+    {
+        /*
+        foreach(var item in inventoryItems)
+        */
+        // save to playerprefs
+    }
+
+    private void LoadSavedItems()
+    {
+        // for all datas in files, find from playerprefs?
     }
 
     private void Update()

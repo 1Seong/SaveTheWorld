@@ -80,4 +80,11 @@ public class OptionPanel : MonoBehaviour
 
         panel.SetActive(false);
     }
+
+    public void ReturnToMainMenu()
+    {
+        // ItemManager.Instance.SaveItems();
+
+        SceneTransition.Instance.LoadScene("MainMenu");
+    }
 }
