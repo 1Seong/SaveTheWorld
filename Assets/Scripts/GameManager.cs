@@ -17,11 +17,11 @@ public class GameManager : MonoBehaviour
         set { _isTurning = value; }
     }
 
-    [SerializeField] private int currentPhase = 0;
+    public int CurrentPhase = 0;
     public event Action PhaseChangedEvent;
     public void phaseChange()
     {
-        ++currentPhase;
+        ++CurrentPhase;
         PhaseChangedEvent?.Invoke();
     }
 
