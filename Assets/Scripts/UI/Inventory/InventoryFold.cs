@@ -17,15 +17,18 @@ public class InventoryFold : MonoBehaviour
         get => _isFolded;
         set
         {
+            if (_isFolded != value)
+            {
+                if (value) // Fold
+                {
+                    Fold();
+                }
+                else // Unfold
+                {
+                    UnFold();
+                }
+            }
             _isFolded = value;
-            if(value) // Fold
-            {
-                Fold();
-            }
-            else // Unfold
-            {
-                UnFold();
-            }
         }
     }
 

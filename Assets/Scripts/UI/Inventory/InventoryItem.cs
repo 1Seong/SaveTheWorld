@@ -40,7 +40,7 @@ public class InventoryItem : MonoBehaviour
             GetComponentInParent<Canvas>().transform as RectTransform, screenPosC, null, out localPosC);
 
         item.gameObject.SetActive(false);
-        itemTemp = Instantiate(item, GetComponentInParent<Canvas>().transform);
+        itemTemp = Instantiate(item, NoteManager.Instance.transform);
         itemTemp.anchoredPosition = localPosC;
         itemTemp.GetComponent<FollowMouse>().enabled = true;
         itemTemp.gameObject.SetActive(true);
