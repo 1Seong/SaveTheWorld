@@ -5,5 +5,5 @@ public class ItemData : ScriptableObject
 {
     public Item.Items id;
     public Sprite sprite;
-    public int unlockPhase = -1;
+    
 }

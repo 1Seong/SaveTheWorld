@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         set { _isTurning = value; }
     }
 
+    /*
     public int CurrentPhase = 0;
     public event Action PhaseChangedEvent;
     public void phaseChange()
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
         ++CurrentPhase;
         PhaseChangedEvent?.Invoke();
     }
+    */
 
     private static GameManager _instance;
     public static GameManager Instance
