@@ -9,7 +9,13 @@ public static class Item
     // ---------------------------------------------------- Item Objects --------------------------------------------------------
     public enum Items
     {
-        Example
+        Controller, FlyCatcher, Bottle, 
+        LetterJu, LetterSa, LetterGi, // 주사기
+        LetterMok, LetterBal, // 목발
+        LetterHang, LetterAa, LetterRi, // 항아리
+        LetterYeon, LetterPill, // 연필
+        LetterJae, LetterBong, LetterTeul, // 재봉틀
+        LetterPpal, LetterLae // 빨래
     };
 
     public static Dictionary<Items, bool> collected = Enum.GetValues(typeof(Items))
@@ -35,7 +41,8 @@ public static class Item
 
     public enum Interactives
     {
-        Example
+        Syringe, Crutches, Jar, // Page1
+        Pencil, Sewing, Laundry // Page2
     };
 
     public static Dictionary<Interactives, bool> blurred = Enum.GetValues(typeof(Interactives))

@@ -27,7 +27,12 @@ public class InteractiveObject : MonoBehaviour
         if(hasDropItem && Item.IsDropped(typeId))
             DropInit();
 
+        NoteManager.Instance.BlurrUnlockEvent += unlockBlurr;
+    }
 
+    private void OnDestroy()
+    {
+        NoteManager.Instance.BlurrUnlockEvent -= unlockBlurr;
     }
 
     private void unlockBlurr(Item.Interactives id)

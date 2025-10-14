@@ -16,7 +16,7 @@ public class ItemTarget : MonoBehaviour
         
     }
 
-    protected void itemMatched()
+    protected virtual void itemMatched()
     {
 
     }

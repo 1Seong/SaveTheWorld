@@ -3,6 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ItemManager : MonoBehaviour
 {
@@ -98,17 +101,44 @@ public class ItemManager : MonoBehaviour
         
         if(IsHolding)
         {
+            var enumName = Enum.GetName(typeof(Item.Items), SelectedItem.Data.id); // get enum name
+
             if (Input.GetMouseButtonDown(0))
             {
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if (enumName.Contains("Letter")) // use GraphicRaycaster for letter item target
                 {
-                    var target = hit.collider.GetComponent<ItemTarget>();
-                    if (target != null)
+                    //Debug.Log("1");
+                    var pointerEventData = new PointerEventData(EventSystem.current);
+                    pointerEventData.position = Input.mousePosition;
+
+                    var results = new List<RaycastResult>();
+                    NoteManager.Instance.GetComponent<GraphicRaycaster>().Raycast(pointerEventData, results);
+
+                    foreach (var result in results)
                     {
-                        target.OnInteract(SelectedItem.Data);
+                        //Debug.Log("2");
+                        var target = result.gameObject.GetComponent<LetterTarget>();
+                        if(target != null)
+                        {
+                            target.OnInteract(SelectedItem.Data);
+                            break;
+                        }
+                    }
+                }
+                else // use Physics Raycast for other items
+                {
+                    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        //Debug.Log("1");
+                        var target = hit.collider.GetComponent<ItemTarget>();
+                        if (target != null)
+                        {
+                            //Debug.Log("2");
+                            target.OnInteract(SelectedItem.Data);
+                        }
                     }
                 }
 
