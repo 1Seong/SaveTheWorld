@@ -3,9 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class ItemManager : MonoBehaviour
 {
@@ -14,6 +14,15 @@ public class ItemManager : MonoBehaviour
 
     public event Action ItemAddedToUIEvent;
 
+    public event Action ReturnFromCloseUpEvent;
+
+    [Header("# UI Control")]
+    [SerializeField] GameObject LeftButton;
+    [SerializeField] GameObject RightButton;
+    [SerializeField] GameObject UpButton;
+    [SerializeField] GameObject ReturnFromCloseUpButton;
+
+    [Header("# Inventory Item")]
     [SerializeField] private GameObject inventoryItemPrefab;
     [SerializeField] private List<InventoryItem> inventoryItems;
     [SerializeField] private RectTransform targetGroup;
@@ -203,5 +212,35 @@ public class ItemManager : MonoBehaviour
     {
         inventoryItems.Remove(SelectedItem);
         Destroy(SelectedItem.gameObject);
+    }
+
+    //--------------------------------------------------------- UI Control ----------------------------------------------------------------
+
+    public void TurnOffGoButtons()
+    {
+        LeftButton.gameObject.SetActive(false);
+        RightButton.gameObject.SetActive(false);
+        UpButton.gameObject.SetActive(false);
+    }
+
+    public void TurnOnGoButtons()
+    {
+        LeftButton.gameObject.SetActive(true);
+        RightButton.gameObject.SetActive(true);
+        UpButton.gameObject.SetActive(true);
+    }
+
+    public void TurnOnReturnFromCloseUpButton()
+    {
+        ReturnFromCloseUpButton.gameObject.SetActive(true);
+    }
+
+    public void ReturnFromCloseUpOnClick()
+    {
+        Camera.main.transform.DOMove(Vector3.zero, 0.6f).SetUpdate(true).SetEase(Ease.InOutSine).OnComplete(() =>
+        {
+            ReturnFromCloseUpEvent?.Invoke();
+            TurnOnGoButtons();
+        });
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class RoomConvertButton : MonoBehaviour
 {
-    [SerializeField] private GameObject RightButton;
-    [SerializeField] private GameObject LeftButton;
     [SerializeField] private GameObject TopButton;
     [SerializeField] private GameObject BottomButton;
 
@@ -26,10 +24,8 @@ public class RoomConvertButton : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
 
         EventSystem.current.SetSelectedGameObject(null);
-        RightButton.SetActive(false);
-        LeftButton.SetActive(false);
+        ItemManager.Instance.TurnOffGoButtons();
         BottomButton.SetActive(true);
-        gameObject.SetActive(false);
         StageManager.Instance.ConvertViewCeiling();
     }
 
@@ -38,9 +34,7 @@ public class RoomConvertButton : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
 
         EventSystem.current.SetSelectedGameObject(null);
-        RightButton.SetActive(true);
-        LeftButton.SetActive(true);
-        TopButton.SetActive(true);
+        ItemManager.Instance.TurnOnGoButtons();
         gameObject.SetActive(false);
         StageManager.Instance.ReturnToSide();
     }

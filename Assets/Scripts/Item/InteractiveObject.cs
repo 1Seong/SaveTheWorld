@@ -1,6 +1,8 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class InteractiveObject : MonoBehaviour
 {
@@ -13,8 +15,15 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private bool hasDropItem = false; // does this interactible "drops" item ?   Do not confuse with the ones that have "attached" itemObject
     [SerializeField] private float dropDisX = 0f;
 
-    [Header("# Attached Item Setting")]
-    [SerializeField] private bool hasAttachedItem = false;
+    [Header("# Toggle Item Setting")]
+    [SerializeField] private bool hasToggleItem = false;
+
+    [Header("# Close up Setting")]
+    [SerializeField] private bool hasCloseUp = false;
+    [SerializeField] private float closeUpDistance = 5f;
+    [SerializeField] private bool hasMiniGame = false;
+    [SerializeField] private string SceneName;
+    [SerializeField] private UnityAction ReturnFromCloseUpUnityAction;
 
 
     private void Start()
@@ -28,11 +37,13 @@ public class InteractiveObject : MonoBehaviour
             DropInit();
 
         NoteManager.Instance.BlurrUnlockEvent += unlockBlurr;
+        ItemManager.Instance.ReturnFromCloseUpEvent += buttonInteractiveOn;
     }
 
     private void OnDestroy()
     {
         NoteManager.Instance.BlurrUnlockEvent -= unlockBlurr;
+        ItemManager.Instance.ReturnFromCloseUpEvent -= buttonInteractiveOn;
     }
 
     private void unlockBlurr(Item.Interactives id)
@@ -55,7 +66,7 @@ public class InteractiveObject : MonoBehaviour
         });
     }
 
-    public void DropItem()
+    public void DropItemOnClick()
     {
         if (!hasDropItem) return;
         if(Item.IsDropped(typeId)) return;
@@ -70,12 +81,41 @@ public class InteractiveObject : MonoBehaviour
             .Join(itemObject.GetComponent<RectTransform>().DOAnchorPosX(dropDisX, 1f).SetUpdate(true).SetEase(Ease.OutCirc));
     }
 
-    public void ControlAttached()
+    public void ToggleItemOnClick()
     {
-        if(!hasAttachedItem) return;
+        if(!hasToggleItem) return;
         if (GetComponentInChildren<ItemObject>(true) == null) return;
 
         var itemObject = GetComponentInChildren<ItemObject>(true).gameObject;
         itemObject.SetActive(!itemObject.activeSelf);
+    }
+
+    public void CloseUpOnClick()
+    {
+        if(!hasCloseUp) return;
+
+        ItemManager.Instance.TurnOffGoButtons();
+        ItemManager.Instance.TurnOnReturnFromCloseUpButton(); // should turn off when entering minigame
+
+        var targetPos = transform.position;
+        var res = StageManager.Instance.CurrentPlaneId switch
+        {
+            0 => new Vector3(targetPos.x, targetPos.y, closeUpDistance),
+            1 => new Vector3(-closeUpDistance, targetPos.y, targetPos.z),
+            2 => new Vector3(targetPos.x, targetPos.y, -closeUpDistance),
+            3 => new Vector3(closeUpDistance, targetPos.y, targetPos.z),
+            4 => new Vector3(targetPos.x, closeUpDistance, targetPos.z),
+            _ => throw new System.NotImplementedException()
+        };
+
+
+        Camera.main.transform.DOMove(res, 0.5f);
+
+        // TODO : implement minigame enter logic
+    }
+
+    private void buttonInteractiveOn()
+    {
+        GetComponent<Button>().interactable = true;
     }
 }

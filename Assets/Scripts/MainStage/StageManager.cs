@@ -7,7 +7,7 @@ public class StageManager : MonoBehaviour
 {
     [SerializeField] private GameObject planeParent;
     [SerializeField] private RoomPlane[] planes;
-    [SerializeField] private int currentPlaneId = 0;
+    public int CurrentPlaneId = 0;
 
     private Action convertAction;
     private Action convertLeftAction;
@@ -59,7 +59,7 @@ public class StageManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        planes[currentPlaneId].ActivateInteractives();
+        planes[CurrentPlaneId].ActivateInteractives();
 
         convertLeftAction += SceneTransition.Instance.RoomLeftTransition;
         convertRightAction += SceneTransition.Instance.RoomRightTransition;
@@ -73,10 +73,10 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
-        planes[currentPlaneId].DeactivateInteractives();
+        planes[CurrentPlaneId].DeactivateInteractives();
 
-        ++currentPlaneId;
-        if(currentPlaneId == 4) currentPlaneId = 0;
+        ++CurrentPlaneId;
+        if(CurrentPlaneId == 4) CurrentPlaneId = 0;
 
         convertAction?.Invoke();
         convertLeftAction?.Invoke();
@@ -89,10 +89,10 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
-        planes[currentPlaneId].DeactivateInteractives();
+        planes[CurrentPlaneId].DeactivateInteractives();
 
-        --currentPlaneId;
-        if (currentPlaneId == -1) currentPlaneId = 3;
+        --CurrentPlaneId;
+        if (CurrentPlaneId == -1) CurrentPlaneId = 3;
 
         convertAction?.Invoke();
         convertRightAction?.Invoke();
@@ -105,10 +105,10 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
-        planes[currentPlaneId].DeactivateInteractives();
+        planes[CurrentPlaneId].DeactivateInteractives();
 
-        tempPlaneId = currentPlaneId;
-        currentPlaneId = 4;
+        tempPlaneId = CurrentPlaneId;
+        CurrentPlaneId = 4;
 
         convertAction?.Invoke();
         convertCeilingAction?.Invoke();
@@ -119,7 +119,7 @@ public class StageManager : MonoBehaviour
         {
             Camera.main.transform.rotation = Quaternion.Euler(new Vector3(targetRot, -90 * tempPlaneId, 0f));
             Camera.main.GetComponent<ViewCursorFollow>().ChangeOriginRot(Quaternion.Euler(targetRot, -90 * tempPlaneId, 0f));
-            planes[currentPlaneId].ActivateInteractives();
+            planes[CurrentPlaneId].ActivateInteractives();
             GameManager.Instance.IsTurning = false;
         });
     }
@@ -129,9 +129,9 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
-        planes[currentPlaneId].DeactivateInteractives();
+        planes[CurrentPlaneId].DeactivateInteractives();
 
-        currentPlaneId = tempPlaneId;
+        CurrentPlaneId = tempPlaneId;
 
         convertAction?.Invoke();
         convertSideReturnAction?.Invoke();
@@ -140,20 +140,20 @@ public class StageManager : MonoBehaviour
         {
             Camera.main.transform.rotation = Quaternion.Euler(new Vector3(0f, -90 * tempPlaneId, 0f));
             Camera.main.GetComponent<ViewCursorFollow>().ChangeOriginRot(Quaternion.Euler(0f, -90 * tempPlaneId, 0f));
-            planes[currentPlaneId].ActivateInteractives();
+            planes[CurrentPlaneId].ActivateInteractives();
             GameManager.Instance.IsTurning = false;
         });
     }
 
     private void ConvertView()
     {
-        var targetRot = -90f * currentPlaneId;
+        var targetRot = -90f * CurrentPlaneId;
 
         Camera.main.transform.DORotate(new Vector3(0f, targetRot, 0f), 0.9f).SetUpdate(true).SetEase(Ease.OutExpo).OnComplete(() =>
         {
             Camera.main.transform.rotation = Quaternion.Euler(new Vector3(0f, targetRot, 0f));
             Camera.main.GetComponent<ViewCursorFollow>().ChangeOriginRot(Quaternion.Euler(0f, targetRot, 0f));
-            planes[currentPlaneId].ActivateInteractives();
+            planes[CurrentPlaneId].ActivateInteractives();
             GameManager.Instance.IsTurning = false;
         });
     }
