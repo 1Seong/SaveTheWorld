@@ -73,7 +73,7 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
-        planes[CurrentPlaneId].DeactivateInteractives();
+        //planes[CurrentPlaneId].DeactivateInteractives();
 
         ++CurrentPlaneId;
         if(CurrentPlaneId == 4) CurrentPlaneId = 0;
@@ -89,7 +89,7 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
-        planes[CurrentPlaneId].DeactivateInteractives();
+        //planes[CurrentPlaneId].DeactivateInteractives();
 
         --CurrentPlaneId;
         if (CurrentPlaneId == -1) CurrentPlaneId = 3;
@@ -105,7 +105,7 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
-        planes[CurrentPlaneId].DeactivateInteractives();
+        //planes[CurrentPlaneId].DeactivateInteractives();
 
         tempPlaneId = CurrentPlaneId;
         CurrentPlaneId = 4;
@@ -129,7 +129,7 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
-        planes[CurrentPlaneId].DeactivateInteractives();
+        //planes[CurrentPlaneId].DeactivateInteractives();
 
         CurrentPlaneId = tempPlaneId;
 

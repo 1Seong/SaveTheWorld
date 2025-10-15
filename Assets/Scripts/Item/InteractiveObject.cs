@@ -14,6 +14,7 @@ public class InteractiveObject : MonoBehaviour
     [Header("# Drop Item Setting")]
     [SerializeField] private bool hasDropItem = false; // does this interactible "drops" item ?   Do not confuse with the ones that have "attached" itemObject
     [SerializeField] private float dropDisX = 0f;
+    [SerializeField] private float dropPosY = -3f;
 
     [Header("# Toggle Item Setting")]
     [SerializeField] private bool hasToggleItem = false;
@@ -77,7 +78,7 @@ public class InteractiveObject : MonoBehaviour
         itemObject.SetActive(true);
 
         Sequence seq = DOTween.Sequence(itemObject);
-        seq.Join(itemObject.GetComponent<RectTransform>().DOAnchorPosY(-5f, 1f).SetUpdate(true).SetEase(Ease.OutBounce))
+        seq.Join(itemObject.GetComponent<RectTransform>().DOAnchorPosY(dropPosY, 1f).SetUpdate(true).SetEase(Ease.OutBounce))
             .Join(itemObject.GetComponent<RectTransform>().DOAnchorPosX(dropDisX, 1f).SetUpdate(true).SetEase(Ease.OutCirc));
     }
 
@@ -109,7 +110,7 @@ public class InteractiveObject : MonoBehaviour
         };
 
 
-        Camera.main.transform.DOMove(res, 0.5f);
+        Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc);
 
         // TODO : implement minigame enter logic
     }

@@ -237,7 +237,7 @@ public class ItemManager : MonoBehaviour
 
     public void ReturnFromCloseUpOnClick()
     {
-        Camera.main.transform.DOMove(Vector3.zero, 0.6f).SetUpdate(true).SetEase(Ease.InOutSine).OnComplete(() =>
+        Camera.main.transform.DOMove(Vector3.zero, 0.6f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             ReturnFromCloseUpEvent?.Invoke();
             TurnOnGoButtons();
