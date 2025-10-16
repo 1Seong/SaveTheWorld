@@ -121,6 +121,7 @@ public class InteractiveObject : MonoBehaviour
             {
                 Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
                 {
+                    //ItemManager.Instance.ReturnFromCloseUpEvent += deactiveItems;
                     Invoke(nameof(giveRewards), 0.3f);
                     ItemManager.Instance.TurnOnReturnFromCloseUpButton();
                     SceneTransition.Instance.LoadScene(sceneName);
@@ -129,11 +130,18 @@ public class InteractiveObject : MonoBehaviour
             }
             else
             {
+                Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
+                {
+                    ItemManager.Instance.TurnOnReturnFromCloseUpButton();
+
+                });
+                /*
                 foreach (var i in GetComponentsInChildren<ItemObject>(true))
                 {
                     i.gameObject.SetActive(!i.gameObject.activeSelf);
                 }
                 ItemManager.Instance.ReturnFromCloseUpEvent += deactiveItems;
+                */
             }
         }
         else
