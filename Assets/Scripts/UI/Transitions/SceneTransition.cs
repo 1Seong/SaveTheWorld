@@ -107,10 +107,14 @@ public class SceneTransition : MonoBehaviour
 
     public void UnloadScene()
     {
+        Invoke("enableMainUI", 0.6f);
+        transition.SceneUnloadTransition();
+    }
+
+    private void enableMainUI()
+    {
         ItemManager.Instance.gameObject.SetActive(true);
         NoteManager.Instance.gameObject.SetActive(true);
-
-        transition.SceneUnloadTransition();
     }
 
     public void RoomLeftTransition()
