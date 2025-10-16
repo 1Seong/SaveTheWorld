@@ -1,8 +1,9 @@
 using DG.Tweening;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class InteractiveObject : MonoBehaviour
 {
@@ -23,20 +24,23 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private bool hasCloseUp = false;
     [SerializeField] private float closeUpDistance = 5f;
     [SerializeField] private bool hasMiniGame = false;
-    [SerializeField] private string SceneName;
-    [SerializeField] private UnityAction ReturnFromCloseUpUnityAction;
+    [SerializeField] private string sceneName;
 
 
     private void Start()
     {
         if (hasBlurr && Item.IsBlurred(typeId))
+        {
             GetComponent<Button>().interactable = false;
+            GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
+        }
         else
             GetComponent<Button>().interactable = true;
 
+        /*
         if(hasDropItem && Item.IsDropped(typeId))
             DropInit();
-
+        */
         NoteManager.Instance.BlurrUnlockEvent += unlockBlurr;
         ItemManager.Instance.ReturnFromCloseUpEvent += buttonInteractiveOn;
     }
@@ -52,7 +56,7 @@ public class InteractiveObject : MonoBehaviour
         if (id != typeId) return;
 
         Item.UnlockBlurr(typeId);
-        transform.GetChild(0).gameObject.SetActive(false);
+        GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
         GetComponent<Button>().interactable = true;
     }
 
@@ -96,7 +100,9 @@ public class InteractiveObject : MonoBehaviour
         if(!hasCloseUp) return;
 
         ItemManager.Instance.TurnOffGoButtons();
-        ItemManager.Instance.TurnOnReturnFromCloseUpButton(); // should turn off when entering minigame
+
+        if(!hasMiniGame)
+            ItemManager.Instance.TurnOnReturnFromCloseUpButton();
 
         var targetPos = transform.position;
         var res = StageManager.Instance.CurrentPlaneId switch
@@ -109,14 +115,51 @@ public class InteractiveObject : MonoBehaviour
             _ => throw new System.NotImplementedException()
         };
 
+        if (hasMiniGame)
+        {
+            if (!GameManager.Instance.IsMiniGameCleared(sceneName))
+            {
+                Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
+                {
+                    Invoke(nameof(giveRewards), 0.3f);
+                    ItemManager.Instance.TurnOnReturnFromCloseUpButton();
+                    SceneTransition.Instance.LoadScene(sceneName);
 
-        Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc);
+                });
+            }
+            else
+            {
+                foreach (var i in GetComponentsInChildren<ItemObject>(true))
+                {
+                    i.gameObject.SetActive(!i.gameObject.activeSelf);
+                }
+                ItemManager.Instance.ReturnFromCloseUpEvent += deactiveItems;
+            }
+        }
+        else
+            Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc);
 
-        // TODO : implement minigame enter logic
+    }
+
+    private void giveRewards()
+    {
+        foreach (var i in GetComponentsInChildren<ItemObject>(true))
+        {
+            i.gameObject.SetActive(true);
+        }
     }
 
     private void buttonInteractiveOn()
     {
         GetComponent<Button>().interactable = true;
+    }
+
+    private void deactiveItems()
+    {
+        foreach (var i in GetComponentsInChildren<ItemObject>(true))
+        {
+            i.gameObject.SetActive(false);
+        }
+        ItemManager.Instance.ReturnFromCloseUpEvent -= deactiveItems;
     }
 }

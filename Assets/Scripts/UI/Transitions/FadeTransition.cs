@@ -14,7 +14,20 @@ public class FadeTransition : MonoBehaviour, ITransition, IRoomTransition
 
         targetImage.transform.DOScale(250f, 0.6f).OnComplete(() =>
         {
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            targetImage.transform.localScale = Vector3.one * 250f;
+            targetImage.transform.DOScale(0f, 0.6f);
+        });
+    }
+
+    public void SceneUnloadTransition()
+    {
+        targetImage.transform.localScale = Vector3.zero;
+        (targetImage.transform as RectTransform).anchoredPosition = Vector3.zero;
+
+        targetImage.transform.DOScale(250f, 0.6f).OnComplete(() =>
+        {
+            SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name);
             targetImage.transform.localScale = Vector3.one * 250f;
             targetImage.transform.DOScale(0f, 0.6f);
         });

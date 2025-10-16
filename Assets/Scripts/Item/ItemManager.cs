@@ -70,7 +70,7 @@ public class ItemManager : MonoBehaviour
 
     private void Awake()
     {
-        inventoryItems = new List<InventoryItem>();
+        //inventoryItems = new List<InventoryItem>();
 
         // 중복 방지
         if (_instance != null && _instance != this)

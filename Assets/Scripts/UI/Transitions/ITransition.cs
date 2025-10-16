@@ -5,4 +5,6 @@ public interface ITransition
 
     public void SceneLoadTransition(string sceneName);
 
+
+    public void SceneUnloadTransition();
 }

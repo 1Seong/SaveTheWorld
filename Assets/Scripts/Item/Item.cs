@@ -9,7 +9,7 @@ public static class Item
     // ---------------------------------------------------- Item Objects --------------------------------------------------------
     public enum Items
     {
-        Controller, FlyCatcher, Bottle, 
+        Controller, FlyCatcher, Bottle, FilledBottle,
         LetterJu, LetterSa, LetterGi, // 주사기
         LetterMok, LetterBal, // 목발
         LetterHang, LetterAa, LetterRi, // 항아리
@@ -37,12 +37,36 @@ public static class Item
         return collected[i];
     }
 
+    // -------------------------------------------------- Item Target ------------------------------------------------------
+
+    public static Dictionary<string, bool> targetAct = new Dictionary<string, bool>()
+    {
+        {"TV", false },
+        {"Fly", false }
+    };
+
+    public static void TargetAct(string i)
+    {
+        if (i != "TV" && i != "Fly") return;
+
+        targetAct[i] = true;
+    }
+
+    public static bool IsTargetActed(string i)
+    {
+        if (i != "TV" && i != "Fly") return false;
+
+        return targetAct[i];
+    }
+
+
     // -------------------------------------------------- Interactibles ---------------------------------------------------
 
     public enum Interactives
     {
         Syringe, Crutches, Jar, // Page1
-        Pencil, Sewing, Laundry // Page2
+        Pencil, Sewing, Laundry, // Page2
+        Others
     };
 
     public static Dictionary<Interactives, bool> blurred = Enum.GetValues(typeof(Interactives))

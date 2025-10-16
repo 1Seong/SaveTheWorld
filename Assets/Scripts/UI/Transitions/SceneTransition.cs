@@ -93,11 +93,24 @@ public class SceneTransition : MonoBehaviour
         if(ItemManager.Instance != null)
         {
             if (sceneName == "MainScene")
+            {
                 ItemManager.Instance.gameObject.SetActive(true);
+            }
             else
+            {
                 ItemManager.Instance.gameObject.SetActive(false);
+                NoteManager.Instance.gameObject.SetActive(false);
+            }
         }
         transition.SceneLoadTransition(sceneName);
+    }
+
+    public void UnloadScene()
+    {
+        ItemManager.Instance.gameObject.SetActive(true);
+        NoteManager.Instance.gameObject.SetActive(true);
+
+        transition.SceneUnloadTransition();
     }
 
     public void RoomLeftTransition()
