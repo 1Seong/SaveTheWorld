@@ -1,8 +1,5 @@
 using DG.Tweening;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InteractiveObject : MonoBehaviour
@@ -124,7 +121,7 @@ public class InteractiveObject : MonoBehaviour
                     //ItemManager.Instance.ReturnFromCloseUpEvent += deactiveItems;
                     Invoke(nameof(giveRewards), 0.3f);
                     ItemManager.Instance.TurnOnReturnFromCloseUpButton();
-                    SceneTransition.Instance.LoadScene(sceneName);
+                    SceneTransition.Instance.LoadSceneAdditive(sceneName);
 
                 });
             }

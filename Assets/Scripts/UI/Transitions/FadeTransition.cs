@@ -7,14 +7,17 @@ public class FadeTransition : MonoBehaviour, ITransition, IRoomTransition
 {
     [SerializeField] Image targetImage;
 
-    public void SceneLoadTransition(string sceneName)
+    public void SceneLoadTransition(string sceneName, bool isAdditive)
     {
         targetImage.transform.localScale = Vector3.zero;
         (targetImage.transform as RectTransform).anchoredPosition = Vector3.zero;
 
         targetImage.transform.DOScale(250f, 0.6f).OnComplete(() =>
         {
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            if(isAdditive)
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            else
+                SceneManager.LoadScene(sceneName);
             targetImage.transform.localScale = Vector3.one * 250f;
             targetImage.transform.DOScale(0f, 0.6f);
         });

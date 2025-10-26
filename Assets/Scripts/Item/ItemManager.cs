@@ -218,16 +218,28 @@ public class ItemManager : MonoBehaviour
 
     public void TurnOffGoButtons()
     {
-        LeftButton.gameObject.SetActive(false);
-        RightButton.gameObject.SetActive(false);
-        UpButton.gameObject.SetActive(false);
+        LeftButton.GetComponent<Button>().interactable = false;
+        LeftButton.GetComponent<Image>().DOFade(0f, 0.3f);
+        RightButton.GetComponent<Button>().interactable = false;
+        RightButton.GetComponent<Image>().DOFade(0f, 0.3f);
+        UpButton.GetComponent<Button>().interactable = false;
+        UpButton.GetComponent<Image>().DOFade(0f, 0.3f);
     }
 
     public void TurnOnGoButtons()
     {
-        LeftButton.gameObject.SetActive(true);
-        RightButton.gameObject.SetActive(true);
-        UpButton.gameObject.SetActive(true);
+        LeftButton.GetComponent<Image>().DOFade(1f, 0.3f).OnComplete(() =>
+        {
+            LeftButton.GetComponent<Button>().interactable = true;
+        });
+        RightButton.GetComponent<Image>().DOFade(1f, 0.3f).OnComplete(() =>
+        {
+            RightButton.GetComponent<Button>().interactable = true;
+        });
+        UpButton.GetComponent<Image>().DOFade(1f, 0.3f).OnComplete(() =>
+        {
+            UpButton.GetComponent<Button>().interactable = true;
+        });
     }
 
     public void TurnOnReturnFromCloseUpButton()

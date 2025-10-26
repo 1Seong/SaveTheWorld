@@ -88,7 +88,7 @@ public class SceneTransition : MonoBehaviour
         RType = _rType;
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadSceneAdditive(string sceneName)
     {
         if(ItemManager.Instance != null)
         {
@@ -102,7 +102,21 @@ public class SceneTransition : MonoBehaviour
                 NoteManager.Instance.gameObject.SetActive(false);
             }
         }
-        transition.SceneLoadTransition(sceneName);
+        transition.SceneLoadTransition(sceneName, true);
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        if (sceneName == "MainScene")
+        {
+            ItemManager.Instance.gameObject.SetActive(true);
+        }
+        else
+        {
+            ItemManager.Instance.gameObject.SetActive(false);
+            NoteManager.Instance.gameObject.SetActive(false);
+        }
+        transition.SceneLoadTransition(sceneName, false);
     }
 
     public void UnloadScene()
