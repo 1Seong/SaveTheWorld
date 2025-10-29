@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2155855031967791548}
         m_TargetAssemblyTypeName: InteractiveObject, Assembly-CSharp
-        m_MethodName: DropItem
+        m_MethodName: DropItemOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -149,8 +149,13 @@ MonoBehaviour:
   typeId: 0
   hasBlurr: 0
   hasDropItem: 1
-  dropDisX: 0.3
-  hasAttachedItem: 0
+  dropDisX: 1
+  dropPosY: -3
+  hasToggleItem: 0
+  hasCloseUp: 0
+  closeUpDistance: 5
+  hasMiniGame: 0
+  sceneName: 
 --- !u!1001 &3447899154587567239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -193,11 +198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9149127477400854178, guid: aac406a9666f248478b52bc8b80a492f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9149127477400854178, guid: aac406a9666f248478b52bc8b80a492f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9149127477400854178, guid: aac406a9666f248478b52bc8b80a492f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -229,11 +234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9149127477400854178, guid: aac406a9666f248478b52bc8b80a492f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3.56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9149127477400854178, guid: aac406a9666f248478b52bc8b80a492f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.87
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9149127477400854178, guid: aac406a9666f248478b52bc8b80a492f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

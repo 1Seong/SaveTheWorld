@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7983330704160022554}
         m_TargetAssemblyTypeName: InteractiveObject, Assembly-CSharp
-        m_MethodName: ControlAttached
+        m_MethodName: ToggleItemOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -149,8 +149,13 @@ MonoBehaviour:
   typeId: 0
   hasBlurr: 0
   hasDropItem: 0
-  dropDisX: 0.3
-  hasAttachedItem: 1
+  dropDisX: 0.4
+  dropPosY: -3
+  hasToggleItem: 1
+  hasCloseUp: 0
+  closeUpDistance: 5
+  hasMiniGame: 0
+  sceneName: 
 --- !u!1001 &4919378429862558936
 PrefabInstance:
   m_ObjectHideFlags: 0

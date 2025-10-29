@@ -162,11 +162,12 @@ MonoBehaviour:
   hasBlurr: 0
   hasDropItem: 0
   dropDisX: 0.3
+  dropPosY: -3
   hasToggleItem: 0
   hasCloseUp: 1
   closeUpDistance: 4
-  hasMiniGame: 0
-  SceneName: 
+  hasMiniGame: 1
+  sceneName: Syringe
 --- !u!1001 &1339957333336738372
 PrefabInstance:
   m_ObjectHideFlags: 0
