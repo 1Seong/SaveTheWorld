@@ -20,6 +20,7 @@ public class InteractiveObject : MonoBehaviour
     [Header("# Close up Setting")]
     [SerializeField] private bool hasCloseUp = false;
     [SerializeField] private float closeUpDistance = 5f;
+    [SerializeField] private Vector3 biasV = Vector3.zero;
     [SerializeField] private bool hasMiniGame = false;
     [SerializeField] private string sceneName;
 
@@ -95,13 +96,15 @@ public class InteractiveObject : MonoBehaviour
     public void CloseUpOnClick()
     {
         if(!hasCloseUp) return;
-
+        GetComponent<Button>().interactable = false;
         ItemManager.Instance.TurnOffGoButtons();
 
         if(!hasMiniGame)
             ItemManager.Instance.TurnOnReturnFromCloseUpButton();
 
         var targetPos = transform.position;
+        var res = Camera.main.transform.position + (targetPos - Camera.main.transform.position + biasV).normalized * closeUpDistance;
+        /*
         var res = StageManager.Instance.CurrentPlaneId switch
         {
             0 => new Vector3(targetPos.x, targetPos.y, closeUpDistance),
@@ -111,6 +114,7 @@ public class InteractiveObject : MonoBehaviour
             4 => new Vector3(targetPos.x, closeUpDistance, targetPos.z),
             _ => throw new System.NotImplementedException()
         };
+        */
 
         if (hasMiniGame)
         {

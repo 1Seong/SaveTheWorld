@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
@@ -25,8 +26,22 @@ public class ToggleInteractives : MonoBehaviour // template method pattern
         }
     }
 
-    public void OnClick()
+    public virtual void OnClick()
     {
         IsActive = !IsActive;
+    }
+
+    protected virtual void Awake()
+    {
+        toggleOnAction += On;
+        toggleOffAction += Off;
+    }
+
+    protected virtual void On()
+    {
+    }
+
+    protected virtual void Off()
+    {
     }
 }
