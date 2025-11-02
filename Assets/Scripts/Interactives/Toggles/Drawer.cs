@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Drawer : ToggleInteractives
 {
-    [SerializeField] private float targetMove = 0f;
-    [SerializeField] private float targetScale = 1f;
+    [SerializeField] private float targetMove = -1f;
+    [SerializeField] private float targetScale = 1.4f;
     [SerializeField] private float duration = 0.3f;
     [SerializeField] private Transform innerTransform;
 
