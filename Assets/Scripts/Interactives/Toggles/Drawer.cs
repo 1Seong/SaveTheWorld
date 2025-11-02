@@ -1,0 +1,30 @@
+using DG.Tweening;
+using UnityEngine;
+
+public class Drawer : ToggleInteractives
+{
+    [SerializeField] private float targetMove = 0f;
+    [SerializeField] private float targetScale = 1f;
+    [SerializeField] private float duration = 0.3f;
+    [SerializeField] private Transform innerTransform;
+
+    protected override void On()
+    {
+        isActing = true;
+        innerTransform.DOScaleY(targetScale, duration).SetEase(Ease.InOutCubic);
+        transform.DOMoveY(transform.position.y + targetMove, duration).SetEase(Ease.InOutCubic).OnComplete(() =>
+        {
+            isActing = false;
+        });
+    }
+
+    protected override void Off()
+    {
+        isActing = true;
+        innerTransform.DOScaleY(0f, duration).SetEase(Ease.InOutCubic);
+        transform.DOMoveY(transform.position.y - targetMove, duration).SetEase(Ease.InOutCubic).OnComplete(() =>
+        {
+            isActing = false;
+        });
+    }
+}

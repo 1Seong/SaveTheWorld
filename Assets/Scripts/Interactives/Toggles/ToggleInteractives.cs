@@ -7,6 +7,8 @@ public class ToggleInteractives : MonoBehaviour // template method pattern
     protected Action toggleOnAction;
     protected Action toggleOffAction;
 
+    [SerializeField] protected bool isActing = false;
+
     private bool _isActive = false;
     public bool IsActive 
     { 
@@ -28,6 +30,7 @@ public class ToggleInteractives : MonoBehaviour // template method pattern
 
     public virtual void OnClick()
     {
+        if (isActing) return;
         IsActive = !IsActive;
     }
 

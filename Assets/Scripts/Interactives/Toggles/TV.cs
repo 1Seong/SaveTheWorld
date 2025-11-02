@@ -7,7 +7,6 @@ public class TV : ToggleInteractives
     [SerializeField] Transform onMonitor;
     [SerializeField] GameObject channelMonitor;
 
-    [SerializeField] bool isActing = false;
     [SerializeField] bool _channelOn = false;
 
 
@@ -59,9 +58,4 @@ public class TV : ToggleInteractives
         ChannelOn = true;
     }
 
-    public override void OnClick()
-    {
-        if(!isActing)
-            base.OnClick();
-    }
 }

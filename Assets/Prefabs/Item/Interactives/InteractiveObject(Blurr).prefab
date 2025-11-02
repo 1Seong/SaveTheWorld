@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 8232710255694707541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7879, y: 1.7879, z: 1.7879}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6206055435508122763}
@@ -154,8 +154,8 @@ MonoBehaviour:
   dropPosY: -3
   hasToggleItem: 0
   hasCloseUp: 1
-  closeUpDistance: 8
-  biasV: {x: 0, y: -1, z: 0}
+  closeUpDistance: 9
+  biasV: {x: 0, y: -2, z: 5}
   hasMiniGame: 1
   sceneName: Syringe
 --- !u!1001 &515914839041908937
@@ -169,6 +169,10 @@ PrefabInstance:
     - target: {fileID: 4323675223776179216, guid: ad25ad7b295aec448b9e99cb2a894c05, type: 3}
       propertyPath: m_SortingLayer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323675223776179216, guid: ad25ad7b295aec448b9e99cb2a894c05, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4323675223776179216, guid: ad25ad7b295aec448b9e99cb2a894c05, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
