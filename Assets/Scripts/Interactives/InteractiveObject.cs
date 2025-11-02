@@ -10,9 +10,10 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private bool hasBlurr = false;
 
     [Header("# Drop Item Setting")]
-    [SerializeField] private bool hasDropItem = false; // does this interactible "drops" item ?   Do not confuse with the ones that have "attached" itemObject
+    [SerializeField] private bool hasDropItem = false;
+    [SerializeField] private GameObject itemObject;
     [SerializeField] private float dropDisX = 0f;
-    [SerializeField] private float dropPosY = -3f;
+    [SerializeField] private float dropDisY = -0.5f;
 
     [Header("# Toggle Item Setting")]
     [SerializeField] private bool hasToggleItem = false;
@@ -73,15 +74,23 @@ public class InteractiveObject : MonoBehaviour
     {
         if (!hasDropItem) return;
         if(Item.IsDropped(typeId)) return;
-        if (GetComponentInChildren<ItemObject>(true) == null) return;
 
         Item.Drop(typeId);
-        var itemObject = GetComponentInChildren<ItemObject>(true).gameObject;
+        if(itemObject == null)
+            itemObject = GetComponentInChildren<ItemObject>(true).gameObject;
         itemObject.SetActive(true);
 
         Sequence seq = DOTween.Sequence(itemObject);
-        seq.Join(itemObject.GetComponent<RectTransform>().DOAnchorPosY(dropPosY, 1f).SetUpdate(true).SetEase(Ease.OutBounce))
-            .Join(itemObject.GetComponent<RectTransform>().DOAnchorPosX(dropDisX, 1f).SetUpdate(true).SetEase(Ease.OutCirc));
+
+        seq.Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + dropDisY, .8f).SetUpdate(true).SetEase(Ease.OutSine)) // 1
+        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x + dropDisX, .8f).SetUpdate(true).SetEase(Ease.InOutSine))
+        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 2 * dropDisY, .8f).SetUpdate(true).SetEase(Ease.OutSine)) // 2
+        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .8f).SetUpdate(true).SetEase(Ease.InOutSine))
+        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 3 * dropDisY, .8f).SetUpdate(true).SetEase(Ease.OutSine)) // 3
+        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x + dropDisX, .8f).SetUpdate(true).SetEase(Ease.InOutSine))
+        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 4 * dropDisY, .8f).SetUpdate(true).SetEase(Ease.OutSine)) // 4
+        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .8f).SetUpdate(true).SetEase(Ease.InOutSine));
+
     }
 
     public void ToggleItemOnClick()
