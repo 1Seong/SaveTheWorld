@@ -41,7 +41,7 @@ public class FadeTransition : MonoBehaviour, ITransition, IRoomTransition
         targetImage.transform.localScale = new Vector3(200f, 200f, 0);
         targetImage.transform.localPosition = new Vector3(-2000f, 0, 0);
         
-        targetImage.transform.DOLocalMoveX(2000f, 0.8f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
+        targetImage.transform.DOLocalMoveX(2000f, 0.9f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
         {
             targetImage.transform.localPosition = new Vector3(2000f, 0f, 0f);
         });
@@ -53,7 +53,7 @@ public class FadeTransition : MonoBehaviour, ITransition, IRoomTransition
         targetImage.transform.localScale = new Vector3(200f, 200f, 0);
         targetImage.transform.localPosition = new Vector3(2000f, 0, 0);
 
-        targetImage.transform.DOLocalMoveX(-2000f, 0.8f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
+        targetImage.transform.DOLocalMoveX(-2000f, 0.9f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
         {
             targetImage.transform.localPosition = new Vector3(-2000f, 0f, 0f);
         });
@@ -65,7 +65,7 @@ public class FadeTransition : MonoBehaviour, ITransition, IRoomTransition
         targetImage.transform.localScale = new Vector3(200f, 200f, 0);
         targetImage.transform.localPosition = new Vector3(0, 1850f, 0);
 
-        targetImage.transform.DOLocalMoveY(-1850f, 0.8f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
+        targetImage.transform.DOLocalMoveY(-1850f, 0.9f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
         {
             targetImage.transform.localPosition = new Vector3(0f, -1850f, 0f);
         });
@@ -76,7 +76,7 @@ public class FadeTransition : MonoBehaviour, ITransition, IRoomTransition
         targetImage.transform.localScale = new Vector3(200f, 200f, 0);
         targetImage.transform.localPosition = new Vector3(0, -1850f, 0);
 
-        targetImage.transform.DOLocalMoveY(1850f, 0.8f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
+        targetImage.transform.DOLocalMoveY(1850f, 0.9f).SetUpdate(true).SetEase(Ease.OutSine).OnComplete(() =>
         {
             targetImage.transform.localPosition = new Vector3(0f, 1850f, 0f);
         });

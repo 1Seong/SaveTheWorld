@@ -15,7 +15,7 @@ public class Curtain : ToggleInteractives
     protected override void Off()
     {
         isActing = true;
-        transform.DOScaleX(3.6f, 0.6f).SetEase(Ease.OutBack).OnComplete(() =>
+        transform.DOScaleX(3.5f, 0.6f).SetEase(Ease.OutBack).OnComplete(() =>
         {
             isActing = false;
         });

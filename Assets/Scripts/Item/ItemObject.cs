@@ -17,7 +17,7 @@ public class ItemObject : MonoBehaviour
 
     public void Collect()
     {
-        if (ItemManager.Instance.IsHolding) return;
+        if (data.id != Item.Items.FilledBottle && ItemManager.Instance.IsHolding) return;
 
         Item.Collect(data.id);
         CollectEvent?.Invoke(data, transform.position);

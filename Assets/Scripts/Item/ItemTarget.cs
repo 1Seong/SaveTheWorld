@@ -1,9 +1,11 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class ItemTarget : MonoBehaviour
 {
     [SerializeField] private Item.Items id;
+
+    [Header("# Bottle")]
+    [SerializeField] private ItemObject filledBottle;
 
     public void OnInteract(ItemData data)
     {
@@ -18,6 +20,18 @@ public class ItemTarget : MonoBehaviour
 
     protected virtual void itemMatched()
     {
+        switch(id)
+        {
+            case Item.Items.Bottle:
+                if (filledBottle != null)
+                {
+                    //filledBottle.gameObject.SetActive(true);
+                    filledBottle.Collect();
+                }
+                break;
+            case Item.Items.FlyCatcher:
 
+                break;
+        }
     }
 }

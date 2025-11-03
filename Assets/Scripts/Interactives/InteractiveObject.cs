@@ -82,14 +82,14 @@ public class InteractiveObject : MonoBehaviour
 
         Sequence seq = DOTween.Sequence(itemObject);
 
-        seq.Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + dropDisY, .8f).SetUpdate(true).SetEase(Ease.OutSine)) // 1
-        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x + dropDisX, .8f).SetUpdate(true).SetEase(Ease.InOutSine))
-        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 2 * dropDisY, .8f).SetUpdate(true).SetEase(Ease.OutSine)) // 2
-        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .8f).SetUpdate(true).SetEase(Ease.InOutSine))
-        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 3 * dropDisY, .8f).SetUpdate(true).SetEase(Ease.OutSine)) // 3
-        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x + dropDisX, .8f).SetUpdate(true).SetEase(Ease.InOutSine))
-        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 4 * dropDisY, .8f).SetUpdate(true).SetEase(Ease.OutSine)) // 4
-        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .8f).SetUpdate(true).SetEase(Ease.InOutSine));
+        seq.Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 1
+        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x + dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine))
+        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 2 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 2
+        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine))
+        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 3 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 3
+        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x + dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine))
+        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 4 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 4
+        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine));
 
     }
 
