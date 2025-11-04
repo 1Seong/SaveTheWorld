@@ -14,6 +14,7 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private GameObject itemObject;
     [SerializeField] private float dropDisX = 0f;
     [SerializeField] private float dropDisY = -0.5f;
+    [SerializeField] private bool hasLetterJae = false;
 
     [Header("# Toggle Item Setting")]
     [SerializeField] private bool hasToggleItem = false;
@@ -89,7 +90,11 @@ public class InteractiveObject : MonoBehaviour
         .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 3 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 3
         .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x + dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine))
         .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 4 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 4
-        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine));
+        .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine).OnComplete(()=>
+        {
+            if (hasLetterJae)
+                itemObject.transform.localPosition = new Vector3(3f, 15f, -20f);
+        }));
 
     }
 
