@@ -56,9 +56,14 @@ public class InventoryItem : MonoBehaviour
 
     public void OnClick()
     {
-        if(Data.id == Item.Items.Controller)
+        if (Data.id == Item.Items.Controller)
         {
             Camera.main.GetComponentInChildren<RCUI>(true).EnableUI();
+            return;
+        }
+        else if(Data.id == Item.Items.FilledBottle)
+        {
+            Camera.main.GetComponentInChildren<BottleUI>(true).EnableUI();
             return;
         }
 

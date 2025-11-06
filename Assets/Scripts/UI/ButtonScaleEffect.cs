@@ -8,32 +8,39 @@ public class ButtonScaleEffect : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public float scaleFactor = 1.1f;
     public float duration = 0.5f;
 
+    private Vector3 originScale;
+
+    private void Awake()
+    {
+        originScale = transform.localScale;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        transform.localScale = Vector3.one;
+        transform.localScale = originScale;
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        transform.localScale = Vector3.one * scaleFactor;
+        transform.localScale = originScale * scaleFactor;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.DOScale(Vector3.one * scaleFactor, duration);
+        transform.DOScale(originScale * scaleFactor, duration);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.DOScale(Vector3.one, duration);
+        transform.DOScale(originScale, duration);
     }
 
     private void OnDisable()
     {
-        transform.localScale = Vector3.one;
+        transform.localScale = originScale;
     }
 
     private void OnEnable()
     {
-        transform.localScale = Vector3.one;
+        transform.localScale = originScale;
     }
 }
