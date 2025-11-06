@@ -37,6 +37,8 @@ public class TV : ToggleInteractives
             onMonitor.DOScaleY(0.73f, 0.2f).SetEase(Ease.InCubic).OnComplete(() =>
             {
                 isActing = false;
+                if(ChannelOn)
+                    channelMonitor.SetActive(true);
             });
         });
     }
@@ -44,6 +46,8 @@ public class TV : ToggleInteractives
     protected override void Off()
     {
         isActing = true;
+        if (ChannelOn)
+            channelMonitor.SetActive(false);
         onMonitor.DOScaleY(0.02f, 0.2f).SetEase(Ease.OutCubic).OnComplete(() =>
         {
             onMonitor.DOScaleX(0f, 0.1f).OnComplete(() =>
@@ -53,7 +57,7 @@ public class TV : ToggleInteractives
         });
     }
 
-    private void channelOnCallBack()
+    public void channelOnCallBack()
     {
         ChannelOn = true;
     }

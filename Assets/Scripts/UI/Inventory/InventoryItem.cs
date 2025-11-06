@@ -56,6 +56,12 @@ public class InventoryItem : MonoBehaviour
 
     public void OnClick()
     {
+        if(Data.id == Item.Items.Controller)
+        {
+            Camera.main.GetComponentInChildren<RCUI>(true).EnableUI();
+            return;
+        }
+
         activateItemFollow();
         ItemManager.Instance.IsHolding = true;
         ItemManager.Instance.SelectedItem = this;
