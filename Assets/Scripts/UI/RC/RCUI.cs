@@ -112,6 +112,7 @@ public class RCUI : MonoBehaviour
 
     private void notMatchedEffect()
     {
+        isActing = true;
         for(int i = 0; i != 3; ++i)
         {
             var ci = i;
