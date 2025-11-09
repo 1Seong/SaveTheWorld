@@ -1,0 +1,114 @@
+using DG.Tweening;
+using UnityEditor.PackageManager.Requests;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class TimingGame : MonoBehaviour
+{
+    public RectTransform timingBar;
+    public RectTransform targetZone;
+    public Image background;
+    public Transform body;
+    public Material bodyMat;
+    public Image targetZoneImage;
+    public Transform syringe;
+    public Transform cameraTransform;
+    public Vector3[] bodyTransforms;
+    public float[] moveDurations;
+    public float[] targetZoneWidths;
+
+    public float moveDuration = 2f; // 바 한 왕복 시간
+    public int successCount = 0;
+    public float targetDis = 0.4f;
+    public float targetZoneMaxDis = 0.4f;
+    public float syringeTargetDis = 0.1f;
+
+    void Start()
+    {
+        bodyMat.color = Color.red;
+        MoveBar();
+    }
+
+    void Update()
+    {
+        if (!GameManager.Instance.IsPlaying || !MiniGameManager.instance.IsPlaying) return;
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            CheckTiming();
+    }
+
+    void MoveBar()
+    {
+        timingBar.DOAnchorPosX(targetDis, moveDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    void StopBar()
+    {
+        timingBar.DOKill();
+    }
+
+    void CheckTiming()
+    {
+        float barX = timingBar.anchoredPosition.x;
+        float zoneMin = targetZone.anchoredPosition.x - (targetZone.localScale.x * targetZone.sizeDelta.x) / 2f;
+        float zoneMax = targetZone.anchoredPosition.x + (targetZone.localScale.x * targetZone.sizeDelta.x) / 2f;
+
+        MiniGameManager.instance.IsPlaying = false;
+        StopBar();
+
+        if (barX >= zoneMin && barX <= zoneMax)
+        {
+            SuccessFeedback();
+        }
+        else
+        {
+            FailFeedback();
+        }
+    }
+
+    void SuccessFeedback()
+    {
+        targetZoneImage.color = Color.green;
+        bodyMat.color = Color.green;
+
+        syringe.DOLocalMoveZ(syringe.transform.localPosition.z + syringeTargetDis, 0.8f).SetEase(Ease.OutExpo).OnComplete(() =>
+        {
+            syringe.DOLocalMoveZ(syringe.transform.localPosition.z - syringeTargetDis, 0.8f);
+            ResetGame();
+        });
+    }
+
+    void FailFeedback()
+    {
+        targetZoneImage.color = Color.red;
+        cameraTransform.DOShakePosition(0.4f, 0.1f).OnComplete(() =>
+        {
+            ResetGame();
+        });
+    }
+
+    void ResetGame()
+    {
+        MiniGameManager.instance.CountUp();
+        ++successCount;
+
+        if(successCount < 5)
+        {
+            background.DOFade(1f, 1f).OnComplete(() =>
+            {
+                body.localPosition = bodyTransforms[successCount];
+                bodyMat.color = Color.red;
+                timingBar.anchoredPosition = new Vector2(-0.4f, 0f);
+                targetZone.anchoredPosition = new Vector2(Random.Range(-targetZoneMaxDis, targetZoneMaxDis), 0f);
+                targetZone.sizeDelta = new Vector2(targetZoneWidths[successCount], 1f);
+                targetZoneImage.color = Color.yellow;
+                moveDuration = moveDurations[successCount];
+
+                background.DOFade(0f, 1f);
+                MoveBar();
+                MiniGameManager.instance.IsPlaying = true;
+            });
+            
+        }
+    }
+}
