@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class TimingGame : MonoBehaviour
@@ -13,6 +14,8 @@ public class TimingGame : MonoBehaviour
     public Image targetZoneImage;
     public Transform syringe;
     public Transform cameraTransform;
+    public UniversalRendererData urpData;
+    public Transform TowelParent;
     public Vector3[] bodyTransforms;
     public float[] moveDurations;
     public float[] targetZoneWidths;
@@ -25,8 +28,23 @@ public class TimingGame : MonoBehaviour
 
     void Start()
     {
+        FullScreenPassRendererFeature rf;
+
+        if(urpData.TryGetRendererFeature(out rf))
+            rf.SetActive(true);
+        
         bodyMat.color = Color.red;
         MoveBar();
+    }
+
+    private void OnDisable()
+    {
+        FullScreenPassRendererFeature rf;
+
+        if (urpData.TryGetRendererFeature(out rf))
+            rf.SetActive(false);
+
+        bodyMat.color = Color.red;
     }
 
     void Update()
@@ -103,6 +121,8 @@ public class TimingGame : MonoBehaviour
                 targetZone.sizeDelta = new Vector2(targetZoneWidths[successCount], 1f);
                 targetZoneImage.color = Color.yellow;
                 moveDuration = moveDurations[successCount];
+                TowelParent.GetChild(successCount-1).gameObject.SetActive(false);
+                TowelParent.GetChild(successCount).gameObject.SetActive(true);
 
                 background.DOFade(0f, 1f);
                 MoveBar();
