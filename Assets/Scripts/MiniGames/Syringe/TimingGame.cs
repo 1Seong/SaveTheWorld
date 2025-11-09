@@ -1,6 +1,10 @@
 using DG.Tweening;
-using UnityEditor.PackageManager.Requests;
+using JetBrains.Annotations;
+using System.Collections;
+using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.LookDev;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
@@ -25,6 +29,8 @@ public class TimingGame : MonoBehaviour
     public float targetDis = 0.4f;
     public float targetZoneMaxDis = 0.4f;
     public float syringeTargetDis = 0.1f;
+
+    private int savedCount = 0;
 
     void Start()
     {
@@ -86,6 +92,7 @@ public class TimingGame : MonoBehaviour
 
     void SuccessFeedback()
     {
+        ++savedCount;
         targetZoneImage.color = Color.green;
         bodyMat.color = Color.green;
 
@@ -107,7 +114,7 @@ public class TimingGame : MonoBehaviour
 
     void ResetGame()
     {
-        MiniGameManager.instance.CountUp();
+        //MiniGameManager.instance.CountUp();
         ++successCount;
 
         if(successCount < 5)
@@ -129,6 +136,22 @@ public class TimingGame : MonoBehaviour
                 MiniGameManager.instance.IsPlaying = true;
             });
             
+        }
+        else
+        {
+            if(savedCount == 0)
+            {
+                MiniGameManager.instance.GameEnd(0);
+            }
+            else if (savedCount > 0 && savedCount < 5)
+            {
+                string[] texts = null;
+                texts.Append(savedCount.ToString());
+                MiniGameManager.instance.GameEnd(texts);
+            }
+            else if (savedCount == 5)
+                MiniGameManager.instance.GameEnd(2);
+
         }
     }
 }
