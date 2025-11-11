@@ -19,6 +19,7 @@ public class TimingGame : MonoBehaviour
     public Transform syringe;
     public Transform cameraTransform;
     public UniversalRendererData urpData;
+    public Material FullScreenShaderMat;
     public Transform TowelParent;
     public Vector3[] bodyTransforms;
     public float[] moveDurations;
@@ -36,8 +37,11 @@ public class TimingGame : MonoBehaviour
     {
         FullScreenPassRendererFeature rf;
 
-        if(urpData.TryGetRendererFeature(out rf))
+        if (urpData.TryGetRendererFeature(out rf))
+        {
+            rf.passMaterial = FullScreenShaderMat;
             rf.SetActive(true);
+        }
         
         bodyMat.color = Color.red;
         MoveBar();
@@ -48,7 +52,10 @@ public class TimingGame : MonoBehaviour
         FullScreenPassRendererFeature rf;
 
         if (urpData.TryGetRendererFeature(out rf))
+        {
+            rf.passMaterial = null;
             rf.SetActive(false);
+        }
 
         bodyMat.color = Color.red;
     }
