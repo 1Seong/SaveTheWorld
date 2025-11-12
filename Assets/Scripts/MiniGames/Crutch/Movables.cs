@@ -5,22 +5,16 @@ using UnityEngine.VFX;
 public class Movables : MonoBehaviour
 {
     public float gameDuration = 30f;
-    public float initUpdateTime = 0.5f;
-    public float finalUpdateTime = 0.1f;
-    public float slowDownStep = 0.2f;
-    public float moveDis = 0.1f;
-    public float spawnRate = 0.4f;
+    public float slowDownRate = 0.2f;
+    public Vector3 velocity = new Vector3(0.2f, 0f, 0f);
+    public Vector3 acceleration = new Vector3(0.1f, 0f, 0f);
+    public float spawnTime = 4f;
+    public float spawnIncreaseRate = 0.1f;
     public Player player;
     public Spawner spawner;
 
-    float updateTime;
-    float currentTime = 0f;
     float totalTime = 0f;
-
-    private void Start()
-    {
-        updateTime = initUpdateTime;
-    }
+    float currentTime = 0f;
 
     private void Update()
     {
@@ -29,22 +23,26 @@ public class Movables : MonoBehaviour
         totalTime += Time.deltaTime;
         currentTime += Time.deltaTime;
 
-        float t = Mathf.InverseLerp(0f, gameDuration, totalTime);
-        updateTime = Mathf.Lerp(initUpdateTime, finalUpdateTime, t);
+        velocity += acceleration * Time.deltaTime;
+        transform.position -= velocity * Time.deltaTime;
 
-        if(currentTime >= updateTime)
+        spawnTime -= spawnIncreaseRate * Time.deltaTime;
+
+        if(currentTime > spawnTime)
         {
             currentTime = 0f;
-
-            float r = Random.Range(0f, 1f);
-            if(r < spawnRate)
-                spawner.Spawn();
-            transform.Translate(-moveDis, 0f, 0f);
+            spawner.Spawn();
         }
-        if(totalTime >= gameDuration)
+
+        if (totalTime >= gameDuration)
         {
             MiniGameManager.instance.IsPlaying = false;
             player.Die();
         }
+    }
+
+    public void SlowDown()
+    {
+        velocity -= slowDownRate * velocity;
     }
 }

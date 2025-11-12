@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public int health = 5;
     public float invincibilityTime = 2f;
-    public float jumpDis = 0.4f;
+    public float jumpPower = 1f;
     public float jumpDur = 0.5f;
     public Camera cam;
     public TextMeshProUGUI healthTmp;
@@ -16,27 +16,31 @@ public class Player : MonoBehaviour
     public Image whiteBackground;
 
     bool isInvincible = false;
+    bool isJumping = false;
 
-    SpriteRenderer spriter;
+    SpriteRenderer[] spriters;
     Animator anim;
-    Rigidbody rigid;
+    Rigidbody2D rigid;
 
     private void Awake()
     {
-        spriter = GetComponent<SpriteRenderer>();
+        spriters = GetComponentsInChildren<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isInvincible && collision.collider.CompareTag("Bullet"))
+        if (!isInvincible && collision.CompareTag("Bullet"))
         {
             isInvincible = true;
-            spriter.DOFade(0.5f, 0f);
+
+            foreach (var i in spriters)
+                i.DOFade(0.5f, 0f);
+
             anim.SetTrigger("Hit");
-            cam.DOShakePosition(0.3f);
-            //movables.slowdown();
+            cam.DOShakePosition(0.2f, 0.3f, 20);
+            movables.SlowDown();
             --health;
             if (health > 0)
                 healthTmp.text = health.ToString();
@@ -55,30 +59,39 @@ public class Player : MonoBehaviour
     private void turnOffInvincible()
     {
         isInvincible = false;
-        spriter.DOFade(1f, 0f);
+        foreach (var i in spriters)
+            i.DOFade(1f, 0f);
     }
 
     private void Update()
     {
         if (!GameManager.Instance.IsPlaying || !MiniGameManager.instance.IsPlaying) return;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-            rigid.DOJump(rigid.position + new Vector3(0f, jumpDis, 0f), 1, 1, jumpDur);
+            isJumping = true;
+            rigid.DOJump(rigid.position, jumpPower, 1, jumpDur).OnComplete(() =>
+            {
+                isJumping = false;
+            });
         }
     }
 
     public void Die()
     {
-        transform.DOMoveX(transform.position.x + 1f, 2f).OnComplete(() =>
+        transform.DOLocalMoveY(-0.52f, 0.3f).OnComplete(() =>
         {
-            explotionAnim.SetTrigger("Explode");
-            anim.SetTrigger("Die");
-            transform.DOMoveY(transform.position.y - 0.5f, 0.3f).SetEase(Ease.OutExpo).OnComplete(() =>
+            transform.DOMoveX(transform.position.x + 1f, 3.1f).SetEase(Ease.Linear).OnComplete(() =>
             {
-                whiteBackground.DOFade(1f, 0.4f).OnComplete(() =>
+                cam.DOShakePosition(0.2f, 0.3f, 20);
+                explotionAnim.SetTrigger("Explode");
+                anim.SetTrigger("Die");
+                transform.DOMoveX(transform.position.x - 0.7f, 0.6f).SetEase(Ease.OutExpo).OnComplete(() =>
                 {
-                    MiniGameManager.instance.GameEnd();
+                    whiteBackground.DOFade(1f, 0.4f).OnComplete(() =>
+                    {
+                        MiniGameManager.instance.GameEnd();
+                    });
                 });
             });
         });

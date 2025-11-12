@@ -6,7 +6,7 @@ public class InfiniteMap : MonoBehaviour
     {
         if(collision.CompareTag("Surface"))
         {
-            collision.transform.parent.transform.Translate(new Vector3(19.1f, 0f, 0f));
+            collision.transform.parent.transform.Translate(new Vector3(38.2f, 0f, 0f));
         }
     }
 }
