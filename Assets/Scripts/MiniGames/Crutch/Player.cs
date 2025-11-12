@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         {
             transform.DOMoveX(transform.position.x + 1f, 3.1f).SetEase(Ease.Linear).OnComplete(() =>
             {
-                cam.DOShakePosition(0.2f, 0.3f, 20);
+                cam.DOShakePosition(0.2f, 0.5f, 20);
                 explotionAnim.SetTrigger("Explode");
                 anim.SetTrigger("Die");
                 transform.DOMoveX(transform.position.x - 0.7f, 0.6f).SetEase(Ease.OutExpo).OnComplete(() =>
