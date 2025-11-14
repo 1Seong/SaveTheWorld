@@ -25,7 +25,7 @@ public class DustCleaner : MonoBehaviour
         {
             foreach (var z in zones)
             {
-                Debug.Log(z.GetComponent<Collider>().bounds.ToString());
+                //Debug.Log(z.GetComponent<Collider>().bounds.ToString());
                 if (z.GetComponent<Collider>().bounds.Contains(dustSystem.transform.parent.TransformPoint(p.position)))
                 {
                     z.RegisterParticle();
