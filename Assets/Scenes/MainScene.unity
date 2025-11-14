@@ -16348,6 +16348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BottleCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8014500749870208613, guid: c2802e59ade69df4a8267f4dd96725f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8707831844725481773, guid: c2802e59ade69df4a8267f4dd96725f9, type: 3}
       propertyPath: m_Camera
       value: 

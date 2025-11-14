@@ -2,11 +2,30 @@ using UnityEngine;
 
 public class DustZone : MonoBehaviour
 {
-    [HideInInspector] public int totalParticles;
-    [HideInInspector] public int cleanedParticles;
+    public int totalParticles;
+    public int cleanedParticles;
+    public JarText jarText;
 
-    public bool IsClean => cleanedParticles >= totalParticles;
+    private bool _isClean = false;
+    public bool IsClean
+    {
+        get => _isClean;
+        set
+        {
+            if (!_isClean && value) // false -> true
+            {
+                _isClean = value;
+                jarText.Show();
+
+            }
+        }
+    }
 
     public void RegisterParticle() => totalParticles++;
-    public void CleanParticle() => cleanedParticles++;
+    public void CleanParticle()
+    {
+        cleanedParticles++;
+        if (cleanedParticles >= totalParticles)
+            IsClean = true;
+    }
 }

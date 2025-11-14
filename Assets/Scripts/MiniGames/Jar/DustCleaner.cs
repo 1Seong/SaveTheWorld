@@ -1,6 +1,7 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI.Table;
+using UnityEngine.UI;
 
 public class DustCleaner : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class DustCleaner : MonoBehaviour
     public float cleanRadius = 0.1f;
     public GameObject smokePrefab;
     public float rotationSpeed = 100f;
+    public Image whiteBackground;
 
     ParticleSystem.Particle[] particles;
-    List<DustZone> zones;
+    [SerializeField] List<DustZone> zones;
 
     void Start()
     {
@@ -23,7 +25,8 @@ public class DustCleaner : MonoBehaviour
         {
             foreach (var z in zones)
             {
-                if (z.GetComponent<Collider>().bounds.Contains(p.position))
+                Debug.Log(z.GetComponent<Collider>().bounds.ToString());
+                if (z.GetComponent<Collider>().bounds.Contains(dustSystem.transform.parent.TransformPoint(p.position)))
                 {
                     z.RegisterParticle();
                     break;
@@ -70,7 +73,7 @@ public class DustCleaner : MonoBehaviour
         Vector3 centerLocal = dustSystem.transform.InverseTransformPoint(centerWorld);
 
 
-        Debug.Log(hitPos);
+        //Debug.Log(hitPos);
         for (int i = 0; i < count; i++)
         {
             var localPos = particles[i].position;
@@ -86,14 +89,16 @@ public class DustCleaner : MonoBehaviour
             // 5. 월드 좌표로 변환
             Vector3 pWorld = transform.TransformPoint(rotatedLocal);
 
-            Debug.Log("particle " + i.ToString() + " " + pWorld.ToString());
+            //Debug.Log("particle " + i.ToString() + " " + pWorld.ToString());
             if (Vector3.Distance(pWorld, hitPos) < cleanRadius)
             {
                 if (smokePrefab != null)
-                    Instantiate(smokePrefab, particles[i].position, Quaternion.identity);
+                {
+                    Instantiate(smokePrefab, hitPos, Quaternion.Euler(-90f, 0f, 0f), transform);
+                }
                 foreach (var z in zones)
                 {
-                    if (z.GetComponent<Collider>().bounds.Contains(particles[i].position))
+                    if (z.GetComponent<Collider>().bounds.Contains(pWorld))
                         z.CleanParticle();
                 }
 
@@ -103,7 +108,7 @@ public class DustCleaner : MonoBehaviour
                 c.a = 0;
                 particles[i].startColor = c;
                 */
-                Debug.Log("erase " + particles[i].position.ToString());
+                //Debug.Log("erase " + particles[i].position.ToString());
                 continue;
             }
             particles[newCount++] = particles[i];
@@ -112,7 +117,7 @@ public class DustCleaner : MonoBehaviour
         dustSystem.SetParticles(particles, newCount);
         dustSystem.Simulate(0f, true, false);
         //dustSystem.Play();
-        //CheckAllZonesCleaned();
+        CheckAllZonesCleaned();
     }
 
     void CheckAllZonesCleaned()
@@ -121,9 +126,17 @@ public class DustCleaner : MonoBehaviour
         foreach (var z in zones)
             if (!z.IsClean) allClean = false;
 
-        if (allClean && dustSystem.GetParticles(particles) <= 10)
+        if (allClean)
+        {
+            Invoke(nameof(End), 10f);
+        }
+    }
+
+    void End()
+    {
+        whiteBackground.DOFade(1f, 3f).OnComplete(() =>
         {
             MiniGameManager.instance.GameEnd();
-        }
+        });
     }
 }
