@@ -21,8 +21,8 @@ public class PathGenerator : MonoBehaviour
     public LineRenderer leftLine;
     public LineRenderer rightLine;
 
-    private List<Vector2> controlPoints = new List<Vector2>();
-    private List<Vector2> splinePoints = new List<Vector2>();
+    [SerializeField] private List<Vector2> controlPoints = new List<Vector2>();
+    [SerializeField] private List<Vector2> splinePoints = new List<Vector2>();
 
     private void Awake()
     {
@@ -43,6 +43,8 @@ public class PathGenerator : MonoBehaviour
     {
         controlPoints.Clear();
 
+        var initPoint = Mathf.PerlinNoise(0f, 0f);
+
         for (int i = 0; i < nodeCount; i++)
         {
             float t = (float)i / (nodeCount - 1);
@@ -51,7 +53,7 @@ public class PathGenerator : MonoBehaviour
             float baseX = Mathf.Lerp(startX, endX, t);
 
             float noise = Mathf.PerlinNoise(0f, i * noiseScale);
-            float offsetX = (noise - 0.5f) * 2f * noiseAmplitude;
+            float offsetX = (noise - initPoint) * 2f * noiseAmplitude;
 
             float x = baseX + offsetX;
 
@@ -152,5 +154,14 @@ public class PathGenerator : MonoBehaviour
         }
 
         return splinePoints[splinePoints.Count - 1].x;
+    }
+
+    public bool IsInTheRoad(float x, float y)
+    {
+        var centerX = GetCenterXAtY(y);
+        var leftX = centerX - 0.5f * width;
+        var rightX = centerX + 0.5f * width;
+
+        return x >= leftX && x <= rightX;
     }
 }

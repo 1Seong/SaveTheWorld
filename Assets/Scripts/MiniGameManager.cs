@@ -17,6 +17,7 @@ public class MiniGameManager : MonoBehaviour
 
     public int GameRepeatNum = 4;
     public float InstructionPopupTime = 2f;
+    public float InstructionShowTime = 5.0f;
     public float GameStartTime = 0f;
     public float GameEndTime = 2f;
     public bool IsPlaying = false;
@@ -49,7 +50,7 @@ public class MiniGameManager : MonoBehaviour
     private void showInstruction()
     {
         instruction.SetActive(true);
-        Invoke(nameof(hideInstruction), 5f);
+        Invoke(nameof(hideInstruction), InstructionShowTime);
     }
 
     public void play()
