@@ -19,6 +19,8 @@ public class UIHoverFloat : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.IsPlaying || !MiniGameManager.instance.IsPlaying) return;
+
         Vector2 mouseScreen = Input.mousePosition;
 
         // RectTransform 기준으로 마우스가 UI 위에 있는지 확인

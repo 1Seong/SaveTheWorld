@@ -71,6 +71,7 @@ public class MiniGameManager : MonoBehaviour
     public void GameEnd(int i = 0)
     {
         IsPlaying = false;
+
         background.DOFade(1f, 0.5f);
         StartCoroutine(typeWrite(EndingTexts[i].texts));
     }

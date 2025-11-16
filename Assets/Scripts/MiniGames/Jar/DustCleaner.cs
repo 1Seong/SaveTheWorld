@@ -37,6 +37,8 @@ public class DustCleaner : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.IsPlaying || !MiniGameManager.instance.IsPlaying) return;
+
         if (Input.GetMouseButton(1))
         {
             float rotX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
