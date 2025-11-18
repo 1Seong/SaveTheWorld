@@ -1,0 +1,113 @@
+using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PencilGame : MonoBehaviour
+{
+    public float[] dropSpeeds;
+    public float[] fillAmounts;
+    public float[] pencilScales;
+
+    public Transform pencil;
+    public Slider slider;
+    public Transform sharpner;
+    public Transform sharpnerArm;
+    public GameObject instruction;
+    public GameObject sliderObject;
+    public Transform cam;
+
+    private float currentValue = 0f;
+    private int cnt = 0;
+
+    private void Start()
+    {
+        init();
+    }
+
+    private void Update()
+    {
+        if (!GameManager.Instance.IsPlaying || !MiniGameManager.instance.IsPlaying) return;
+
+        currentValue -= dropSpeeds[cnt] * Time.deltaTime;
+        currentValue = Mathf.Clamp01(currentValue);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            sharpner.DOShakePosition(0.2f, 0.01f, 15);
+            sharpnerArm.DOLocalRotate(new Vector3(0, 180f, 0), 0.3f, RotateMode.LocalAxisAdd);
+            currentValue += fillAmounts[cnt];
+            currentValue = Mathf.Clamp01(currentValue);
+        }
+
+        slider.value = currentValue;
+
+        if(currentValue >= 1f)
+        {
+            MiniGameManager.instance.stop();
+
+            currentValue = 1f;
+            slider.value = 1f;
+            sharpnerArm.DOKill();
+
+            pencil.DOLocalMoveZ(pencil.localPosition.z + 0.1f, 1.2f).SetEase(Ease.OutBack).OnComplete(() =>
+            {
+                pencil.gameObject.SetActive(false);
+                instruction.SetActive(false);
+                sliderObject.SetActive(false);
+                currentValue = 0f;
+                slider.value = 0f;
+
+                // get pencil animation, and then
+
+                Invoke(nameof(gameEnd), 2f);
+            });
+        }
+    }
+
+    private void init()
+    {
+        // child study - break pencil - cry
+        Invoke(nameof(gameStart), 3.5f);
+    }
+
+    private void gameStart()
+    {
+        pencil.localScale = new Vector3(1f, 1f, pencilScales[cnt]);
+        pencil.gameObject.SetActive(true);
+        pencil.DOLocalMoveZ(pencil.localPosition.z - 0.1f, 1.2f).SetEase(Ease.InBack).OnComplete(() =>
+        {
+            MiniGameManager.instance.play();
+
+            instruction.SetActive(true);
+            sliderObject.SetActive(true);
+        });
+    }
+
+    private void gameEnd()
+    {
+        ++cnt;
+
+        if(cnt < MiniGameManager.instance.GameRepeatNum)
+        {
+            init();
+        }
+        else
+        {
+            // child final animation : study - break pencil - cry
+            Invoke(nameof(showPencilCase), 3.5f);
+        }
+    }
+
+    private void showPencilCase()
+    {
+        cam.DORotate(new Vector3(90f, 0f, 0f), 1.5f).SetEase(Ease.OutExpo).OnComplete(() =>
+        {
+            Invoke(nameof(miniGameEnd), MiniGameManager.instance.GameEndTime);
+        });
+    }
+
+    private void miniGameEnd()
+    {
+        MiniGameManager.instance.GameEnd();
+    }
+}

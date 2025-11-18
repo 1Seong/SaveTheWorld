@@ -113,7 +113,7 @@ public class TimingGame : MonoBehaviour
     void FailFeedback()
     {
         targetZoneImage.color = Color.red;
-        cameraTransform.DOShakePosition(0.4f, 0.1f).OnComplete(() =>
+        cameraTransform.DOShakePosition(0.3f, 0.3f, 20).OnComplete(() =>
         {
             ResetGame();
         });
