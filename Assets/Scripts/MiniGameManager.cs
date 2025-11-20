@@ -20,6 +20,7 @@ public class MiniGameManager : MonoBehaviour
     public float InstructionShowTime = 5.0f;
     public float GameStartTime = 0f;
     public float GameEndTime = 2f;
+    public float endFadeTime = 0.5f;
     public bool IsPlaying = false;
     public Texts[] EndingTexts;
 
@@ -72,7 +73,7 @@ public class MiniGameManager : MonoBehaviour
     {
         IsPlaying = false;
 
-        background.DOFade(1f, 0.5f);
+        background.DOFade(1f, endFadeTime);
         StartCoroutine(typeWrite(EndingTexts[i].texts));
     }
 

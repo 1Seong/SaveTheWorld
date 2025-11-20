@@ -18,10 +18,10 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 1, w: -0.076753736}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.016188322}
+    m_Value: {x: 0.96759176, y: 1, z: 0.9689265, w: -0.08811188}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.090472326}
+    m_Value: {x: 0.91304094, y: 0.9551237, z: 1, w: 0.1314465}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0
@@ -222,6 +222,53 @@ MonoBehaviour:
   - {fileID: -2608525946289397488}
   - {fileID: -5629148470917709353}
   - {fileID: -7543179312559122741}
+  - {fileID: 4419124108310719415}
+--- !u!114 &4419124108310719415
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: 
+  active: 1
+  mode:
+    m_OverrideState: 1
+    m_Value: 2
+  gaussianStart:
+    m_OverrideState: 1
+    m_Value: 8.83
+  gaussianEnd:
+    m_OverrideState: 1
+    m_Value: 31.8
+  gaussianMaxRadius:
+    m_OverrideState: 1
+    m_Value: 0.5
+  highQualitySampling:
+    m_OverrideState: 1
+    m_Value: 1
+  focusDistance:
+    m_OverrideState: 1
+    m_Value: 6.4
+  aperture:
+    m_OverrideState: 1
+    m_Value: 5.6
+  focalLength:
+    m_OverrideState: 1
+    m_Value: 76
+  bladeCount:
+    m_OverrideState: 1
+    m_Value: 5
+  bladeCurvature:
+    m_OverrideState: 1
+    m_Value: 1
+  bladeRotation:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &5026793023279400270
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -265,13 +312,13 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: -0.32
   contrast:
     m_OverrideState: 1
     m_Value: -4
   colorFilter:
-    m_OverrideState: 1
-    m_Value: {r: 0.95686275, g: 1, b: 0.99321777, a: 1}
+    m_OverrideState: 0
+    m_Value: {r: 0.8989217, g: 1, b: 0.98162216, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: 0
@@ -296,7 +343,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.062226858}
+    m_Value: {x: 0.96966004, y: 0.9823057, z: 1, w: -0.14589038}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.19197617}
+    m_Value: {x: 0.9753943, y: 0.98154575, z: 1, w: -0.053444937}
