@@ -28,7 +28,7 @@ public class MiniGameManager : MonoBehaviour
 
     private int currentGameCount = 0;
 
-    [SerializeField] private GameObject instruction;
+    [SerializeField] private TextMeshProUGUI instruction;
     [SerializeField] private Image background;
     [SerializeField] private TextMeshProUGUI[] endingTmps;
 
@@ -50,7 +50,7 @@ public class MiniGameManager : MonoBehaviour
 
     private void showInstruction()
     {
-        instruction.SetActive(true);
+        StartCoroutine(FadeTMP(instruction, 1f, 0.5f));
         Invoke(nameof(hideInstruction), InstructionShowTime);
     }
 
@@ -66,7 +66,7 @@ public class MiniGameManager : MonoBehaviour
 
     private void hideInstruction()
     {
-        instruction.SetActive(false);
+        StartCoroutine(FadeTMP(instruction, 0f, 0.5f));
     }
 
     public void GameEnd(int i = 0)
@@ -107,15 +107,15 @@ public class MiniGameManager : MonoBehaviour
             {
                 s += texts[i][j];
                 endingTmps[i].text = s;
-                yield return new WaitForSeconds(0.17f);
+                yield return new WaitForSeconds(0.11f);
             }
             yield return new WaitForSeconds(1f);
         }
 
         for(int i = 0; i < texts.Length; ++i)
-            StartCoroutine(FadeTMP(endingTmps[i], 0f, 0.5f));
+            StartCoroutine(FadeTMP(endingTmps[i], 0f, 0.8f));
         
-        Invoke(nameof(returnToMain), 0.6f);
+        Invoke(nameof(returnToMain), 3f);
     }
 
     private IEnumerator FadeTMP(TextMeshProUGUI tmp, float targetAlpha, float duration)

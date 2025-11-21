@@ -42,7 +42,7 @@ public class TimingGame : MonoBehaviour
             rf.passMaterial = FullScreenShaderMat;
             rf.SetActive(true);
         }
-        
+
         bodyMat.color = Color.red;
         MoveBar();
     }
@@ -70,7 +70,7 @@ public class TimingGame : MonoBehaviour
 
     void MoveBar()
     {
-        timingBar.DOAnchorPosX(targetDis, moveDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        timingBar.DOAnchorPosX(targetDis, moveDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Restart);
     }
 
     void StopBar()
@@ -113,7 +113,7 @@ public class TimingGame : MonoBehaviour
     void FailFeedback()
     {
         targetZoneImage.color = Color.red;
-        cameraTransform.DOShakePosition(0.3f, 0.3f, 20).OnComplete(() =>
+        cameraTransform.DOShakePosition(0.3f, 0.1f, 20).OnComplete(() =>
         {
             ResetGame();
         });
@@ -130,9 +130,9 @@ public class TimingGame : MonoBehaviour
             {
                 body.localPosition = bodyTransforms[successCount];
                 bodyMat.color = Color.red;
-                timingBar.anchoredPosition = new Vector2(-0.4f, 0f);
+                timingBar.anchoredPosition = new Vector2(-1f, 0f);
                 targetZone.anchoredPosition = new Vector2(Random.Range(-targetZoneMaxDis, targetZoneMaxDis), 0f);
-                targetZone.sizeDelta = new Vector2(targetZoneWidths[successCount], 1f);
+                targetZone.sizeDelta = new Vector2(targetZoneWidths[successCount], 0.3f);
                 targetZoneImage.color = Color.yellow;
                 moveDuration = moveDurations[successCount];
                 TowelParent.GetChild(successCount-1).gameObject.SetActive(false);
@@ -152,8 +152,11 @@ public class TimingGame : MonoBehaviour
             }
             else if (savedCount > 0 && savedCount < 5)
             {
-                string[] texts = null;
-                texts.Append(savedCount.ToString());
+                string[] texts = new string[3];
+
+                texts[0] = $"난 부상당한 {savedCount}명의 전우의 목숨을 구했었어";
+                texts[1] = $"하지만 {5 - savedCount}명은 그러지 못했지.";
+                texts[2] = "난 그렇게 평생 죄책감을 안고...";
                 MiniGameManager.instance.GameEnd(texts);
             }
             else if (savedCount == 5)

@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7543698236531263584
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf1aba9553839d41ae37dd52e9ebcce, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 1
+  quality:
+    m_OverrideState: 1
+    m_Value: 2
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.196
+  clamp:
+    m_OverrideState: 1
+    m_Value: 0.043
 --- !u!114 &-7543179312559122741
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -15,10 +40,10 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.076753736}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.116072066}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.96759176, y: 1, z: 0.9689265, w: -0.08811188}
+    m_Value: {x: 0.96759176, y: 1, z: 0.9689265, w: -0.09635623}
   highlights:
     m_OverrideState: 1
     m_Value: {x: 0.91304094, y: 0.9551237, z: 1, w: 0.1314465}
@@ -194,7 +219,7 @@ MonoBehaviour:
     m_Value: 2
   intensity:
     m_OverrideState: 1
-    m_Value: 0.142
+    m_Value: 0.517
   response:
     m_OverrideState: 1
     m_Value: 0.8
@@ -223,6 +248,7 @@ MonoBehaviour:
   - {fileID: -5629148470917709353}
   - {fileID: -7543179312559122741}
   - {fileID: 4419124108310719415}
+  - {fileID: -7543698236531263584}
 --- !u!114 &4419124108310719415
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -315,7 +341,7 @@ MonoBehaviour:
     m_Value: -0.32
   contrast:
     m_OverrideState: 1
-    m_Value: -4
+    m_Value: -7
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 0.8989217, g: 1, b: 0.98162216, a: 1}
@@ -324,7 +350,7 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: -14
+    m_Value: -36
 --- !u!114 &6919991497528164551
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -343,7 +369,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.96966004, y: 0.9823057, z: 1, w: -0.14589038}
+    m_Value: {x: 0.96966004, y: 0.9823057, z: 1, w: -0.07358929}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 0.9753943, y: 0.98154575, z: 1, w: -0.053444937}
+    m_Value: {x: 0.9753943, y: 0.98154575, z: 1, w: -0.075360216}
