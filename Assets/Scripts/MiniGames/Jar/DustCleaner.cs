@@ -12,6 +12,8 @@ public class DustCleaner : MonoBehaviour
     public float rotationSpeed = 100f;
     public Image whiteBackground;
 
+    private bool isCleaned = false;
+
     ParticleSystem.Particle[] particles;
     [SerializeField] List<DustZone> zones;
 
@@ -128,8 +130,10 @@ public class DustCleaner : MonoBehaviour
         foreach (var z in zones)
             if (!z.IsClean) allClean = false;
 
-        if (allClean)
+        if (!isCleaned && allClean)
         {
+            isCleaned = true;
+
             Invoke(nameof(End), 10f);
         }
     }

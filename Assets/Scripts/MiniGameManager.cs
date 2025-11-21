@@ -107,15 +107,16 @@ public class MiniGameManager : MonoBehaviour
             {
                 s += texts[i][j];
                 endingTmps[i].text = s;
-                yield return new WaitForSeconds(0.11f);
+                yield return new WaitForSeconds(0.1f);
             }
             yield return new WaitForSeconds(1f);
         }
+        yield return new WaitForSeconds(2.5f);
 
-        for(int i = 0; i < texts.Length; ++i)
+        for (int i = 0; i < texts.Length; ++i)
             StartCoroutine(FadeTMP(endingTmps[i], 0f, 0.8f));
         
-        Invoke(nameof(returnToMain), 3f);
+        Invoke(nameof(returnToMain), 1f);
     }
 
     private IEnumerator FadeTMP(TextMeshProUGUI tmp, float targetAlpha, float duration)
