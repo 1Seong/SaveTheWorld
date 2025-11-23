@@ -137,7 +137,7 @@ public class InteractiveObject : MonoBehaviour
                 Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
                 {
                     //ItemManager.Instance.ReturnFromCloseUpEvent += deactiveItems;
-                    Invoke(nameof(giveRewards), 0.3f); // -------------------------------------- refactor ( minigame manager의  static 이벤트에 등록?)
+                    MiniGameManager.OnClearEvent += giveRewards;
                     ItemManager.Instance.TurnOnReturnFromCloseUpButton();
                     SceneTransition.Instance.LoadSceneAdditive(sceneName);
 
@@ -164,8 +164,12 @@ public class InteractiveObject : MonoBehaviour
 
     }
 
-    private void giveRewards()
+    private void giveRewards(Item.Interactives otherId)
     {
+        if (typeId != otherId) return;
+
+        GameManager.Instance.SetMiniGameClear(typeId.ToString());
+
         foreach (var i in GetComponentsInChildren<ItemObject>(true))
         {
             i.gameObject.SetActive(true);

@@ -1021,6 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6336f2b706a6a41a8c03f421f6956b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeId: 5
   GameRepeatNum: 1
   InstructionPopupTime: 0
   InstructionShowTime: 5

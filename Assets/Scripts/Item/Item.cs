@@ -66,6 +66,7 @@ public static class Item
     {
         Syringe, Crutches, Jar, // Page1
         Pencil, Sewing, Laundry, // Page2
+        TV,
         Others
     };
 

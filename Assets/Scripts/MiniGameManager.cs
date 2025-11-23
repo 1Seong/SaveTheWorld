@@ -7,13 +7,15 @@ using UnityEngine.UI;
 
 public class MiniGameManager : MonoBehaviour
 {
+    public Item.Interactives typeId;
+
     [Serializable]
     public struct Texts
     {
         public string[] texts;
     }
 
-    public static event Action OnClearEvent;
+    public static event Action<Item.Interactives> OnClearEvent;
 
     public int GameRepeatNum = 4;
     public float InstructionPopupTime = 2f;
@@ -136,6 +138,8 @@ public class MiniGameManager : MonoBehaviour
 
     private void returnToMain()
     {
+        OnClearEvent?.Invoke(typeId);
+
         SceneTransition.Instance.UnloadScene();
     }
 }
