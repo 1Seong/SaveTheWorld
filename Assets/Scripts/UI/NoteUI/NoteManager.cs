@@ -10,6 +10,7 @@ public class NoteManager : MonoBehaviour
     public bool isActive = false;
 
     [SerializeField] private RectTransform noteUIParent;
+    [SerializeField] private Transform noteUIGrid;
 
     public int[] LetterCountGoal;
     public int[] CompletedLetterCount;
@@ -42,12 +43,14 @@ public class NoteManager : MonoBehaviour
     {
         isActive = true;
         noteUIParent.DOAnchorPosY(0f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
+        noteUIGrid.DOLocalMoveY(0f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
     }
 
     public void Hide()
     {
         isActive = false;
-        noteUIParent.DOAnchorPosY(-424f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
+        noteUIParent.DOAnchorPosY(-403f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
+        noteUIGrid.DOLocalMoveY(-6.9f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
     }
 
     public void OnInsertLetter(Item.Interactives type)
@@ -56,7 +59,7 @@ public class NoteManager : MonoBehaviour
         if (LetterCountGoal[(int)type] == CompletedLetterCount[(int)type])
         {
             BlurrUnlockEvent?.Invoke(type);
-            TargetImages[(int)type].DOFade(0f, 0.5f).SetUpdate(true);
+            TargetImages[(int)type].DOFade(0f, 0.5f).SetUpdate(true); // change to dissolve
         }
     }
 }
