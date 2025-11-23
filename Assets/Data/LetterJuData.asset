@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76bc0f3e542c1545bccc318b90074ff, type: 3}
   m_Name: LetterJuData
   m_EditorClassIdentifier: 
-  id: 3
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  id: 4
+  sprite: {fileID: 21300000, guid: 0e158eba859855a4a800d54c1e622241, type: 3}
