@@ -79,6 +79,8 @@ public class GameManager : MonoBehaviour
             {"Sewing", false },
             {"Laundry", false }
         };
+
+        // TODO : Load Saved Data
     }
 
     
@@ -100,6 +102,8 @@ public class GameManager : MonoBehaviour
     // use playerprefs
     public void SetMiniGameClear(string name)
     {
+        // TODO : Save data
+
         isGameCleared[name] = true;
 
         bool notExist = false;

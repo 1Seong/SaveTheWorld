@@ -96,12 +96,12 @@ public class ItemManager : MonoBehaviour
         /*
         foreach(var item in inventoryItems)
         */
-        // save to playerprefs
+        // TODO : save to playerprefs
     }
 
     private void LoadSavedItems()
     {
-        // for all datas in files, find from playerprefs?
+        // TODO : for all datas in files, find from playerprefs?
     }
 
     private void Update()
@@ -239,6 +239,14 @@ public class ItemManager : MonoBehaviour
         UpButton.GetComponent<Image>().DOFade(1f, 0.3f).OnComplete(() =>
         {
             UpButton.GetComponent<Button>().interactable = true;
+        });
+    }
+
+    public void TurnOnRightButton()
+    {
+        RightButton.GetComponent<Image>().DOFade(1f, 0.3f).OnComplete(() =>
+        {
+            RightButton.GetComponent<Button>().interactable = true;
         });
     }
 

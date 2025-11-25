@@ -24,12 +24,16 @@ public static class Item
 
     public static void Collect(Items i)
     {
+        // TODO : save data
+
         collected[i] = true;
         //PlayerPrefs.SetString(i.ToString() + "Collected", "1");
     }
 
     public static bool IsCollected(Items i)
     {
+        // TODO : check save data
+
         /*
         if(PlayerPrefs.HasKey(i.ToString() + "Collected") && PlayerPrefs.GetString(i.ToString() + "Collected") == "1" )
             collected[i] = true;
@@ -81,30 +85,20 @@ public static class Item
     public static void UnlockBlurr(Interactives i)
     {
         blurred[i] = false;
-        //PlayerPrefs.SetString(i.ToString() + "Blurred", "0");
     }
 
     public static bool IsBlurred(Interactives i)
     {
-        /*
-        if(PlayerPrefs.HasKey(i.ToString() + "Blurred") && PlayerPrefs.GetString(i.ToString() + "Blurred") == "0" )
-            blurred[i] = false;
-        */
         return blurred[i];
     }
 
     public static void Drop(Interactives i)
     {
         dropped[i] = true;
-        //PlayerPrefs.SetString(i.ToString() + "Dropped", "1");
     }
 
     public static bool IsDropped(Interactives i)
     {
-        /*
-        if(PlayerPrefs.HasKey(i.ToString() + "Dropped") && PlayerPrefs.GetString(i.ToString() + "Dropped") == "1" )
-            dropped[i] = false;
-        */
         return dropped[i];
     }
 }

@@ -37,6 +37,8 @@ public class NoteManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        // TODO : Load data (insert again - and unlock interactives)
     }
 
     public void Show()
@@ -55,6 +57,8 @@ public class NoteManager : MonoBehaviour
 
     public void OnInsertLetter(Item.Interactives type)
     {
+        // TODO : save which one is inserted
+
         ++CompletedLetterCount[(int)type];
         if (LetterCountGoal[(int)type] == CompletedLetterCount[(int)type])
         {
