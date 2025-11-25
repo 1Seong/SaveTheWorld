@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     */
 
     private Dictionary<string, bool> isGameCleared;
+    public static event Action GameAllClearedEvent;
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -100,11 +101,24 @@ public class GameManager : MonoBehaviour
     public void SetMiniGameClear(string name)
     {
         isGameCleared[name] = true;
+
+        bool notExist = false;
+        foreach (var i in isGameCleared)
+        {
+            if(!i.Value)
+            {
+                notExist = true;
+                break;
+            }
+        }
+        if (!notExist)
+            GameAllClearedEvent?.Invoke();
     }
 
     public bool IsMiniGameCleared(string name)
     {
         return isGameCleared[name];
+
     }
 
     public void MiniGameClear()
