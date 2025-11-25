@@ -1,14 +1,14 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ExitDoor : MonoBehaviour
 {
-    private Button doorButton;
+    public Door door;
 
-    private void Awake()
-    {
-        doorButton = GetComponent<Button>();
-    }
+    [SerializeField] bool isUnlocked = false;
+
+    bool isActing = false;
 
     private void Start()
     {
@@ -20,8 +20,24 @@ public class ExitDoor : MonoBehaviour
         GameManager.GameAllClearedEvent -= ActivateDoor;
     }
 
+    public void OnClick()
+    {
+        if (isActing) return;
+
+        if (isUnlocked)
+            door.OnClick();
+        else
+        {
+            isActing = true;
+            transform.DOShakePosition(0.3f, 0.12f, 20).OnComplete(() =>
+            {
+                isActing = false;
+            });
+        }
+    }
+
     private void ActivateDoor()
     {
-        doorButton.interactable = true;
+        isUnlocked = true;
     }
 }
