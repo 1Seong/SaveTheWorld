@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
+    public static event Action OnInventoryClickTutorialEvent;
+
 
     [SerializeField] private ItemData _data;
 
@@ -65,6 +68,10 @@ public class InventoryItem : MonoBehaviour
         {
             Camera.main.GetComponentInChildren<BottleUI>(true).EnableUI();
             return;
+        }
+        else if(Data.id == Item.Items.LetterJu)
+        {
+            OnInventoryClickTutorialEvent?.Invoke();
         }
 
         activateItemFollow();

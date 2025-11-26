@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -50,24 +51,31 @@ public class TutorialManager : MonoBehaviour
     public GameObject nextPageHighlightImage;
     public GameObject InventoryHighightImage;
     public GameObject letterTargetHighlightImage;
-    public SpriteRenderer syringeLightSprite;
+    public ParticleSystem syringeParticle;
 
 
     private void Start()
     {
+        InventoryItem.OnInventoryClickTutorialEvent += step5InventoryOnClick;
+        LetterTarget.tutorialEvent += step5LetterTargetOnClick;
+
         // TODO : Load save data
 
         if(!isTutorialCleared)
         {
             roomRaycastBlockImage.SetActive(true);
             ItemManager.Instance.TurnOffGoButtons();
-            NoteManager.Instance.gameObject.SetActive(false);
+            NoteManager.Instance.TurnOff();
         }
 
         Invoke(nameof(step1Enter), step1WaitingTime);
     }
 
-
+    private void OnDestroy()
+    {
+        InventoryItem.OnInventoryClickTutorialEvent -= step5InventoryOnClick;
+        LetterTarget.tutorialEvent -= step5LetterTargetOnClick;
+    }
 
     // ========== Step 1 - Plane A ==========
     // Entry Point : wait from start
@@ -236,7 +244,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (!isTutorialCleared || stepNum != 4) return;
 
-        NoteManager.Instance.gameObject.SetActive(true);
+        NoteManager.Instance.TurnOn();
         NoteHighlightImage.SetActive(true);
         LetterHighlightImage.SetActive(false);
 
@@ -289,9 +297,14 @@ public class TutorialManager : MonoBehaviour
         fullRaycastBlockImage.SetActive(true);
         NoteManager.Instance.Hide();
 
-        syringeLightSprite.DOFade(1f, 0.7f).SetLoops(6, LoopType.Yoyo).OnComplete(() =>
+        SetParticleAlpha(syringeParticle, 0f, 0f);
+
+        FadeParticleAlphaTween(syringeParticle, 1f, 0f, 0.8f).OnComplete(() =>
         {
-            step5FadeIn();
+            FadeParticleAlphaTween(syringeParticle, 0f, 1f, 0.8f).OnComplete(() =>
+            {
+                step5FadeIn();
+            });
         });
     }
 
@@ -307,6 +320,7 @@ public class TutorialManager : MonoBehaviour
     private void step5FadeOut()
     {
         fullRaycastBlockImage.SetActive(false);
+        ItemManager.Instance.TurnOnGoButtons();
 
         StartCoroutine(FadeTMP(step5TMP, 0f, step5FadeTime));
         background.DOFade(0f, step5FadeTime);
@@ -327,5 +341,61 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
         tmp.alpha = targetAlpha;
+    }
+
+    private Tween FadeParticleAlphaTween(ParticleSystem ps, float from, float target, float duration)
+    {
+        float value = from;
+        
+        return DOTween.To(() => value, v => value = v, 1f, duration)
+            .OnUpdate(() =>
+            {
+                SetParticleAlpha(ps, value, value);
+            })
+            .OnComplete(() =>
+            {
+                SetParticleAlpha(ps, target, target);
+            });
+    }
+
+    private void SetParticleAlpha(ParticleSystem ps, float alpha0, float alpha80)
+    {
+        var col = ps.colorOverLifetime;
+        col.enabled = true;
+
+        // 기존 Gradient 가져오기 (복사 필요)
+        Gradient g = col.color.gradient;
+
+        // 기존 AlphaKeys 가져오기
+        var alphaKeys = g.alphaKeys;
+
+        // 0% 지점 수정
+        alphaKeys[0].alpha = alpha0;
+
+        // 80% 지점 수정
+        // 0.8에 대응하는 키를 찾아 수정하거나,
+        // 없으면 새로 추가
+        bool found80 = false;
+        for (int i = 0; i < alphaKeys.Length; i++)
+        {
+            if (Mathf.Approximately(alphaKeys[i].time, 0.8f))
+            {
+                alphaKeys[i].alpha = alpha80;
+                found80 = true;
+                break;
+            }
+        }
+
+        if (!found80)
+        {
+            Array.Resize(ref alphaKeys, alphaKeys.Length + 1);
+            alphaKeys[alphaKeys.Length - 1] = new GradientAlphaKey(alpha80, 0.8f);
+        }
+
+        // 변경된 키 다시 할당
+        g.alphaKeys = alphaKeys;
+
+        // 변경된 Gradient 재할당
+        col.color = new ParticleSystem.MinMaxGradient(g);
     }
 }

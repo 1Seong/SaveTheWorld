@@ -41,6 +41,18 @@ public class NoteManager : MonoBehaviour
         // TODO : Load data (insert again - and unlock interactives)
     }
 
+    public void TurnOff()
+    {
+        noteUIGrid.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+    }
+
+    public void TurnOn()
+    {
+        noteUIGrid.gameObject.SetActive(true);
+        gameObject.SetActive(true);
+    }
+
     public void Show()
     {
         isActive = true;

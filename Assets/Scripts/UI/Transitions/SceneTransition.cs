@@ -99,7 +99,7 @@ public class SceneTransition : MonoBehaviour
             else
             {
                 ItemManager.Instance.gameObject.SetActive(false);
-                NoteManager.Instance.gameObject.SetActive(false);
+                NoteManager.Instance.TurnOff();
             }
         }
         transition.SceneLoadTransition(sceneName, true);
@@ -114,7 +114,7 @@ public class SceneTransition : MonoBehaviour
         else
         {
             ItemManager.Instance.gameObject.SetActive(false);
-            NoteManager.Instance.gameObject.SetActive(false);
+            NoteManager.Instance.TurnOff();
         }
         transition.SceneLoadTransition(sceneName, false);
     }
@@ -128,7 +128,7 @@ public class SceneTransition : MonoBehaviour
     private void enableMainUI()
     {
         ItemManager.Instance.gameObject.SetActive(true);
-        NoteManager.Instance.gameObject.SetActive(true);
+        NoteManager.Instance.TurnOn();
     }
 
     public void RoomLeftTransition()
