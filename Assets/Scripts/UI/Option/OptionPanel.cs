@@ -1,10 +1,13 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OptionPanel : MonoBehaviour
 {
+    public static event Action<float> MouseSensitivityOnValueChangedEvent;
+
     [SerializeField] private Image background;
     [SerializeField] private GameObject panel;
     [SerializeField] private bool isActive = false;
@@ -52,11 +55,23 @@ public class OptionPanel : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isActive)
-                Hide();
-            else
-                Show();
+            OpenOnClick();
         }
+    }
+
+    public void OpenOnClick()
+    {
+        if (isActive)
+            Hide();
+        else
+            Show();
+    }
+
+    public void MouseSensitivityOnValueChanged(float value)
+    {
+        var realValue = Mathf.Lerp(0f, 4f, value);
+
+        MouseSensitivityOnValueChangedEvent?.Invoke(realValue);
     }
 
     public void Show()
@@ -84,7 +99,7 @@ public class OptionPanel : MonoBehaviour
     public void ReturnToMainMenu()
     {
         // ItemManager.Instance.SaveItems();
-
+        Hide();
         SceneTransition.Instance.LoadScene("MainMenu");
     }
 }

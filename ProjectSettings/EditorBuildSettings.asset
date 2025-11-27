@@ -8,6 +8,30 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Syringe.unity
+    guid: d87110022927b174a8fc8442bd6bf097
+  - enabled: 1
+    path: Assets/Scenes/Jar.unity
+    guid: 1e952aeb3189de844ae527c4d20211d0
+  - enabled: 1
+    path: Assets/Scenes/SewingMachine.unity
+    guid: 6edd6070954a46745b0f2fae4b74651a
+  - enabled: 1
+    path: Assets/Scenes/Pencil.unity
+    guid: 2a42e4ccf081c694ba0f6132d8dbf851
+  - enabled: 1
+    path: Assets/Scenes/Crutch.unity
+    guid: b20e3a44cb66311428462640d8435373
+  - enabled: 1
+    path: Assets/Scenes/Laundry.unity
+    guid: 8f7a78dad2abe19419835f1607c15ba9
+  - enabled: 1
+    path: Assets/Scenes/TV.unity
+    guid: 92126d7f52f510647bc0ded115b9841f
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 88cba76da47f5f14cad54d1c0029d02e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

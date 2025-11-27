@@ -119,6 +119,11 @@ public class SceneTransition : MonoBehaviour
         transition.SceneLoadTransition(sceneName, false);
     }
 
+    public void ReturnToMainMenu()
+    {
+        LoadScene("MainMenu");
+    }
+
     public void UnloadScene()
     {
         Invoke("enableMainUI", 0.6f);

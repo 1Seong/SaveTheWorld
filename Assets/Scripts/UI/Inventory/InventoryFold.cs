@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InventoryFold : MonoBehaviour
 {
@@ -68,6 +69,17 @@ public class InventoryFold : MonoBehaviour
         {
             targetObject.DOAnchorPosX(targetObject.anchoredPosition.x + itemAddindicateDis, itemAddindicateDur / 2f).SetUpdate(true).SetEase(Ease.InOutSine);
         });
+    }
+
+    private void Update()
+    {
+        if (!GameManager.Instance.IsPlaying) return;
+        if (SceneManager.GetActiveScene().name == "MainMenu") return;
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            OnButtonClick();
+        }
     }
 
     public void OnButtonClick()

@@ -10,7 +10,18 @@ public class ViewCursorFollow : MonoBehaviour
 
     void Start()
     {
+        OptionPanel.MouseSensitivityOnValueChangedEvent += SetMaxAngle;
         originRot = transform.localRotation;
+    }
+
+    private void OnDestroy()
+    {
+        OptionPanel.MouseSensitivityOnValueChangedEvent -= SetMaxAngle;
+    }
+
+    private void SetMaxAngle(float value)
+    {
+        maxAngle = value;
     }
 
     void Update()
