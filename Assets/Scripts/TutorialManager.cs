@@ -51,7 +51,9 @@ public class TutorialManager : MonoBehaviour
     public GameObject nextPageHighlightImage;
     public GameObject InventoryHighightImage;
     public GameObject letterTargetHighlightImage;
+    public GameObject syringeHighlightImage;
     public ParticleSystem syringeParticle;
+    public OpenNoteButton noteButton;
 
 
     private void Start()
@@ -66,15 +68,22 @@ public class TutorialManager : MonoBehaviour
             roomRaycastBlockImage.SetActive(true);
             ItemManager.Instance.TurnOffGoButtons();
             NoteManager.Instance.TurnOff();
-        }
 
-        Invoke(nameof(step1Enter), step1WaitingTime);
+            Invoke(nameof(step1Enter), step1WaitingTime);
+        }
     }
 
     private void OnDestroy()
     {
         InventoryItem.OnInventoryClickTutorialEvent -= step5InventoryOnClick;
         LetterTarget.tutorialEvent -= step5LetterTargetOnClick;
+    }
+
+    private void SetTutorialCleared()
+    {
+        isTutorialCleared = true;
+
+        // TODO : Save Data
     }
 
     // ========== Step 1 - Plane A ==========
@@ -84,7 +93,9 @@ public class TutorialManager : MonoBehaviour
     // activate right navigation button
     private void step1Enter()
     {
+        step1TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step1TMP, 1f, step1FadeTime));
+        background.gameObject.SetActive(true);
         background.DOFade(1f, step1FadeTime).OnComplete(() =>
         {
             Invoke(nameof(step1FadeOut), step1TextShowDuration);
@@ -96,6 +107,8 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(FadeTMP(step1TMP, 0f, step1FadeTime));
         background.DOFade(0f, step1FadeTime).OnComplete(() =>
         {
+            step1TMP.gameObject.SetActive(false);
+            background.gameObject.SetActive(false);
             ++stepNum;
             ItemManager.Instance.TurnOnRightButton();
         });
@@ -109,7 +122,7 @@ public class TutorialManager : MonoBehaviour
 
     public void step2OnClick()
     {
-        if (!isTutorialCleared || stepNum != 2) return;
+        if (isTutorialCleared || stepNum != 2) return;
 
         fullRaycastBlockImage.SetActive(true);
         Invoke(nameof(step2FadeIn), step2WaitingTime);
@@ -117,7 +130,9 @@ public class TutorialManager : MonoBehaviour
 
     private void step2FadeIn()
     {
+        step2TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step2TMP, 1f, step2FadeTime));
+        background.gameObject.SetActive(true);
         background.DOFade(1f, step2FadeTime).OnComplete(() =>
         {
             Invoke(nameof(step2FadeOut), step2TextShowDuration);
@@ -126,9 +141,11 @@ public class TutorialManager : MonoBehaviour
 
     private void step2FadeOut()
     {
-        StartCoroutine(FadeTMP(step1TMP, 0f, step2FadeTime));
+        StartCoroutine(FadeTMP(step2TMP, 0f, step2FadeTime));
         background.DOFade(0f, step2FadeTime).OnComplete(() =>
         {
+            step2TMP.gameObject.SetActive(false);
+            background.gameObject.SetActive(false);
             ++stepNum;
             fullRaycastBlockImage.SetActive(false);
         });
@@ -142,7 +159,7 @@ public class TutorialManager : MonoBehaviour
 
     public void step3OnClick()
     {
-        if (!isTutorialCleared || stepNum != 3) return;
+        if (isTutorialCleared || stepNum != 3) return;
 
         fullRaycastBlockImage.SetActive(true);
         Invoke(nameof(step3FadeIn), step3WaitingTime);
@@ -150,7 +167,7 @@ public class TutorialManager : MonoBehaviour
 
     private void step3FadeIn()
     {
-        StartCoroutine(FadeTMP(step3TMP, 1f, step3FadeTime));
+        background.gameObject.SetActive(true);
         background.DOFade(1f, step3FadeTime).OnComplete(() =>
         {
             StartCoroutine(step3ShowConfusedTextsCoroutine());
@@ -159,20 +176,23 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator step3ShowConfusedTextsCoroutine()
     {
-        var tmps = step3confusedTMPParent.GetComponentsInChildren<TextMeshProUGUI>();
+        var tmps = step3confusedTMPParent.GetComponentsInChildren<TextMeshProUGUI>(true);
 
         foreach(var i in tmps)
         {
+            i.gameObject.SetActive(true);
             StartCoroutine(FadeTMP(i, 1f, step3FadeTime));
-            yield return new WaitForSeconds(step3FadeTime);
+            yield return new WaitForSeconds(step3FadeTime - 0.3f);
         }
         yield return new WaitForSeconds(step3TextShowDuration);
         foreach (var i in tmps)
         {
             StartCoroutine(FadeTMP(i, 0f, step3FadeTime));
-            yield return new WaitForSeconds(step3FadeTime);
+            yield return new WaitForSeconds(step3FadeTime - 0.3f);
+            //i.gameObject.SetActive(false);
         }
 
+        step3TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step3TMP, 1f, step3FadeTime));
 
         Invoke(nameof(step3FadeOut), step3FadeTime + step3TextShowDuration);
@@ -183,6 +203,8 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(FadeTMP(step3TMP, 0f, step3FadeTime));
         background.DOFade(0f, step3FadeTime).OnComplete(() =>
         {
+            step3TMP.gameObject.SetActive(false);
+            background.gameObject.SetActive(false);
             ++stepNum;
             fullRaycastBlockImage.SetActive(false);
         });
@@ -199,22 +221,23 @@ public class TutorialManager : MonoBehaviour
 
     public void step4OnClick()
     {
-        if (!isTutorialCleared || stepNum != 4) return;
+        if (isTutorialCleared || stepNum != 4) return;
 
         fullRaycastBlockImage.SetActive(true);
-        Invoke(nameof(doorHighlightImage), 1f);
+        Invoke(nameof(step4highlightDoor), 1f);
     }
 
     private void step4highlightDoor()
     {
         doorHighlightImage.SetActive(true);
         fullRaycastBlockImage.SetActive(false);
+        roomRaycastBlockImage.SetActive(false);
     }
 
     // Entry Point : Click door
     public void step4DoorOnClick()
     {
-        if (!isTutorialCleared || stepNum != 4 || isDoorClicked) return;
+        if (isTutorialCleared || stepNum != 4 || isDoorClicked) return;
 
         isDoorClicked = true;
         step4FadeIn();
@@ -223,8 +246,9 @@ public class TutorialManager : MonoBehaviour
     private void step4FadeIn()
     {
         doorHighlightImage.SetActive(false);
-
+        step4TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step4TMP, 1f, step4FadeTime));
+        background.gameObject.SetActive(true);
         background.DOFade(1f, step4FadeTime).OnComplete(() =>
         {
             Invoke(nameof(step4FadeOut), step4TextShowDuration);
@@ -236,13 +260,17 @@ public class TutorialManager : MonoBehaviour
         LetterHighlightImage.SetActive(true);
 
         StartCoroutine(FadeTMP(step4TMP, 0f, step4FadeTime));
-        background.DOFade(0f, step4FadeTime);
+        background.DOFade(0f, step4FadeTime).OnComplete(() =>
+        {
+            step4TMP.gameObject.SetActive(false);
+            background.gameObject.SetActive(false);
+        });
     }
 
     // Entry Point : Click Letter 'Ju'
     public void step4LetterOnClick()
     {
-        if (!isTutorialCleared || stepNum != 4) return;
+        if (isTutorialCleared || stepNum != 4) return;
 
         NoteManager.Instance.TurnOn();
         NoteHighlightImage.SetActive(true);
@@ -264,7 +292,7 @@ public class TutorialManager : MonoBehaviour
 
     public void step5OnClick()
     {
-        if(!isTutorialCleared || stepNum != 5) return;
+        if(isTutorialCleared || stepNum != 5) return;
 
         NoteHighlightImage.SetActive(false);
         nextPageHighlightImage.SetActive(true);
@@ -273,7 +301,7 @@ public class TutorialManager : MonoBehaviour
     // Entry Point : click next page button
     public void step5NextPageOnClick()
     {
-        if (!isTutorialCleared || stepNum != 5) return;
+        if (isTutorialCleared || stepNum != 5) return;
 
         nextPageHighlightImage.SetActive(false);
         InventoryHighightImage.SetActive(true);
@@ -282,7 +310,7 @@ public class TutorialManager : MonoBehaviour
     // Entry Point : click inventory item
     public void step5InventoryOnClick()
     {
-        if (!isTutorialCleared || stepNum != 5) return;
+        if (isTutorialCleared || stepNum != 5) return;
 
         InventoryHighightImage.SetActive(false);
         letterTargetHighlightImage.SetActive(true);
@@ -291,26 +319,25 @@ public class TutorialManager : MonoBehaviour
     // Entry point : click letter target
     public void step5LetterTargetOnClick()
     {
-        if (!isTutorialCleared || stepNum != 5) return;
+        if (isTutorialCleared || stepNum != 5) return;
 
         letterTargetHighlightImage.SetActive(false);
         fullRaycastBlockImage.SetActive(true);
-        NoteManager.Instance.Hide();
+        noteButton.OnClick();
+        syringeHighlightImage.SetActive(true);
 
-        SetParticleAlpha(syringeParticle, 0f, 0f);
-
-        FadeParticleAlphaTween(syringeParticle, 1f, 0f, 0.8f).OnComplete(() =>
+        FadeParticleAlphaTween(syringeParticle, 1f, 0f, 1f).SetLoops(6, LoopType.Yoyo).OnComplete(() =>
         {
-            FadeParticleAlphaTween(syringeParticle, 0f, 1f, 0.8f).OnComplete(() =>
-            {
-                step5FadeIn();
-            });
+            syringeHighlightImage.SetActive(false);
+            step5FadeIn();
         });
     }
 
     private void step5FadeIn()
     {
+        step5TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step5TMP, 1f, step5FadeTime));
+        background.gameObject.SetActive(true);
         background.DOFade(1f, step5FadeTime).OnComplete(() =>
         {
             Invoke(nameof(step5FadeOut), step5TextShowDuration);
@@ -321,9 +348,19 @@ public class TutorialManager : MonoBehaviour
     {
         fullRaycastBlockImage.SetActive(false);
         ItemManager.Instance.TurnOnGoButtons();
+        SetTutorialCleared();
 
         StartCoroutine(FadeTMP(step5TMP, 0f, step5FadeTime));
-        background.DOFade(0f, step5FadeTime);
+        background.DOFade(0f, step5FadeTime).OnComplete(() =>
+        {
+            step5TMP.gameObject.SetActive(false);
+            background.gameObject.SetActive(false);
+        });
+    }
+
+    public void particleFadeDebugOnClick()
+    {
+        FadeParticleAlphaTween(syringeParticle, 1f, 0f, 1f).SetLoops(6, LoopType.Yoyo);
     }
 
     // ========== utility ==========
@@ -346,16 +383,13 @@ public class TutorialManager : MonoBehaviour
     private Tween FadeParticleAlphaTween(ParticleSystem ps, float from, float target, float duration)
     {
         float value = from;
-        
-        return DOTween.To(() => value, v => value = v, 1f, duration)
+
+        return DOTween.To(() => value, v => value = v, target, duration)
             .OnUpdate(() =>
             {
                 SetParticleAlpha(ps, value, value);
-            })
-            .OnComplete(() =>
-            {
-                SetParticleAlpha(ps, target, target);
             });
+            
     }
 
     private void SetParticleAlpha(ParticleSystem ps, float alpha0, float alpha80)
