@@ -47,6 +47,8 @@ public class MiniGameManager : MonoBehaviour
 
     private void OnDisable()
     {
+        if(background.material != null)
+            background.material.SetFloat("_DissolveStrength", 1f);
         instance = null;
     }
 
@@ -76,12 +78,16 @@ public class MiniGameManager : MonoBehaviour
         IsPlaying = false;
 
         background.DOFade(1f, endFadeTime);
+        if (background.material != null)
+            background.material.DOFloat(0f, "DissolveStrength", endFadeTime);
         StartCoroutine(typeWrite(EndingTexts[i].texts));
     }
 
     public void GameEnd(string[] texts)
     {
         IsPlaying = false;
+        if (background.material != null)
+            background.material.DOFloat(0f, "DissolveStrength", endFadeTime);
         background.DOFade(1f, 0.5f).OnComplete(() =>
         {
             StartCoroutine(typeWrite(texts));

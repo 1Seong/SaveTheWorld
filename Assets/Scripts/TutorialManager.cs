@@ -75,6 +75,8 @@ public class TutorialManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        background.material.SetFloat("_DissolveStrength", 1f);
+
         InventoryItem.OnInventoryClickTutorialEvent -= step5InventoryOnClick;
         LetterTarget.tutorialEvent -= step5LetterTargetOnClick;
     }
@@ -96,6 +98,7 @@ public class TutorialManager : MonoBehaviour
         step1TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step1TMP, 1f, step1FadeTime));
         background.gameObject.SetActive(true);
+        background.material.DOFloat(0f, "_DissolveStrength", step1FadeTime);
         background.DOFade(1f, step1FadeTime).OnComplete(() =>
         {
             Invoke(nameof(step1FadeOut), step1TextShowDuration);
@@ -105,6 +108,7 @@ public class TutorialManager : MonoBehaviour
     private void step1FadeOut()
     {
         StartCoroutine(FadeTMP(step1TMP, 0f, step1FadeTime));
+        background.material.DOFloat(1f, "_DissolveStrength", step1FadeTime);
         background.DOFade(0f, step1FadeTime).OnComplete(() =>
         {
             step1TMP.gameObject.SetActive(false);
@@ -133,6 +137,7 @@ public class TutorialManager : MonoBehaviour
         step2TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step2TMP, 1f, step2FadeTime));
         background.gameObject.SetActive(true);
+        background.material.DOFloat(0f, "_DissolveStrength", step2FadeTime);
         background.DOFade(1f, step2FadeTime).OnComplete(() =>
         {
             Invoke(nameof(step2FadeOut), step2TextShowDuration);
@@ -142,6 +147,7 @@ public class TutorialManager : MonoBehaviour
     private void step2FadeOut()
     {
         StartCoroutine(FadeTMP(step2TMP, 0f, step2FadeTime));
+        background.material.DOFloat(1f, "_DissolveStrength", step2FadeTime);
         background.DOFade(0f, step2FadeTime).OnComplete(() =>
         {
             step2TMP.gameObject.SetActive(false);
@@ -168,6 +174,7 @@ public class TutorialManager : MonoBehaviour
     private void step3FadeIn()
     {
         background.gameObject.SetActive(true);
+        background.material.DOFloat(0f, "_DissolveStrength", step3FadeTime);
         background.DOFade(1f, step3FadeTime).OnComplete(() =>
         {
             StartCoroutine(step3ShowConfusedTextsCoroutine());
@@ -201,6 +208,7 @@ public class TutorialManager : MonoBehaviour
     private void step3FadeOut()
     {
         StartCoroutine(FadeTMP(step3TMP, 0f, step3FadeTime));
+        background.material.DOFloat(1f, "_DissolveStrength", step3FadeTime);
         background.DOFade(0f, step3FadeTime).OnComplete(() =>
         {
             step3TMP.gameObject.SetActive(false);
@@ -249,6 +257,7 @@ public class TutorialManager : MonoBehaviour
         step4TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step4TMP, 1f, step4FadeTime));
         background.gameObject.SetActive(true);
+        background.material.DOFloat(0f, "_DissolveStrength", step4FadeTime);
         background.DOFade(1f, step4FadeTime).OnComplete(() =>
         {
             Invoke(nameof(step4FadeOut), step4TextShowDuration);
@@ -260,6 +269,7 @@ public class TutorialManager : MonoBehaviour
         LetterHighlightImage.SetActive(true);
 
         StartCoroutine(FadeTMP(step4TMP, 0f, step4FadeTime));
+        background.material.DOFloat(1f, "_DissolveStrength", step4FadeTime);
         background.DOFade(0f, step4FadeTime).OnComplete(() =>
         {
             step4TMP.gameObject.SetActive(false);
@@ -338,6 +348,7 @@ public class TutorialManager : MonoBehaviour
         step5TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step5TMP, 1f, step5FadeTime));
         background.gameObject.SetActive(true);
+        background.material.DOFloat(0f, "_DissolveStrength", step5FadeTime);
         background.DOFade(1f, step5FadeTime).OnComplete(() =>
         {
             Invoke(nameof(step5FadeOut), step5TextShowDuration);
@@ -351,6 +362,7 @@ public class TutorialManager : MonoBehaviour
         SetTutorialCleared();
 
         StartCoroutine(FadeTMP(step5TMP, 0f, step5FadeTime));
+        background.material.DOFloat(1f, "_DissolveStrength", step5FadeTime);
         background.DOFade(0f, step5FadeTime).OnComplete(() =>
         {
             step5TMP.gameObject.SetActive(false);

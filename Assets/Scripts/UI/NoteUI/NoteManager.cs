@@ -75,7 +75,7 @@ public class NoteManager : MonoBehaviour
         if (LetterCountGoal[(int)type] == CompletedLetterCount[(int)type])
         {
             BlurrUnlockEvent?.Invoke(type);
-            TargetImages[(int)type].DOFade(0f, 0.5f).SetUpdate(true); // change to dissolve
+            TargetImages[(int)type].material.DOFloat(1f, "_DissolveStrength", 1f);
         }
     }
 }
