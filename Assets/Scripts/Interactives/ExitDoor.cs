@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ExitDoor : MonoBehaviour
@@ -7,6 +8,7 @@ public class ExitDoor : MonoBehaviour
     public Door door;
 
     [SerializeField] bool isUnlocked = false;
+    [SerializeField] Image whiteBackground;
 
     bool isActing = false;
 
@@ -25,7 +27,15 @@ public class ExitDoor : MonoBehaviour
         if (isActing) return;
 
         if (isUnlocked)
-            door.OnClick();
+        {
+            ItemManager.Instance.gameObject.SetActive(false);
+            NoteManager.Instance.TurnOff();
+            whiteBackground.gameObject.SetActive(true);
+            whiteBackground.DOFade(1f, 1f).OnComplete(() =>
+            {
+                SceneManager.LoadScene("Ending");
+            });
+        }
         else
         {
             isActing = true;
@@ -39,5 +49,8 @@ public class ExitDoor : MonoBehaviour
     private void ActivateDoor()
     {
         isUnlocked = true;
+
+        GetComponent<Image>().color = Color.white;
+        GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
     }
 }
