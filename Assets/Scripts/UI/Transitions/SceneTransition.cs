@@ -113,8 +113,10 @@ public class SceneTransition : MonoBehaviour
         }
         else
         {
-            ItemManager.Instance.gameObject.SetActive(false);
-            NoteManager.Instance.TurnOff();
+            if(ItemManager.Instance != null)
+                ItemManager.Instance.gameObject.SetActive(false);
+            if(NoteManager.Instance != null)
+                NoteManager.Instance.TurnOff();
         }
         transition.SceneLoadTransition(sceneName, false);
     }
