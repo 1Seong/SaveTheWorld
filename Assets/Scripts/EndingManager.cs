@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class EndingManager : MonoBehaviour
 {
     [SerializeField] Image whiteBackground;
+    [SerializeField] Image blackBackground;
     [SerializeField] Transform player;
     [SerializeField] Animator playerAnim;
     [SerializeField] Transform door;
@@ -32,19 +33,20 @@ public class EndingManager : MonoBehaviour
     [SerializeField] float step2waitTime = 1.0f;
     [SerializeField] string[] dialogue1;
     [SerializeField] string[] dialogue2;
+    [SerializeField] string[] dialogue3;
 
     [Header("Step3")]
     [SerializeField] float step3WaitTime = 0.5f;
     [SerializeField] float step3PlayerFadeTime = 1.0f;
     [SerializeField] float step3GodFadeTime = 1.0f;
     [SerializeField] float step3WaitTime2 = 1.0f;
-    [SerializeField] string[] dialogue3;
     [SerializeField] string[] dialogue4;
+    [SerializeField] string[] dialogue5;
 
     [Header("Step4")]
     [SerializeField] float step4WifeFadeTime = 1.0f;
     [SerializeField] float step4BackgroundFadeTime = 1.0f;
-    [SerializeField] string[] dialogue5;
+    [SerializeField] string[] dialogue6;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -82,6 +84,9 @@ public class EndingManager : MonoBehaviour
         // proceed dialogue sequence1
         // player and God walk right, wait for some seconds
         // proceed dialogue sequence2
+        // fade in black
+        // proceed dialogue sequence3
+        // fade out balck
         yield return StartCoroutine(dialogueCoroutine(dialogue1));
 
         playerAnim.SetBool("Walk", true);
@@ -91,13 +96,20 @@ public class EndingManager : MonoBehaviour
 
         yield return StartCoroutine(dialogueCoroutine(dialogue2));
 
+        var t3 = blackBackground.DOFade(1f, 0.3f);
+        yield return t3.WaitForCompletion();
+
+        yield return StartCoroutine(dialogueCoroutine(dialogue3));
+
+        var t4 = blackBackground.DOFade(0f, 0.3f);
+        yield return t4.WaitForCompletion();
 
         // Step3 - Present
         // player and God stop, wait for some seconds
         // God look left
-        // proceed dialogue sequence3
-        // player fade
         // proceed dialogue sequence4
+        // player fade
+        // proceed dialogue sequence5
         // God fade out
         // wait for some seconds
         playerAnim.SetBool("Walk", false);
@@ -105,31 +117,31 @@ public class EndingManager : MonoBehaviour
         yield return new WaitForSeconds(step3WaitTime);
 
         god.eulerAngles = new Vector3(0f, 180f, 0f);
-        yield return StartCoroutine(dialogueCoroutine(dialogue3));
+        yield return StartCoroutine(dialogueCoroutine(dialogue4));
 
         playerAnim.SetTrigger("Fade");
         yield return new WaitForSeconds(step3PlayerFadeTime);
 
-        yield return StartCoroutine(dialogueCoroutine(dialogue4));
+        yield return StartCoroutine(dialogueCoroutine(dialogue5));
 
-        var t3 = godSpriter.DOFade(0f, step3GodFadeTime);
-        yield return t3.WaitForCompletion();
+        var t5 = godSpriter.DOFade(0f, step3GodFadeTime);
+        yield return t5.WaitForCompletion();
 
         yield return new WaitForSeconds(step3WaitTime2);
 
 
         // Step4 - Wife
         // wife fade in
-        // proceed dialogue sequence5
+        // proceed dialogue sequence6
         // white background fade in
         // Load "Ending2" Scene
-        var t4 = wifeSpriter.DOFade(1f, step4WifeFadeTime);
-        yield return t4.WaitForCompletion();
+        var t6 = wifeSpriter.DOFade(1f, step4WifeFadeTime);
+        yield return t6.WaitForCompletion();
 
-        yield return StartCoroutine(dialogueCoroutine(dialogue5));
+        yield return StartCoroutine(dialogueCoroutine(dialogue6));
 
-        var t5 = whiteBackground.DOFade(1f, step4BackgroundFadeTime);
-        yield return t5.WaitForCompletion();
+        var t7 = whiteBackground.DOFade(1f, step4BackgroundFadeTime);
+        yield return t7.WaitForCompletion();
 
         SceneManager.LoadScene("Ending2");
     }
