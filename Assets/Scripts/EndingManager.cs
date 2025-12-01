@@ -20,6 +20,9 @@ public class EndingManager : MonoBehaviour
     [SerializeField] GameObject textBox;
     [SerializeField] TextMeshProUGUI playerTMP;
     [SerializeField] TextMeshProUGUI godTMP;
+    [SerializeField] GameObject playerTextTail;
+    [SerializeField] GameObject godTextTail;
+    [SerializeField] GameObject wifeTextTail;
     [SerializeField] float textAppendTime = 0.1f;
     [SerializeField] float nextTextWaitTime = 2.0f;
 
@@ -49,11 +52,19 @@ public class EndingManager : MonoBehaviour
     [SerializeField] string[] dialogue6;
 
 
+    bool skipPressed = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         whiteBackground.DOFade(1f, 0f);
         StartCoroutine(EndingSequenceCoroutine());
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            skipPressed = true;
     }
 
     IEnumerator EndingSequenceCoroutine()
@@ -99,7 +110,7 @@ public class EndingManager : MonoBehaviour
         var t3 = blackBackground.DOFade(1f, 0.3f);
         yield return t3.WaitForCompletion();
 
-        yield return StartCoroutine(dialogueCoroutine(dialogue3));
+        yield return StartCoroutine(dialogueCoroutine(dialogue3, false));
 
         var t4 = blackBackground.DOFade(0f, 0.3f);
         yield return t4.WaitForCompletion();
@@ -146,7 +157,7 @@ public class EndingManager : MonoBehaviour
         SceneManager.LoadScene("Ending2");
     }
 
-    IEnumerator dialogueCoroutine(string[] texts)
+    IEnumerator dialogueCoroutine(string[] texts, bool showTail = true)
     {
         textBox.SetActive(true);
 
@@ -154,33 +165,64 @@ public class EndingManager : MonoBehaviour
         {
             playerTMP.text = "";
             godTMP.text = "";
+            skipPressed = false;
 
             TextMeshProUGUI target = null;
 
-            if (text[0] == 'p' || text[0] == 'w')
+            if (text[0] == 'p')
             {
                 target = playerTMP;
+
+                if(showTail)
+                    playerTextTail.SetActive(true);
             }
             else if (text[0] == 'g')
             {
                 target = godTMP;
+
+                if(showTail)
+                    godTextTail.SetActive(true);
+            }
+            else if (text[0] == 'w')
+            {
+                target = playerTMP;
+
+                if(showTail)
+                    wifeTextTail.SetActive(true);
             }
 
-            int i = 1;
-            while (i < text.Length && !Input.GetKeyDown(KeyCode.Space))
+            bool skippedTyping = false;
+
+            for (int i = 1; i < text.Length; i++)
             {
+                if (skipPressed)
+                {
+                    skippedTyping = true;
+                    break;
+                }
+
                 target.text += text[i];
                 yield return new WaitForSeconds(textAppendTime);
-                ++i;
             }
-            target.text = text.Substring(1);
+
+            if (skippedTyping)
+                target.text = text.Substring(1);
 
             float t = 0f;
-            while(t <= nextTextWaitTime && !Input.GetKeyDown(KeyCode.Space))
+            skipPressed = false;
+
+            while(t < nextTextWaitTime)
             {
+                if (skipPressed)
+                    break;
+
                 t += Time.deltaTime;
                 yield return null;
             }
+
+            playerTextTail.gameObject.SetActive(false);
+            godTextTail.SetActive(false);
+            wifeTextTail.SetActive(false);
         }
 
         textBox.SetActive(false);
