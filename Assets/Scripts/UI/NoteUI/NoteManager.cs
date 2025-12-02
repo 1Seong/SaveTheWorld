@@ -33,6 +33,16 @@ public class NoteManager : MonoBehaviour, ISaveable
 
     private void Awake()
     {
+        // 중복 방지
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
         SaveManager.Instance.Register(this);
 
         letterTargets = FindObjectsByType<LetterTarget>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -56,36 +66,30 @@ public class NoteManager : MonoBehaviour, ISaveable
             {14, false}
         };
 
-        // 중복 방지
-        if (_instance != null && _instance != this)
+        foreach (var image in TargetImages)
         {
-            Destroy(gameObject);
+            image.material.DOFloat(0f, "_DissolveStrength", 0f);
         }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
-        // TODO : Load data (insert again - and unlock interactives)
     }
 
     private void OnDestroy()
     {
         if(SaveManager.Instance != null)
             SaveManager.Instance.Unregister(this);
+
+        _instance = null;
     }
 
     [System.Serializable]
     private class NoteManagerData
     {
         public int[] countData;
-        public Dictionary<int, bool> insertedData;
+        public SerializableIntBoolDict insertedData;
     }
 
     public string Save()
     {
-        var d = new NoteManagerData() { countData = CompletedLetterCount, insertedData = LetterInserted };
+        var d = new NoteManagerData() { countData = CompletedLetterCount, insertedData = new SerializableIntBoolDict(LetterInserted) };
 
         return JsonUtility.ToJson(d);
     }
@@ -97,7 +101,17 @@ public class NoteManager : MonoBehaviour, ISaveable
             var d = JsonUtility.FromJson<NoteManagerData>(json);
 
             CompletedLetterCount = d.countData;
-            LetterInserted = d.insertedData;
+
+            for (int i = 0; i != CompletedLetterCount.Length; ++i)
+            {
+                if (LetterCountGoal[i] == CompletedLetterCount[i])
+                {
+                    BlurrUnlockEvent?.Invoke((Item.Interactives)i);
+                    TargetImages[i].material.DOFloat(1f, "_DissolveStrength", 1f);
+                }
+            }
+
+            LetterInserted = d.insertedData.ToDictionary();
 
             foreach (var i in letterTargets)
             {
@@ -147,6 +161,35 @@ public class NoteManager : MonoBehaviour, ISaveable
         {
             BlurrUnlockEvent?.Invoke((Item.Interactives)type);
             TargetImages[type].material.DOFloat(1f, "_DissolveStrength", 1f);
+        }
+    }
+
+
+    // -------------------- utility --------------------------
+
+    [System.Serializable]
+    private class SerializableIntBoolDict
+    {
+        public List<int> keys = new List<int>();
+        public List<bool> values = new List<bool>();
+
+        public SerializableIntBoolDict() { }
+
+        public SerializableIntBoolDict(Dictionary<int, bool> dict)
+        {
+            foreach (var kv in dict)
+            {
+                keys.Add(kv.Key);
+                values.Add(kv.Value);
+            }
+        }
+
+        public Dictionary<int, bool> ToDictionary()
+        {
+            var dict = new Dictionary<int, bool>();
+            for (int i = 0; i < keys.Count; i++)
+                dict[keys[i]] = values[i];
+            return dict;
         }
     }
 }

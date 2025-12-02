@@ -46,12 +46,6 @@ public class InteractiveObject : MonoBehaviour
         ItemManager.Instance.ReturnFromCloseUpEvent += buttonInteractiveOn;
     }
 
-    private void OnDestroy()
-    {
-        NoteManager.Instance.BlurrUnlockEvent -= unlockBlurr;
-        ItemManager.Instance.ReturnFromCloseUpEvent -= buttonInteractiveOn;
-    }
-
     private void unlockBlurr(Item.Interactives id)
     {
         if (id != typeId) return;

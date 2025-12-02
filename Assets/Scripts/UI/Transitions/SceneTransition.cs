@@ -111,6 +111,8 @@ public class SceneTransition : MonoBehaviour
         {
             if(ItemManager.Instance != null)
                 ItemManager.Instance.gameObject.SetActive(true);
+            if (NoteManager.Instance != null)
+                NoteManager.Instance.TurnOn();
 
             OptionPanel.Instance.SetReturnToMenuButtonActive(true);
         }

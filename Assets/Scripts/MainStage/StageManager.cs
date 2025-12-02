@@ -50,7 +50,6 @@ public class StageManager : MonoBehaviour
         else
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         planes = planeParent.GetComponentsInChildren<RoomPlane>();

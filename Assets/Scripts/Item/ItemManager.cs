@@ -80,6 +80,16 @@ public class ItemManager : MonoBehaviour, ISaveable
 
     private void Awake()
     {
+        // 중복 방지
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
         SaveManager.Instance.Register(this);
 
         itemObjects = FindObjectsByType<ItemObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -107,17 +117,6 @@ public class ItemManager : MonoBehaviour, ISaveable
             {Items.LetterPpal,false },
             {Items.LetterLae, false }
         };
-
-        // 중복 방지
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
     }
 
     public bool IsCollected(Items item)
@@ -134,6 +133,8 @@ public class ItemManager : MonoBehaviour, ISaveable
     {
         if(SaveManager.Instance != null)
             SaveManager.Instance.Unregister(this);
+
+        _instance = null;
     }
 
     private void Start()
@@ -144,7 +145,7 @@ public class ItemManager : MonoBehaviour, ISaveable
     [System.Serializable]
     private class ItemManagerData
     {
-        public Dictionary<Items, bool> collectedDatas;
+        public SerializableItemsBoolDict collectedDatas;
         public List<ItemData> inventoryDatas;
         public bool flyData;
     }
@@ -152,14 +153,13 @@ public class ItemManager : MonoBehaviour, ISaveable
     public string Save()
     {
         List<ItemData> id = new List<ItemData>();
-        Dictionary<Items, bool> cd = collected;
 
         foreach(var i in inventoryItems)
         {
             id.Add(i.Data);
         }
 
-        var imd = new ItemManagerData { collectedDatas = cd, inventoryDatas = id, flyData = isFlyCatched };
+        var imd = new ItemManagerData { collectedDatas = new SerializableItemsBoolDict(collected), inventoryDatas = id, flyData = isFlyCatched };
 
         return JsonUtility.ToJson(imd);
     }
@@ -175,7 +175,7 @@ public class ItemManager : MonoBehaviour, ISaveable
                 AddItem(i, Vector3.zero);
             }
 
-            collected = d.collectedDatas;
+            collected = d.collectedDatas.ToDictionary();
 
             foreach(var i in itemObjects)
             {
@@ -353,5 +353,33 @@ public class ItemManager : MonoBehaviour, ISaveable
             ReturnFromCloseUpEvent?.Invoke();
             TurnOnGoButtons();
         });
+    }
+
+    // ----------------------------------------------- utility --------------------------------------------
+
+    [System.Serializable]
+    private class SerializableItemsBoolDict
+    {
+        public List<Items> keys = new List<Items>();
+        public List<bool> values = new List<bool>();
+
+        public SerializableItemsBoolDict() { }
+
+        public SerializableItemsBoolDict(Dictionary<Items, bool> dict)
+        {
+            foreach (var kv in dict)
+            {
+                keys.Add(kv.Key);
+                values.Add(kv.Value);
+            }
+        }
+
+        public Dictionary<Items, bool> ToDictionary()
+        {
+            var dict = new Dictionary<Items, bool>();
+            for (int i = 0; i < keys.Count; i++)
+                dict[keys[i]] = values[i];
+            return dict;
+        }
     }
 }

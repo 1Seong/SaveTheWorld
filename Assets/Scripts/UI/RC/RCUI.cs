@@ -43,13 +43,12 @@ public class RCUI : MonoBehaviour, ISaveable
         }
     }
 
-    private TextMeshProUGUI[] tmps;
+    [SerializeField] private TextMeshProUGUI[] tmps;
 
     private void Awake()
     {
         SaveManager.Instance.Register(this);
 
-        tmps = GetComponentsInChildren<TextMeshProUGUI>();
         /*
         for(int i = 0; i < tmps.Length; i++)
         {
@@ -84,7 +83,9 @@ public class RCUI : MonoBehaviour, ISaveable
             var d = JsonUtility.FromJson<RCUIData>(json);
 
             matched = d.rcData;
-            tv.channelOnCallBack();
+
+            if(matched)
+                tv.channelOnCallBack();
         }
         catch (Exception e)
         {

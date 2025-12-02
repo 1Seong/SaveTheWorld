@@ -49,8 +49,6 @@ public class GameManager : MonoBehaviour, ISaveable
 
     private void Awake()
     {
-        SaveManager.Instance.Register(this);
-
         // 중복 방지
         if (_instance != null && _instance != this)
         {
@@ -61,6 +59,8 @@ public class GameManager : MonoBehaviour, ISaveable
             _instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        SaveManager.Instance.Register(this);
 
         isGameCleared = new Dictionary<string, bool>() 
         {
@@ -83,12 +83,12 @@ public class GameManager : MonoBehaviour, ISaveable
     [System.Serializable]
     private class GameManagerData
     {
-        public Dictionary<string, bool> gmDatas;
+        public SerializableStringBoolDict gmDatas;
     }
 
     public string Save()
     {
-        var d = new GameManagerData() { gmDatas = isGameCleared };
+        var d = new GameManagerData() { gmDatas = new SerializableStringBoolDict(isGameCleared) };
 
         return JsonUtility.ToJson(d);
     }
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour, ISaveable
         {
             var d = JsonUtility.FromJson<GameManagerData>(json);
 
-            isGameCleared = d.gmDatas;
+            isGameCleared = d.gmDatas.ToDictionary();
             checkMiniGameAllClear();
         }
         catch (Exception e)
@@ -155,5 +155,34 @@ public class GameManager : MonoBehaviour, ISaveable
     {
         SetMiniGameClear(SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name);
         SceneTransition.Instance.UnloadScene();
+    }
+
+
+    // -------------------------------------- utility ----------------------------------------
+
+    [System.Serializable]
+    private class SerializableStringBoolDict
+    {
+        public List<string> keys = new List<string>();
+        public List<bool> values = new List<bool>();
+
+        public SerializableStringBoolDict() { }
+
+        public SerializableStringBoolDict(Dictionary<string, bool> dict)
+        {
+            foreach (var kv in dict)
+            {
+                keys.Add(kv.Key);
+                values.Add(kv.Value);
+            }
+        }
+
+        public Dictionary<string, bool> ToDictionary()
+        {
+            var dict = new Dictionary<string, bool>();
+            for (int i = 0; i < keys.Count; i++)
+                dict[keys[i]] = values[i];
+            return dict;
+        }
     }
 }

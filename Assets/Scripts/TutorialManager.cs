@@ -61,10 +61,11 @@ public class TutorialManager : MonoBehaviour, ISaveable
 
     void Awake()
     {
-        SaveManager.Instance.Register(this);
-
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+
+        SaveManager.Instance.Register(this);
+
     }
 
     [System.Serializable]
