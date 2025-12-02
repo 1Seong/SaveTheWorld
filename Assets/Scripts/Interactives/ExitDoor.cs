@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class ExitDoor : MonoBehaviour
 {
-    public Door door;
-
     [SerializeField] bool isUnlocked = false;
     [SerializeField] Image whiteBackground;
 
@@ -33,6 +31,7 @@ public class ExitDoor : MonoBehaviour
             whiteBackground.gameObject.SetActive(true);
             whiteBackground.DOFade(1f, 1f).OnComplete(() =>
             {
+                SaveManager.Instance.SaveAll();
                 SceneManager.LoadScene("Ending");
             });
         }

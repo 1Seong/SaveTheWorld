@@ -61,6 +61,8 @@ public class OptionPanel : MonoBehaviour
 
     public void OpenOnClick()
     {
+        if (!TutorialManager.Instance.isTutorialCleared) return;
+
         if (isActive)
             Hide();
         else

@@ -4,12 +4,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private CreditPanel credits;
 
-    public void StartSavedGame()
-    {
-        SceneTransition.Instance.LoadScene("MainScene");
-    }
-
-    public void StartNewGame()
+    public void StartGame()
     {
         SceneTransition.Instance.LoadScene("MainScene");
     }

@@ -5,8 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorialManager : MonoBehaviour
+public class TutorialManager : MonoBehaviour, ISaveable
 {
+    public string SaveKey => "TutorialManager";
+
+    public static TutorialManager Instance;
+
     public bool isTutorialCleared = false;
     [SerializeField] int stepNum = 1;
 
@@ -55,15 +59,51 @@ public class TutorialManager : MonoBehaviour
     public ParticleSystem syringeParticle;
     public OpenNoteButton noteButton;
 
+    void Awake()
+    {
+        SaveManager.Instance.Register(this);
+
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+    }
+
+    [System.Serializable]
+
+    private class TutorialManagerData
+    {
+        public bool cleared;
+    }
+
+    public string Save()
+    {
+        var d = new TutorialManagerData() { cleared = isTutorialCleared };
+
+        return JsonUtility.ToJson(d);
+    }
+
+    public void Load(string json)
+    {
+        try
+        {
+            var d = JsonUtility.FromJson<TutorialManagerData>(json);
+
+            isTutorialCleared = d.cleared;
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"TutorialManager.Load failed: {e.Message}");
+        }
+    }
 
     private void Start()
     {
         InventoryItem.OnInventoryClickTutorialEvent += step5InventoryOnClick;
         LetterTarget.tutorialEvent += step5LetterTargetOnClick;
+    }
 
-        // TODO : Load save data
-
-        if(!isTutorialCleared)
+    public void StartTutorial()
+    {
+        if (!isTutorialCleared)
         {
             roomRaycastBlockImage.SetActive(true);
             ItemManager.Instance.TurnOffGoButtons();
@@ -75,6 +115,9 @@ public class TutorialManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (SaveManager.Instance != null)
+            SaveManager.Instance.Unregister(this);
+
         background.material.SetFloat("_DissolveStrength", 1f);
 
         InventoryItem.OnInventoryClickTutorialEvent -= step5InventoryOnClick;
@@ -84,8 +127,6 @@ public class TutorialManager : MonoBehaviour
     private void SetTutorialCleared()
     {
         isTutorialCleared = true;
-
-        // TODO : Save Data
     }
 
     // ========== Step 1 - Plane A ==========

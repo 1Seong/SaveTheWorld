@@ -29,7 +29,7 @@ public class InteractiveObject : MonoBehaviour
 
     private void Start()
     {
-        if (hasBlurr && Item.IsBlurred(typeId))
+        if (hasBlurr)
         {
             GetComponent<Button>().interactable = false;
             GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
@@ -55,20 +55,8 @@ public class InteractiveObject : MonoBehaviour
     {
         if (id != typeId) return;
 
-        Item.UnlockBlurr(typeId);
         GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
         GetComponent<Button>().interactable = true;
-    }
-
-    private void DropInit()
-    {
-        if (GetComponentInChildren<ItemObject>() == null) return; // item is already collected
-
-        var itemObject = GetComponentInChildren<ItemObject>().gameObject;
-        itemObject.GetComponent<RectTransform>().DOAnchorPos(new Vector2(dropDisX, -5f), 0.5f).SetUpdate(true).OnComplete(() =>
-        {
-            itemObject.SetActive(true);
-        });
     }
 
     public void DropItemOnClick()

@@ -1,10 +1,13 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class RCUI : MonoBehaviour
+public class RCUI : MonoBehaviour, ISaveable
 {
+    public string SaveKey => "RCUI";
+
     [SerializeField] TV tv;
     [SerializeField] GameObject remoteCanvas;
 
@@ -44,6 +47,8 @@ public class RCUI : MonoBehaviour
 
     private void Awake()
     {
+        SaveManager.Instance.Register(this);
+
         tmps = GetComponentsInChildren<TextMeshProUGUI>();
         /*
         for(int i = 0; i < tmps.Length; i++)
@@ -53,19 +58,39 @@ public class RCUI : MonoBehaviour
         */
     }
 
-    /*
-    private void OnEnable()
+    private void OnDestroy()
     {
-        ItemManager.Instance.gameObject.SetActive(false);
-        NoteManager.Instance.gameObject.SetActive(false);
+        if(SaveManager.Instance != null)
+            SaveManager.Instance.Unregister(this);
     }
 
-    private void OnDisable()
+    [System.Serializable]
+    private class RCUIData
     {
-        ItemManager.Instance.gameObject.SetActive(true);
-        NoteManager.Instance.gameObject.SetActive(true);
+        public bool rcData;
     }
-    */
+
+    public string Save()
+    {
+        var d = new RCUIData() { rcData = matched };
+
+        return JsonUtility.ToJson(d);
+    }
+
+    public void Load(string json)
+    {
+        try
+        {
+            var d = JsonUtility.FromJson<RCUIData>(json);
+
+            matched = d.rcData;
+            tv.channelOnCallBack();
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"RCUI.Load failed: {e.Message}");
+        }
+    }
 
     public void EnableUI()
     {

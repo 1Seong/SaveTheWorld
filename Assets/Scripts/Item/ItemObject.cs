@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ItemObject : MonoBehaviour
 {
@@ -8,29 +8,18 @@ public class ItemObject : MonoBehaviour
 
     public static event Action<ItemData, Vector3> CollectEvent;
 
-    private void Start()
-    {
-        if (Item.IsCollected(data.id)) Destroy(gameObject);
-
-        //GameManager.Instance.PhaseChangedEvent += Unlock;
-    }
-
     public void Collect()
     {
         if (data.id != Item.Items.FilledBottle && ItemManager.Instance.IsHolding) return;
 
-        Item.Collect(data.id);
+        ItemManager.Instance.SetCollected(data.id);
         CollectEvent?.Invoke(data, transform.position);
         Destroy(gameObject);
     }
 
-    /*
-    public void Unlock()
+    public void ApplyData(Dictionary<Item.Items, bool> dic)
     {
-        if (data.unlockPhase != GameManager.Instance.CurrentPhase) return;
-
-        GetComponent<Button>().interactable = true;
-        transform.GetChild(0).gameObject.SetActive(false);
+        if (dic[data.id])
+            Destroy(gameObject);
     }
-    */
 }

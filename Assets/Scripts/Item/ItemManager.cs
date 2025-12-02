@@ -3,18 +3,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static Item;
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : MonoBehaviour, ISaveable
 {
+    public string SaveKey => "ItemManager";
+
     public event Action ItemHoldEvent;
     public event Action ItemReleaseEvent;
 
     public event Action ItemAddedToUIEvent;
 
     public event Action ReturnFromCloseUpEvent;
+
+    public Dictionary<Items, bool> collected;
 
     [Header("# UI Control")]
     [SerializeField] GameObject LeftButton;
@@ -28,6 +32,14 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private RectTransform targetGroup;
 
     [SerializeField] private InventoryItem _selectedItem;
+
+    [Header("Field Items")]
+    [SerializeField] private ItemObject[] itemObjects;
+
+    [Header("# Fly Catch")]
+    public bool isFlyCatched = false;
+    [SerializeField] private ItemTarget[] itemTargets;
+
     public InventoryItem SelectedItem
     {
         get => _selectedItem;
@@ -42,8 +54,6 @@ public class ItemManager : MonoBehaviour
     {
         get
         {
-            
-
             return _instance;
         }
     }
@@ -70,7 +80,33 @@ public class ItemManager : MonoBehaviour
 
     private void Awake()
     {
-        //inventoryItems = new List<InventoryItem>();
+        SaveManager.Instance.Register(this);
+
+        itemObjects = FindObjectsByType<ItemObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        itemTargets = FindObjectsByType<ItemTarget>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        collected = new Dictionary<Items, bool>
+        {
+            { Items.Controller, false },
+            {Items.FlyCatcher,false },
+            {Items.Bottle,false },
+            {Items.FilledBottle,false },
+            {Items.LetterJu,false },
+            {Items.LetterSa,false },
+            {Items.LetterGi,false },
+            {Items.LetterMok,false },
+            {Items.LetterBal,false },
+            {Items.LetterHang,false },
+            {Items.LetterAa,false },
+            {Items.LetterRi,false },
+            {Items.LetterYeon,false },
+            {Items.LetterPill,false },
+            {Items.LetterJae,false },
+            {Items.LetterBong,false },
+            {Items.LetterTeul,false },
+            {Items.LetterPpal,false },
+            {Items.LetterLae, false }
+        };
 
         // 중복 방지
         if (_instance != null && _instance != this)
@@ -84,24 +120,79 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public bool IsCollected(Items item)
+    {
+        return collected[item];
+    }
+
+    public void SetCollected(Items item)
+    {
+        collected[item] = true;
+    }
+
+    private void OnDestroy()
+    {
+        if(SaveManager.Instance != null)
+            SaveManager.Instance.Unregister(this);
+    }
+
     private void Start()
     {
         ItemObject.CollectEvent += AddItem;
-
-        // LoadSavedItems();
     }
 
-    public void SaveItems()
+    [System.Serializable]
+    private class ItemManagerData
     {
-        /*
-        foreach(var item in inventoryItems)
-        */
-        // TODO : save to playerprefs
+        public Dictionary<Items, bool> collectedDatas;
+        public List<ItemData> inventoryDatas;
+        public bool flyData;
     }
 
-    private void LoadSavedItems()
+    public string Save()
     {
-        // TODO : for all datas in files, find from playerprefs?
+        List<ItemData> id = new List<ItemData>();
+        Dictionary<Items, bool> cd = collected;
+
+        foreach(var i in inventoryItems)
+        {
+            id.Add(i.Data);
+        }
+
+        var imd = new ItemManagerData { collectedDatas = cd, inventoryDatas = id, flyData = isFlyCatched };
+
+        return JsonUtility.ToJson(imd);
+    }
+
+    public void Load(string json)
+    {
+        try
+        {
+            var d = JsonUtility.FromJson<ItemManagerData>(json);
+
+            foreach(var i in d.inventoryDatas)
+            {
+                AddItem(i, Vector3.zero);
+            }
+
+            collected = d.collectedDatas;
+
+            foreach(var i in itemObjects)
+            {
+                i.ApplyData(collected);
+            }
+
+            isFlyCatched = d.flyData;
+            if(isFlyCatched)
+            {
+                foreach (var i in itemTargets)
+                    i.ApplyFlyData();
+            }
+        }
+        catch(Exception e)
+        {
+            Debug.LogWarning($"InventoryManager.Load failed: {e.Message}");
+        }
     }
 
     private void Update()

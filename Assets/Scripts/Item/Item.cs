@@ -18,51 +18,6 @@ public static class Item
         LetterPpal, LetterLae // »¡·¡
     };
 
-    public static Dictionary<Items, bool> collected = Enum.GetValues(typeof(Items))
-    .Cast<Items>()
-    .ToDictionary(s => s, s => false);
-
-    public static void Collect(Items i)
-    {
-        // TODO : save data
-
-        collected[i] = true;
-        //PlayerPrefs.SetString(i.ToString() + "Collected", "1");
-    }
-
-    public static bool IsCollected(Items i)
-    {
-        // TODO : check save data
-
-        /*
-        if(PlayerPrefs.HasKey(i.ToString() + "Collected") && PlayerPrefs.GetString(i.ToString() + "Collected") == "1" )
-            collected[i] = true;
-        */
-        return collected[i];
-    }
-
-    // -------------------------------------------------- Item Target ------------------------------------------------------
-
-    public static Dictionary<string, bool> targetAct = new Dictionary<string, bool>()
-    {
-        {"TV", false },
-        {"Fly", false }
-    };
-
-    public static void TargetAct(string i)
-    {
-        if (i != "TV" && i != "Fly") return;
-
-        targetAct[i] = true;
-    }
-
-    public static bool IsTargetActed(string i)
-    {
-        if (i != "TV" && i != "Fly") return false;
-
-        return targetAct[i];
-    }
-
 
     // -------------------------------------------------- Interactibles ---------------------------------------------------
 
@@ -74,23 +29,9 @@ public static class Item
         Others
     };
 
-    public static Dictionary<Interactives, bool> blurred = Enum.GetValues(typeof(Interactives))
-        .Cast<Interactives>()
-        .ToDictionary(s => s, s => true);
-
     public static Dictionary<Interactives, bool> dropped = Enum.GetValues(typeof(Interactives))
         .Cast<Interactives>()
         .ToDictionary(s => s, s => false);
-
-    public static void UnlockBlurr(Interactives i)
-    {
-        blurred[i] = false;
-    }
-
-    public static bool IsBlurred(Interactives i)
-    {
-        return blurred[i];
-    }
 
     public static void Drop(Interactives i)
     {

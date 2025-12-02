@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, ISaveable
 {
+    public string SaveKey => "GameManager";
+
     [SerializeField] private bool _isPlaying;
     public bool IsPlaying
     {
@@ -19,16 +20,6 @@ public class GameManager : MonoBehaviour
         get => _isTurning;
         set { _isTurning = value; }
     }
-
-    /*
-    public int CurrentPhase = 0;
-    public event Action PhaseChangedEvent;
-    public void phaseChange()
-    {
-        ++CurrentPhase;
-        PhaseChangedEvent?.Invoke();
-    }
-    */
 
     private Dictionary<string, bool> isGameCleared;
     public static event Action GameAllClearedEvent;
@@ -58,6 +49,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        SaveManager.Instance.Register(this);
+
         // 중복 방지
         if (_instance != null && _instance != this)
         {
@@ -79,11 +72,42 @@ public class GameManager : MonoBehaviour
             {"Sewing", false },
             {"Laundry", false }
         };
-
-        // TODO : Load Saved Data
     }
 
-    
+    private void OnDestroy()
+    {
+        if(SaveManager.Instance != null)
+            SaveManager.Instance.Unregister(this);
+    }
+
+    [System.Serializable]
+    private class GameManagerData
+    {
+        public Dictionary<string, bool> gmDatas;
+    }
+
+    public string Save()
+    {
+        var d = new GameManagerData() { gmDatas = isGameCleared };
+
+        return JsonUtility.ToJson(d);
+    }
+
+    public void Load(string json)
+    {
+        try
+        {
+            var d = JsonUtility.FromJson<GameManagerData>(json);
+
+            isGameCleared = d.gmDatas;
+            checkMiniGameAllClear();
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"GameManager.Load failed: {e.Message}");
+        }
+    }
+
 
     public void StopTime()
     {
@@ -99,17 +123,19 @@ public class GameManager : MonoBehaviour
 
     // -------------------------------------------- Mini Game Controls ------------------------------------------------
 
-    // use playerprefs
     public void SetMiniGameClear(string name)
     {
-        // TODO : Save data
-
         isGameCleared[name] = true;
 
+        checkMiniGameAllClear();
+    }
+
+    private void checkMiniGameAllClear()
+    {
         bool notExist = false;
         foreach (var i in isGameCleared)
         {
-            if(!i.Value)
+            if (!i.Value)
             {
                 notExist = true;
                 break;
