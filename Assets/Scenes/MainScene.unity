@@ -13268,6 +13268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: =====Plane4B=====
       objectReference: {fileID: 0}
+    - target: {fileID: 3821079938748949775, guid: 4db1d3bd4cac37c4285ebddf2a99523d, type: 3}
+      propertyPath: typeId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5815901588872295303, guid: 4db1d3bd4cac37c4285ebddf2a99523d, type: 3}
       propertyPath: m_Camera
       value: 
@@ -13645,9 +13649,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 398776081}
     m_Modifications:
+    - target: {fileID: 453552633083965849, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
+      propertyPath: typeId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5990475999018849067, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
       propertyPath: m_Name
       value: =====Plane5E=====
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437243512702340085, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
+      propertyPath: typeId
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7768588813210363179, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13753,6 +13765,10 @@ PrefabInstance:
     - target: {fileID: 3044360693749573633, guid: 983d5d086d703324ba8cbcee03098fbc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4529848666878651999, guid: 983d5d086d703324ba8cbcee03098fbc, type: 3}
+      propertyPath: typeId
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -112,7 +112,7 @@ public class SceneTransition : MonoBehaviour
             if(ItemManager.Instance != null)
                 ItemManager.Instance.gameObject.SetActive(true);
 
-            OptionPanel.Instance.SetReturnToMenuButtonActive(false);
+            OptionPanel.Instance.SetReturnToMenuButtonActive(true);
         }
         else
         {
@@ -121,7 +121,7 @@ public class SceneTransition : MonoBehaviour
             if(NoteManager.Instance != null)
                 NoteManager.Instance.TurnOff();
 
-            OptionPanel.Instance.SetReturnToMenuButtonActive(true);
+            OptionPanel.Instance.SetReturnToMenuButtonActive(false);
         }
         transition.SceneLoadTransition(sceneName, false);
     }

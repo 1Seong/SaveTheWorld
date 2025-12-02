@@ -15,6 +15,7 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private float dropDisX = 0f;
     [SerializeField] private float dropDisY = -0.5f;
     [SerializeField] private bool hasLetterJae = false;
+    [SerializeField] private bool hasDropped = false;
 
     [Header("# Toggle Item Setting")]
     [SerializeField] private bool hasToggleItem = false;
@@ -62,9 +63,10 @@ public class InteractiveObject : MonoBehaviour
     public void DropItemOnClick()
     {
         if (!hasDropItem) return;
-        if(Item.IsDropped(typeId)) return;
+        if(hasDropped) return;
 
-        Item.Drop(typeId);
+        hasDropped = true;
+
         if(itemObject == null)
             itemObject = GetComponentInChildren<ItemObject>(true).gameObject;
         itemObject.SetActive(true);
