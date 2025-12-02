@@ -11,6 +11,7 @@ public class OptionPanel : MonoBehaviour
     [SerializeField] private Image background;
     [SerializeField] private GameObject panel;
     [SerializeField] private bool isActive = false;
+    [SerializeField] GameObject returnButton;
 
     private static OptionPanel _instance;
     public static OptionPanel Instance
@@ -61,7 +62,8 @@ public class OptionPanel : MonoBehaviour
 
     public void OpenOnClick()
     {
-        if (!TutorialManager.Instance.isTutorialCleared) return;
+        if (TutorialManager.Instance != null && !TutorialManager.Instance.isTutorialCleared) return;
+        if (SceneManager.GetActiveScene().name == "Ending" || SceneManager.GetActiveScene().name == "Ending2") return;
 
         if (isActive)
             Hide();
@@ -103,5 +105,10 @@ public class OptionPanel : MonoBehaviour
         // ItemManager.Instance.SaveItems();
         Hide();
         SceneTransition.Instance.LoadScene("MainMenu");
+    }
+
+    public void SetReturnToMenuButtonActive(bool b)
+    {
+        returnButton.SetActive(b);
     }
 }

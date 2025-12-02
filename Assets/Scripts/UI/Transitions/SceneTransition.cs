@@ -109,7 +109,10 @@ public class SceneTransition : MonoBehaviour
     {
         if (sceneName == "MainScene")
         {
-            ItemManager.Instance.gameObject.SetActive(true);
+            if(ItemManager.Instance != null)
+                ItemManager.Instance.gameObject.SetActive(true);
+
+            OptionPanel.Instance.SetReturnToMenuButtonActive(false);
         }
         else
         {
@@ -117,6 +120,8 @@ public class SceneTransition : MonoBehaviour
                 ItemManager.Instance.gameObject.SetActive(false);
             if(NoteManager.Instance != null)
                 NoteManager.Instance.TurnOff();
+
+            OptionPanel.Instance.SetReturnToMenuButtonActive(true);
         }
         transition.SceneLoadTransition(sceneName, false);
     }
