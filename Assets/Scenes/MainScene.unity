@@ -13075,6 +13075,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 5138767040182781335, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f85b802fe9fc7b64e826b94a48d113d2, type: 3}
+    - target: {fileID: 6091492707118984306, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7256891969288279905, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
       propertyPath: m_Name
       value: =====Plane1A=====

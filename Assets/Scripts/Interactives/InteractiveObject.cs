@@ -61,21 +61,29 @@ public class InteractiveObject : MonoBehaviour
 
         hasDropped = true;
 
-        if(itemObject == null)
-            itemObject = GetComponentInChildren<ItemObject>(true).gameObject;
+        if (itemObject == null)
+            return;
+
+        itemObject.GetComponent<Button>().interactable = false;
         itemObject.SetActive(true);
 
         Sequence seq = DOTween.Sequence(itemObject);
 
-        seq.Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 1
+        seq.Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 1 r
         .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x + dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine))
-        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 2 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 2
+        .Join(itemObject.transform.DOLocalRotate(new Vector3(0f, 0f, -30f), .6f).SetUpdate(true).SetEase(Ease.InOutSine))
+        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 2 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 2 l
         .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine))
-        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 3 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 3
+        .Join(itemObject.transform.DOLocalRotate(new Vector3(0f, 0f, 30f), .6f).SetUpdate(true).SetEase(Ease.InOutSine))
+        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 3 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 3 r
         .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x + dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine))
-        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 4 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 4
+        .Join(itemObject.transform.DOLocalRotate(new Vector3(0f, 0f, -30f), .6f).SetUpdate(true).SetEase(Ease.InOutSine))
+        .Append(itemObject.transform.DOMoveY(itemObject.transform.position.y + 4 * dropDisY, .6f).SetUpdate(true).SetEase(Ease.OutSine)) // 4 l
+        .Join(itemObject.transform.DOLocalRotate(new Vector3(0f, 0f, 30f), .6f).SetUpdate(true).SetEase(Ease.InOutSine))
         .Join(itemObject.transform.DOMoveX(itemObject.transform.position.x - dropDisX, .6f).SetUpdate(true).SetEase(Ease.InOutSine).OnComplete(()=>
         {
+            itemObject.GetComponent<Button>().interactable = true;
+
             if (hasLetterJae)
                 itemObject.transform.localPosition = new Vector3(3f, 15f, -20f);
         }));
