@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class Curtain : ToggleInteractives
 {
+    public float fullScale = 1.395f;
+    public float foldScale = .4f;
+
     protected override void On()
     {
         isActing = true;
-        transform.DOScaleX(0.6f, 0.6f).SetEase(Ease.OutBack).OnComplete(() =>
+        transform.DOScaleX(foldScale, 0.6f).SetEase(Ease.OutBack).OnComplete(() =>
         {
             isActing = false;
         });
@@ -15,7 +18,7 @@ public class Curtain : ToggleInteractives
     protected override void Off()
     {
         isActing = true;
-        transform.DOScaleX(3.5f, 0.6f).SetEase(Ease.OutBack).OnComplete(() =>
+        transform.DOScaleX(fullScale, 0.6f).SetEase(Ease.OutBack).OnComplete(() =>
         {
             isActing = false;
         });
