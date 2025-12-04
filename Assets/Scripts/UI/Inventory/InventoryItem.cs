@@ -18,7 +18,9 @@ public class InventoryItem : MonoBehaviour
         set
         {
             _data = value;
+            transform.GetChild(0).localScale = Vector3.one * _data.targetScale;
             transform.GetChild(0).GetComponent<Image>().sprite = _data.sprite;
+            transform.GetChild(0).GetComponent<Image>().SetNativeSize();
         }
     }
 

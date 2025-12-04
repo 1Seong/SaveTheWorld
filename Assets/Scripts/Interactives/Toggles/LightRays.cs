@@ -4,32 +4,21 @@ using UnityEngine.Rendering;
 
 public class LightRays : MonoBehaviour
 {
-    private MeshRenderer[] rays;
+    public Material targetMaterial;
 
     private void Awake()
     {
-        rays = GetComponentsInChildren<MeshRenderer>();
-
-        foreach (var m in rays)
-        {
-            m.material.DOFade(0f, 0f);
-        }
+        targetMaterial.DOFade(0f, 0f);
     }
 
     public void LightAppear()
     {
-        foreach (var m in rays)
-        {
-            m.material.DOFade(0.25f, 0.3f);
-        }
+        targetMaterial.DOFade(0.3f, 0.8f);
     }
 
     public void LightDisappear()
     {
-        foreach (var m in rays)
-        {
-            m.material.DOFade(0f, 0.3f);
-        }
+        targetMaterial.DOFade(0f, 0.8f);
     }
        
 }

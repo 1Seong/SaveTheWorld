@@ -75,6 +75,7 @@ public class InventoryFold : MonoBehaviour
     {
         if (!GameManager.Instance.IsPlaying) return;
         if (SceneManager.GetActiveScene().name == "MainMenu") return;
+        if(!TutorialManager.Instance.isTutorialCleared) return;
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
