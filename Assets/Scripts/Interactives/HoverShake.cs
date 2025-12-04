@@ -10,11 +10,12 @@ public class HoverShake : MonoBehaviour
     void OnMouseEnter()
     {
         if (isActing) return;
+
         isActing = true;
         var seq = DOTween.Sequence();
-        seq.Append(transform.DOLocalRotate(transform.localRotation.eulerAngles + new Vector3(0f, rotAngle, 0f), duration).SetEase(Ease.OutCirc))
-            .Append(transform.DOLocalRotate(transform.localRotation.eulerAngles - new Vector3(0f, rotAngle, 0f), duration).SetEase(Ease.OutCirc))
-            .Append(transform.DOLocalRotate(transform.localRotation.eulerAngles, duration).SetEase(Ease.OutCirc).OnComplete(()=>
+        seq.Append(transform.DOLocalRotate(new Vector3(rotAngle, 0f, 0f), duration, RotateMode.LocalAxisAdd).SetEase(Ease.OutCirc))
+            .Append(transform.DOLocalRotate(new Vector3(-2 * rotAngle, 0f, 0f), duration, RotateMode.LocalAxisAdd).SetEase(Ease.OutCirc))
+            .Append(transform.DOLocalRotate(new Vector3(rotAngle, 0f, 0f), duration, RotateMode.LocalAxisAdd).SetEase(Ease.OutCirc).OnComplete(()=>
             {
                 isActing = false;
             }));
