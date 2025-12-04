@@ -5,10 +5,12 @@ public class Faucet : ToggleInteractives
 {
     [SerializeField] ParticleSystem waterParticleObj;
     [SerializeField] GameObject waterTargetObj;
+    [SerializeField] Faucet otherFaucet;
 
     protected override void On()
     {
         isActing = true;
+
         waterParticleObj.Play();
         waterTargetObj.SetActive(true);
         transform.DORotate(transform.rotation.eulerAngles + new Vector3(0f, -90f, 0f), 0.15f).SetEase(Ease.OutExpo).SetLoops(3).OnComplete(() =>
@@ -19,7 +21,10 @@ public class Faucet : ToggleInteractives
 
     protected override void Off()
     {
+        if (otherFaucet.IsActive) return;
+
         isActing = true;
+
         waterParticleObj.Stop();
         transform.DORotate(transform.rotation.eulerAngles + new Vector3(0f, 90f, 0f), 0.15f).SetEase(Ease.OutExpo).SetLoops(3).OnComplete(() =>
         {

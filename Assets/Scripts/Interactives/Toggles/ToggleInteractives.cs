@@ -9,7 +9,7 @@ public class ToggleInteractives : MonoBehaviour // template method pattern
 
     [SerializeField] protected bool isActing = false;
 
-    private bool _isActive = false;
+    [SerializeField] private bool _isActive = false;
     public bool IsActive 
     { 
         get { return _isActive; }

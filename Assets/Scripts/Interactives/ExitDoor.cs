@@ -49,7 +49,7 @@ public class ExitDoor : MonoBehaviour
     {
         isUnlocked = true;
 
-        GetComponent<Image>().color = Color.white;
+        GetComponent<Image>().DOFade(0.003f, 0f);
         GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
     }
 }
