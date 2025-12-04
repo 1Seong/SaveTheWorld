@@ -32,9 +32,9 @@ public class TV : ToggleInteractives
     protected override void On()
     {
         isActing = true;
-        onMonitor.DOScaleX(0.75f, 0.1f).OnComplete(() =>
+        onMonitor.DOScaleX(0.6f, 0.1f).OnComplete(() =>
         {
-            onMonitor.DOScaleY(0.73f, 0.2f).SetEase(Ease.InCubic).OnComplete(() =>
+            onMonitor.DOScaleY(0.59f, 0.2f).SetEase(Ease.InCubic).OnComplete(() =>
             {
                 isActing = false;
                 if(ChannelOn)
@@ -48,7 +48,7 @@ public class TV : ToggleInteractives
         isActing = true;
         if (ChannelOn)
             channelMonitor.SetActive(false);
-        onMonitor.DOScaleY(0.02f, 0.2f).SetEase(Ease.OutCubic).OnComplete(() =>
+        onMonitor.DOScaleY(0.015f, 0.2f).SetEase(Ease.OutCubic).OnComplete(() =>
         {
             onMonitor.DOScaleX(0f, 0.1f).OnComplete(() =>
             {

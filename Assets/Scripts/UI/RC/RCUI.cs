@@ -97,14 +97,14 @@ public class RCUI : MonoBehaviour, ISaveable
     {
         remoteCanvas.SetActive(true);
         ItemManager.Instance.gameObject.SetActive(false);
-        NoteManager.Instance.gameObject.SetActive(false);
+        NoteManager.Instance.TurnOff();
     }
 
     public void DisableUI()
     {
         remoteCanvas.SetActive(false);
         ItemManager.Instance.gameObject.SetActive(true);
-        NoteManager.Instance.gameObject.SetActive(true);
+        NoteManager.Instance.TurnOn();
     }
 
     private void displayNum(char c)
