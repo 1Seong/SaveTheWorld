@@ -14433,6 +14433,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924708896}
   m_CullTransparentMesh: 1
+--- !u!114 &1984290213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7877091984687590870, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
+  m_PrefabInstance: {fileID: 4309568018743938386}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2008001014
 GameObject:
   m_ObjectHideFlags: 0
@@ -16960,6 +16971,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 398776081}
     m_Modifications:
+    - target: {fileID: 39464899150361367, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
+      propertyPath: letter
+      value: 
+      objectReference: {fileID: 1984290213}
     - target: {fileID: 342919108951781823, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.702
@@ -16979,6 +16994,10 @@ PrefabInstance:
     - target: {fileID: 724285899452199825, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
       propertyPath: rotAngle
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 862070901012619466, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
+      propertyPath: m_Transition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2503202032945313443, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
       propertyPath: m_LocalScale.x
@@ -17290,11 +17309,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437243512702340085, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
       propertyPath: hasBlurr
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7437243512702340085, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
       propertyPath: sceneName
       value: Laundry
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437243512702340085, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
+      propertyPath: hasMiniGame
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7437243512702340085, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
       propertyPath: closeUpDistance
@@ -17342,6 +17365,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7811282150972345522, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877091984687590870, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
+      propertyPath: m_Transition
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8198023291916435748, guid: d335d16b91be8e04ba568d0c8987bc8f, type: 3}
@@ -17470,6 +17497,10 @@ PrefabInstance:
     - target: {fileID: 1005366428905788588, guid: 983d5d086d703324ba8cbcee03098fbc, type: 3}
       propertyPath: m_Name
       value: =====Plane3C=====
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329864686767463904, guid: 983d5d086d703324ba8cbcee03098fbc, type: 3}
+      propertyPath: m_Transition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1354270030987527884, guid: 983d5d086d703324ba8cbcee03098fbc, type: 3}
       propertyPath: m_IsActive

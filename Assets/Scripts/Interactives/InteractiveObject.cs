@@ -86,7 +86,10 @@ public class InteractiveObject : MonoBehaviour
             itemObject.GetComponent<Button>().interactable = true;
 
             if (hasLetterJae)
+            {
                 itemObject.transform.localPosition = new Vector3(3f, 15f, -20f);
+                itemObject.transform.eulerAngles = new Vector3(180f, 0f, 0f);
+            }
         }));
 
     }

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemTarget : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class ItemTarget : MonoBehaviour
 
     [Header("# Bottle")]
     [SerializeField] private ItemObject filledBottle;
+
+    [Header("# Fly")]
+    [SerializeField] private Button letter;
 
     public void OnInteract(ItemData data)
     {
@@ -32,10 +36,11 @@ public class ItemTarget : MonoBehaviour
                 break;
             case Item.Items.FlyCatcher:
                 ItemManager.Instance.isFlyCatched = true;
-                transform.DORotate(transform.rotation.eulerAngles + new Vector3(0f, 90f, 0f), 0.2f).SetLoops(4);
-                GetComponent<SpriteRenderer>().DOFade(0f, 1f);
-                transform.DOMoveY(transform.position.y - 5f, 1f).OnComplete(() =>
+                transform.DORotate(transform.rotation.eulerAngles + new Vector3(0f, 90f, 0f), 0.4f).SetLoops(4);
+                GetComponent<SpriteRenderer>().DOFade(0f, 1.6f);
+                transform.DOMoveY(transform.position.y - 3f, 1.6f).OnComplete(() =>
                 {
+                    letter.interactable = true;
                     Destroy(gameObject);
                 });
                 break;
