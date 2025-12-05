@@ -154,9 +154,9 @@ public class TimingGame : MonoBehaviour
             {
                 string[] texts = new string[3];
 
-                texts[0] = $"난 부상당한 {savedCount}명의 전우의 목숨을 구했었어";
+                texts[0] = $"부상당한 {savedCount}명의 전우의 목숨을 구했었어.";
                 texts[1] = $"하지만 {5 - savedCount}명은 그러지 못했지.";
-                texts[2] = "난 그렇게 평생 죄책감을 안고...";
+                texts[2] = "난 그렇게 죄책감을 안고...";
                 MiniGameManager.instance.GameEnd(texts);
             }
             else if (savedCount == 5)
