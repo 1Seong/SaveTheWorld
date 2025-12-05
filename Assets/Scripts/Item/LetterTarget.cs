@@ -1,7 +1,8 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LetterTarget : ItemTarget
 {
@@ -20,7 +21,7 @@ public class LetterTarget : ItemTarget
 
     private void InsertLetter()
     {
-        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).GetComponent<Image>().DOFade(1f, 0.3f);
         NoteManager.Instance.OnInsertLetter((int)interactiveType, letterId);
     }
 

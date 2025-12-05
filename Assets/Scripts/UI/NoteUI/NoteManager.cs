@@ -152,8 +152,6 @@ public class NoteManager : MonoBehaviour, ISaveable
 
     public void OnInsertLetter(int type, int id)
     {
-        // TODO : save which one is inserted
-
         ++CompletedLetterCount[type];
         LetterInserted[id] = true;
 
