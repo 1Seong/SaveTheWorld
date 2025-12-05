@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5524025360580570029}
   - component: {fileID: 2824995407209487661}
   - component: {fileID: 8930483641857703746}
+  - component: {fileID: -5781022616248248921}
   m_Layer: 0
   m_Name: InteractiveObject(Blurr)
   m_TagString: Untagged
@@ -150,14 +151,30 @@ MonoBehaviour:
   typeId: 0
   hasBlurr: 1
   hasDropItem: 0
+  itemObject: {fileID: 0}
   dropDisX: 0
-  dropPosY: -3
+  dropDisY: -0.5
+  hasLetterJae: 0
+  hasDropped: 0
   hasToggleItem: 0
   hasCloseUp: 1
   closeUpDistance: 9
   biasV: {x: 0, y: -2, z: 5}
   hasMiniGame: 1
   sceneName: Syringe
+--- !u!114 &-5781022616248248921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8232710255694707541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0360b6607d49a7343b82134a32a88bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CursorType: 2
 --- !u!1001 &515914839041908937
 PrefabInstance:
   m_ObjectHideFlags: 0

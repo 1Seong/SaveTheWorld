@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8125108887236493624}
   - component: {fileID: 3557565840827229060}
   - component: {fileID: 7983330704160022554}
+  - component: {fileID: 1790927830122384370}
   m_Layer: 0
   m_Name: InteractiveObject(Attached)
   m_TagString: Untagged
@@ -149,13 +150,31 @@ MonoBehaviour:
   typeId: 0
   hasBlurr: 0
   hasDropItem: 0
+  itemObject: {fileID: 0}
   dropDisX: 0.4
-  dropPosY: -3
+  dropDisY: -0.5
+  hasLetterJae: 0
+  hasDropped: 0
   hasToggleItem: 1
   hasCloseUp: 0
   closeUpDistance: 5
+  biasV: {x: 0, y: 0, z: 0}
   hasMiniGame: 0
   sceneName: 
+--- !u!114 &1790927830122384370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3575060799911263123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0360b6607d49a7343b82134a32a88bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: -1804522281, guid: ed0bcb0b8cb9fec43b055b0cb6471827, type: 3}
+  hoverSprite: {fileID: 0}
 --- !u!1001 &4919378429862558936
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 347085052835696554}
   - component: {fileID: 1700307291904658219}
   - component: {fileID: 2514952290649006049}
+  - component: {fileID: 6603202963667307335}
   m_Layer: 0
   m_Name: DoorLeft
   m_TagString: Untagged
@@ -171,8 +172,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActing: 0
+  _isActive: 0
   targetRot: 80
   duration: 0.7
+--- !u!114 &6603202963667307335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5062350041874160680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0360b6607d49a7343b82134a32a88bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: -1804522281, guid: ed0bcb0b8cb9fec43b055b0cb6471827, type: 3}
+  hoverSprite: {fileID: -1282457833, guid: ed0bcb0b8cb9fec43b055b0cb6471827, type: 3}
 --- !u!1001 &7792162658367117415
 PrefabInstance:
   m_ObjectHideFlags: 0

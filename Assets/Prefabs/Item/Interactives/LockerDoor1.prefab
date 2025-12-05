@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1199930154388115774}
   - component: {fileID: 5461845173059441176}
   - component: {fileID: 503438029778923384}
+  - component: {fileID: -4336997283030435675}
   m_Layer: 0
   m_Name: LockerDoor1
   m_TagString: Untagged
@@ -147,10 +148,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActing: 0
+  _isActive: 0
   targetMove: -1
   targetScale: 1.4
   duration: 0.6
   innerTransform: {fileID: 8661959152681192293}
+--- !u!114 &-4336997283030435675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215668162781577573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0360b6607d49a7343b82134a32a88bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: -1804522281, guid: ed0bcb0b8cb9fec43b055b0cb6471827, type: 3}
+  hoverSprite: {fileID: -1282457833, guid: ed0bcb0b8cb9fec43b055b0cb6471827, type: 3}
 --- !u!1 &3060668241177893321
 GameObject:
   m_ObjectHideFlags: 0
