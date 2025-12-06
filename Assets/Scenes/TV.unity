@@ -1703,7 +1703,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 22
   m_TargetDisplay: 0
 --- !u!1 &315940676
 GameObject:
@@ -2970,7 +2970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &668640521
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4461,7 +4461,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -16.886566, y: -1.551341, z: -18.849224, w: -5.827642}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5235,6 +5235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a7b4f28012d4f43858e65f4427695c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeId: 0
   dialogueCSV1: {fileID: 4900000, guid: 4b5ed4de7382f8343ab3de69de400cff, type: 3}
   dialogueCSV2: {fileID: 4900000, guid: 74b75a82540f2f943bb94a2f15cc6bfa, type: 3}
   dialogueCSV3: {fileID: 4900000, guid: d25261b770accf64dbffea8a6c806f98, type: 3}
@@ -5248,6 +5249,8 @@ MonoBehaviour:
   seq2Background: {fileID: 346904614}
   seq3Background: {fileID: 841156759}
   blackBackground: {fileID: 1193378989}
+  leftCharImage: {fileID: 668640520}
+  rightCharImage: {fileID: 1849584384}
 --- !u!1 &1163541526
 GameObject:
   m_ObjectHideFlags: 0
@@ -6366,7 +6369,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 1cbb2bc6a8b7a2c4cb94038a42cbd7f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13744,7 +13747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1849584385
 RectTransform:
   m_ObjectHideFlags: 0

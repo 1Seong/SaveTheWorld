@@ -1,10 +1,11 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PortraitController : MonoBehaviour
 {
     public UnityEngine.UI.Image leftImage;
     public UnityEngine.UI.Image rightImage;
-    public float hideAlpha = 0.7f;
+    public float hideAlpha = 0.5f;
 
     public Sprite GetSprite(string character)
     {
@@ -16,14 +17,26 @@ public class PortraitController : MonoBehaviour
     public void UpdatePortrait(bool? isLeftSpeaker, string leftCharacter, string rightCharacter)
     {
         if (leftCharacter != "")
+        {
             leftImage.sprite = GetSprite(leftCharacter);
+            leftImage.gameObject.SetActive(true);
+        }
         else
+        {
             leftImage.sprite = null;
+            leftImage.gameObject.SetActive(false);
+        }
 
-        if(rightCharacter != "")
-            rightImage.sprite = GetSprite(rightCharacter);
+        if (rightCharacter != "")
+        {
+            rightImage.DOFade(1f, 0f);
+            rightImage.gameObject.SetActive(true);
+        }
         else
+        {
             rightImage.sprite = null;
+            rightImage.gameObject.SetActive(false);
+        }
 
         if (isLeftSpeaker == null) // narrative
         {

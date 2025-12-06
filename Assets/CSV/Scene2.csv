@@ -1,21 +1,21 @@
 id(int),leftCharacter(string),rightCharacter(string),isSpeakerLeft(bool),dialogue(string)
-0,,,,"195X³â 1¿ù, ÇÇ³­±æ."
-1,,,,¾ö¸¶´Â ÁüÀ» µé°í µ¿»ýÀÇ ¼ÕÀ» ²À ÀâÀº Ã¤ °É¾î°£´Ù. ¹Ù·Î µÚ¸¦ µû¸£´Â ¼Ò³â.
-2,sister,mom_enduring,1,¾ö¸¶¡¦ ³Ê¹« Ãß¿ö¡¦ ¹ß ¾ÆÆÄ¡¦
-3,sister,mom_enduring,0,°ÅÀÇ ´Ù ¿Ô¾î¡¦ Á¶±Ý¸¸ ÂüÀÚ.
-4,,,,º¹ÀâÇÏ°í ¹Ì²ô·¯¿î ÇÇ³­±æÀ» Èû°ã°Ô ³ª¾Æ°¡´Â ¼¼ »ç¶÷.
-5,,,,"°©ÀÚ±â ¾Õ¿¡¼­ ±º¿ë Æ®·°ÀÌ Áö³ª°¡¸ç »ç¶÷µéÀ» ¹Ð¾î³»°í, ÀÎÆÄ°¡ Å©°Ô Èçµé¸°´Ù."
-6,,,,¼Ò³âÀº ±ÕÇüÀ» ÀÒ°í Ç®½â ³Ñ¾îÁø´Ù.
-7,boy_panicked,,1,¾ö¸¶?! Àá±ñ¸¸?!
-8,boy_panicked,,,»ç¶÷µéÀÇ ¾î±ú¿Í º¸µû¸®°¡ ½Ã¾ß¸¦ °¡¸°´Ù.
-9,boy_panicked,,,"¾ö¸¶¿Í µ¿»ýÀÇ ¼ÕÀÌ ½Ã¾ß¿¡¼­ ¿ÏÀüÈ÷ »ç¶óÁö°í, ¼Ò³âÀÇ È£ÈíÀº °ÅÄ¥¾îÁø´Ù."
-10,boy_panicked,,1,¾ö¸¶!!
-11,,,,ÁÖÀÎ°øÀº ÀÎÆÄ¸¦ °¡¸£¸ç ÇÊ»çÀûÀ¸·Î ¾ÕÀ¸·Î ³ª¾Æ°£´Ù.
-12,,,,"´«¹ßÀº ´õ ½ÉÇØÁö°í, ¿ïÀ½ ¼¯ÀÎ ´Ù¸¥ ¾ÆÀÌµéÀÇ ¸ñ¼Ò¸®°¡ µÚ¾ûÄÑ »ê¸¸ÇÏ°Ô µé¸°´Ù."
-13,,,,"ÇÑÂüÀ» Çì¸Ç ³¡¿¡, ±æ ÇÑ ±¸¼®¿¡¼­ ´ú´ú ¶³°í ÀÖ´Â ¾ö¸¶¿Í µ¿»ýÀ» ¹ß°ßÇÑ´Ù."
-14,,,,¾ö¸¶´Â µ¿»ýÀ» ²ø¾î¾ÈÀº Ã¤ ÁÖÀ§¸¦ µÎ¸®¹ø°Å¸®°í ÀÖ´Ù.
-15,mom_relieved,,1,³Ê ¾îµð °¬¾ú´ø °Å¾ß¡¦ ³î¶úÀÝ¾Æ¡¦
-16,mom_relieved,,,ÁÖÀÎ°øÀº ¼ûÀ» ¸ô¾Æ½¬´Ù°¡ ½Ã¼±À» ¶³±º´Ù.
-17,mom_relieved,boy_powerless,,¼Ò³âÀÇ °¡½¿ ¼Ó¿¡´Â µÎ°í ¿Â ÇÒ¾Æ¹öÁöÀÇ ¸»¾¸ÀÌ ¶°¿À¸¥´Ù.
-18,mom_relieved,boy_powerless,,¡°³×°¡ ¾ö¸¶¿Í µ¿»ýÀ» Àß ÁöÄÑÁÖ¾î¾ß ÇÑ´Ù.¡±
-19,mom_relieved,boy_powerless,,¼Ò³âÀÇ ¾ÜµÈ ¾ó±¼¿£ ±×´ÃÀÌ µå¸®¿î´Ù.
+0,,,,"195Xë…„ 1ì›”, í”¼ë‚œê¸¸."
+1,,,,ì—„ë§ˆëŠ” ì§ì„ ë“¤ê³  ë™ìƒì˜ ì†ì„ ê¼­ ìž¡ì€ ì±„ ê±¸ì–´ê°„ë‹¤. ë°”ë¡œ ë’¤ë¥¼ ë”°ë¥´ëŠ” ì†Œë…„.
+2,sister,mom_enduring,1,ì—„ë§ˆâ€¦ ë„ˆë¬´ ì¶”ì›Œâ€¦ ë°œ ì•„íŒŒâ€¦
+3,sister,mom_enduring,0,ê±°ì˜ ë‹¤ ì™”ì–´â€¦ ì¡°ê¸ˆë§Œ ì°¸ìž.
+4,,,,ë³µìž¡í•˜ê³  ë¯¸ë„ëŸ¬ìš´ í”¼ë‚œê¸¸ì„ íž˜ê²¹ê²Œ ë‚˜ì•„ê°€ëŠ” ì„¸ ì‚¬ëžŒ.
+5,,,,"ê°‘ìžê¸° ì•žì—ì„œ êµ°ìš© íŠ¸ëŸ­ì´ ì§€ë‚˜ê°€ë©° ì‚¬ëžŒë“¤ì„ ë°€ì–´ë‚´ê³ , ì¸íŒŒê°€ í¬ê²Œ í”ë“¤ë¦°ë‹¤."
+6,,,,ì†Œë…„ì€ ê· í˜•ì„ ìžƒê³  í’€ì© ë„˜ì–´ì§„ë‹¤.
+7,boy_panicked,,1,ì—„ë§ˆ?! ìž ê¹ë§Œ?!
+8,boy_panicked,,,ì‚¬ëžŒë“¤ì˜ ì–´ê¹¨ì™€ ë³´ë”°ë¦¬ê°€ ì‹œì•¼ë¥¼ ê°€ë¦°ë‹¤.
+9,boy_panicked,,,"ì—„ë§ˆì™€ ë™ìƒì˜ ì†ì´ ì‹œì•¼ì—ì„œ ì™„ì „ížˆ ì‚¬ë¼ì§€ê³ , ì†Œë…„ì˜ í˜¸í¡ì€ ê±°ì¹ ì–´ì§„ë‹¤."
+10,boy_panicked,,1,ì—„ë§ˆ!!
+11,,,,ì£¼ì¸ê³µì€ ì¸íŒŒë¥¼ ê°€ë¥´ë©° í•„ì‚¬ì ìœ¼ë¡œ ì•žìœ¼ë¡œ ë‚˜ì•„ê°„ë‹¤.
+12,,,,"ëˆˆë°œì€ ë” ì‹¬í•´ì§€ê³ , ìš¸ìŒ ì„žì¸ ë‹¤ë¥¸ ì•„ì´ë“¤ì˜ ëª©ì†Œë¦¬ê°€ ë’¤ì—‰ì¼œ ì‚°ë§Œí•˜ê²Œ ë“¤ë¦°ë‹¤."
+13,,,,"í•œì°¸ì„ í—¤ë§¨ ëì—, ê¸¸ í•œ êµ¬ì„ì—ì„œ ëœëœ ë–¨ê³  ìžˆëŠ” ì—„ë§ˆì™€ ë™ìƒì„ ë°œê²¬í•œë‹¤."
+14,,,,ì—„ë§ˆëŠ” ë™ìƒì„ ëŒì–´ì•ˆì€ ì±„ ì£¼ìœ„ë¥¼ ë‘ë¦¬ë²ˆê±°ë¦¬ê³  ìžˆë‹¤.
+15,mom_relieved,,1,ë„ˆ ì–´ë”” ê°”ì—ˆë˜ ê±°ì•¼â€¦ ë†€ëžìž–ì•„â€¦
+16,mom_relieved,,,ì£¼ì¸ê³µì€ ìˆ¨ì„ ëª°ì•„ì‰¬ë‹¤ê°€ ì‹œì„ ì„ ë–¨êµ°ë‹¤.
+17,mom_relieved,boy_powerless,,ì†Œë…„ì˜ ê°€ìŠ´ ì†ì—ëŠ” ë‘ê³  ì˜¨ í• ì•„ë²„ì§€ì˜ ë§ì”€ì´ ë– ì˜¤ë¥¸ë‹¤.
+18,mom_relieved,boy_powerless,,â€œ""ë„¤ê°€ ì—„ë§ˆì™€ ë™ìƒì„ ìž˜ ì§€ì¼œì£¼ì–´ì•¼ í•œë‹¤.â€""
+19,mom_relieved,boy_powerless,,ì†Œë…„ì˜ ì•³ëœ ì–¼êµ´ì—” ê·¸ëŠ˜ì´ ë“œë¦¬ìš´ë‹¤.

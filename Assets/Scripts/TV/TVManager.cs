@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class TVManager : MonoBehaviour
 {
+    public Item.Interactives typeId;
+
+    public static event Action<Item.Interactives> OnClearEvent;
+
     public TextAsset dialogueCSV1;
     public TextAsset dialogueCSV2;
     public TextAsset dialogueCSV3;
@@ -23,6 +27,9 @@ public class TVManager : MonoBehaviour
     public GameObject seq2Background;
     public GameObject seq3Background;
     public Image blackBackground;
+
+    public GameObject leftCharImage;
+    public GameObject rightCharImage;
 
     private List<DialogueData> dialogues1;
     private List<DialogueData> dialogues2;
@@ -96,6 +103,8 @@ public class TVManager : MonoBehaviour
             index = 0;
 
             DialogueUI.SetActive(false);
+            leftCharImage.SetActive(false);
+            rightCharImage.SetActive(false);
 
             blackBackground.DOFade(1f, fadeOutTime).OnComplete(() =>
             {
@@ -104,6 +113,7 @@ public class TVManager : MonoBehaviour
 
                 blackBackground.DOFade(0f, fadeOutTime).OnComplete(() =>
                 {
+                    DialogueUI.SetActive(true);
                     ShowDialogue(seq + 1);
                 });
             });
@@ -112,7 +122,7 @@ public class TVManager : MonoBehaviour
         {
             blackBackground.DOFade(1f, fadeOutTime).OnComplete(() =>
             {
-                SceneTransition.Instance.UnloadScene();
+                returnToMain();
             });
         }
     }
@@ -152,5 +162,12 @@ public class TVManager : MonoBehaviour
         }
 
         NextDialogue(seq);
+    }
+
+    private void returnToMain()
+    {
+        OnClearEvent?.Invoke(typeId);
+
+        SceneTransition.Instance.UnloadScene();
     }
 }

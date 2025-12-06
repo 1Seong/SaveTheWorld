@@ -32,10 +32,10 @@ public static class CSVDialogueParser
             string line = lines[i].Trim();
             if (string.IsNullOrWhiteSpace(line)) continue;
 
-            string[] cols = line.Split(',');
+            var cols = ParseCsvLine(line);
 
             // 컬럼 개수가 다르면 skip
-            if (cols.Length < 6) continue;
+            if (cols.Count < 5) continue;
 
             var data = new DialogueData()
             {
@@ -48,6 +48,48 @@ public static class CSVDialogueParser
 
             result.Add(data);
         }
+
+        return result;
+    }
+
+    public static List<string> ParseCsvLine(string line)
+    {
+        List<string> result = new List<string>();
+        bool inQuotes = false;
+        string current = "";
+
+        for (int i = 0; i < line.Length; i++)
+        {
+            char c = line[i];
+
+            if (c == '"')
+            {
+                // "" → 내부 큰따옴표 하나
+                if (inQuotes && i + 1 < line.Length && line[i + 1] == '"')
+                {
+                    current += '"';
+                    i++; // 다음 " 건너뛰기
+                }
+                else
+                {
+                    // 큰따옴표 시작/종료
+                    inQuotes = !inQuotes;
+                }
+            }
+            else if (c == ',' && !inQuotes)
+            {
+                // 필드 종료
+                result.Add(current);
+                current = "";
+            }
+            else
+            {
+                current += c;
+            }
+        }
+
+        // 마지막 필드 추가
+        result.Add(current);
 
         return result;
     }
