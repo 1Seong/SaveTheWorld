@@ -1,0 +1,14 @@
+id(int),leftCharacter(string),rightCharacter(string),isSpeakerLeft(bool),dialogue(string)
+0,,,,피난 행렬이 멈춘 지점.
+1,,,,도로 옆 국군 트럭에서 군인들이 지시를 내린다.
+2,,,,“앞에 중공군이 있다고 합니다. 잠시 멈추시겠습니다!”
+3,,,,이어 또다른 군인이 외친다.
+4,,,,“학도병 모집합니다! 중학생 이상 청년은 이쪽으로 모이십시오!”
+5,,,,옆에서 또래 소년 둘이 짧게 인사를 나누고 군인들 쪽으로 걸어간다.
+6,,,,"어떤 아이는 발을 떨며, 어떤 아이는 이를 꽉 깨물며 나아간다."
+7,boy_powerless,,,소년은 그 모습을 가만히 바라본다.
+8,boy_powerless,,,"눈보라 속에서 할아버지의 말, 동생의 울음, 방금의 공포가 뒤섞인다."
+9,boy_determined,,,소년은 작은 손을 조용히 움켜쥔다.
+10,boy_determined,mom_n_sister,,소년은 손이 얼어붙은 동생을 감싸안은 엄마에게 다가간다.
+11,boy_determined,mom_n_sister,,떨리지만 또렷한 목소리로 말한다.
+12,boy_determined,mom_n_sister,1,"엄마, 나도… 우리를 지키고 싶어. 그래서…"
