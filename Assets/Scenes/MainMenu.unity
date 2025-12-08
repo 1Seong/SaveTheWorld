@@ -4461,7 +4461,7 @@ MonoBehaviour:
   tiles:
   - {fileID: 268861867}
   - {fileID: 2089774016}
-  moveSpeed: 0.7
+  moveSpeed: 0.6
   tileWidth: 35.13
   bias: 0.1
 --- !u!1 &1115747574
@@ -4513,7 +4513,7 @@ MonoBehaviour:
   tiles:
   - {fileID: 297214639}
   - {fileID: 340254529}
-  moveSpeed: 0.7
+  moveSpeed: 0.6
   tileWidth: 16.6
   bias: 0.1
 --- !u!1 &1153519443
@@ -5069,7 +5069,7 @@ MonoBehaviour:
   - {fileID: 2026142526}
   - {fileID: 649627942}
   - {fileID: 1513271323}
-  moveSpeed: 0.7
+  moveSpeed: 0.6
   tileWidth: 18.1
   bias: 10
 --- !u!1 &1398695170
