@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   sprite: {fileID: 21300000, guid: 0e158eba859855a4a800d54c1e622241, type: 3}
-  targetScale: 0.5
+  targetScale: 0.45

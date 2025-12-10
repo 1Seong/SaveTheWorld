@@ -73,7 +73,7 @@ public class OptionPanel : MonoBehaviour
 
     public void MouseSensitivityOnValueChanged(float value)
     {
-        var realValue = Mathf.Lerp(0f, 4f, value);
+        var realValue = Mathf.Lerp(0f, 3f, value);
 
         MouseSensitivityOnValueChangedEvent?.Invoke(realValue);
     }

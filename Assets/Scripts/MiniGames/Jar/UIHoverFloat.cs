@@ -19,7 +19,7 @@ public class UIHoverFloat : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.IsPlaying || !MiniGameManager.instance.IsPlaying) return;
+        if (!GameManager.Instance.IsPlaying) return;
 
         Vector2 mouseScreen = Input.mousePosition;
 
