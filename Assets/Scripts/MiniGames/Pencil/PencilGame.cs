@@ -7,6 +7,7 @@ public class PencilGame : MonoBehaviour
     public float[] dropSpeeds;
     public float[] fillAmounts;
     public float[] pencilScales;
+    public float gameStartTime = 3.5f;
 
     public Transform pencil;
     public Slider slider;
@@ -67,7 +68,7 @@ public class PencilGame : MonoBehaviour
     private void init()
     {
         // child study - break pencil - cry
-        Invoke(nameof(gameStart), 3.5f);
+        Invoke(nameof(gameStart), gameStartTime);
     }
 
     private void gameStart()

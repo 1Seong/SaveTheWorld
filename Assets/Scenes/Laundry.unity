@@ -1023,9 +1023,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeId: 5
   GameRepeatNum: 1
-  InstructionPopupTime: 0
+  InstructionPopupTime: 4
   InstructionShowTime: 5
-  GameStartTime: 3
+  GameStartTime: 5
   GameEndTime: 3
   endFadeTime: 0
   IsPlaying: 0

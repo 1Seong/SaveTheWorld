@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   skipIterations:
     m_OverrideState: 1
     m_Value: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 8.8
   scatter:
     m_OverrideState: 1
     m_Value: 0.33
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_Value: 0.406
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.42
+    m_Value: 0.431
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 1, w: -0.10548231}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.19664}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.18055725}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,34 +227,34 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 2
   gaussianStart:
-    m_OverrideState: 0
-    m_Value: 10
+    m_OverrideState: 1
+    m_Value: 21.7
   gaussianEnd:
-    m_OverrideState: 0
-    m_Value: 30
+    m_OverrideState: 1
+    m_Value: 42
   gaussianMaxRadius:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   highQualitySampling:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   focusDistance:
-    m_OverrideState: 0
-    m_Value: 10
+    m_OverrideState: 1
+    m_Value: 23.3
   aperture:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 5.6
   focalLength:
-    m_OverrideState: 0
-    m_Value: 50
+    m_OverrideState: 1
+    m_Value: 107
   bladeCount:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 5
   bladeCurvature:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   bladeRotation:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
 --- !u!114 &849379129802519247
 MonoBehaviour:
@@ -310,13 +310,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   type:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   intensity:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.34
   response:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.794
   texture:
     m_OverrideState: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_Value: 0
   contrast:
     m_OverrideState: 1
-    m_Value: -3
+    m_Value: -10
   colorFilter:
     m_OverrideState: 1
     m_Value: {r: 0.99999994, g: 0.98416436, b: 0.93665755, a: 1}
@@ -348,7 +348,7 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: -5
+    m_Value: -4
 --- !u!114 &3563230042205782867
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -392,13 +392,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.23705766}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.20655781}
   midtones:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: -0.072926156}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.28275707}
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0
@@ -491,4 +491,4 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.09
+    m_Value: 0.1

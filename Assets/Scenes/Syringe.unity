@@ -1543,11 +1543,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeId: 0
   GameRepeatNum: 5
-  InstructionPopupTime: 1
+  InstructionPopupTime: 4
   InstructionShowTime: 5
-  GameStartTime: 0
-  GameEndTime: 1.3
-  endFadeTime: 0.5
+  GameStartTime: 5
+  GameEndTime: 1.5
+  endFadeTime: 1.8
   IsPlaying: 0
   EndingTexts:
   - texts:

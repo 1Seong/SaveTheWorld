@@ -18,15 +18,18 @@ public class Movables : MonoBehaviour
 
     private void Update()
     {
-        if(!GameManager.Instance.IsPlaying || !MiniGameManager.instance.IsPlaying) return;
+        if(!GameManager.Instance.IsPlaying) return;
 
-        totalTime += Time.deltaTime;
-        currentTime += Time.deltaTime;
+        if (MiniGameManager.instance.IsPlaying)
+        {
+            totalTime += Time.deltaTime;
+            currentTime += Time.deltaTime;
 
-        velocity += acceleration * Time.deltaTime;
+            velocity += acceleration * Time.deltaTime;
+            spawnTime -= spawnIncreaseRate * Time.deltaTime;
+        }
+
         transform.position -= velocity * Time.deltaTime;
-
-        spawnTime -= spawnIncreaseRate * Time.deltaTime;
 
         if(currentTime > spawnTime)
         {

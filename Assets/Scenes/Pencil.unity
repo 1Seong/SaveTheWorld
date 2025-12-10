@@ -899,7 +899,7 @@ MonoBehaviour:
   InstructionShowTime: 5
   GameStartTime: 1e+17
   GameEndTime: 3
-  endFadeTime: 0.5
+  endFadeTime: 1.8
   IsPlaying: 0
   EndingTexts:
   - texts:
@@ -2470,6 +2470,7 @@ MonoBehaviour:
   - 0.42
   - 0.36
   - 0.3
+  gameStartTime: 5
   pencil: {fileID: 759504599}
   slider: {fileID: 1330575704}
   sharpner: {fileID: 203657259}
