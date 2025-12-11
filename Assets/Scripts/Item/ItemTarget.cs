@@ -51,6 +51,7 @@ public class ItemTarget : MonoBehaviour
     {
         if (id != Item.Items.FlyCatcher) return;
 
+        letter.interactable = true;
         Destroy(gameObject);
     }
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,6 +63,8 @@ public class GameManager : MonoBehaviour, ISaveable
 
         SaveManager.Instance.Register(this);
 
+        DOTween.SetTweensCapacity(200, 50);
+
         isGameCleared = new Dictionary<string, bool>() 
         {
             {"Test", false},
@@ -70,7 +73,8 @@ public class GameManager : MonoBehaviour, ISaveable
             {"Jar", false},
             {"Pencil", false},
             {"Sewing", false },
-            {"Laundry", false }
+            {"Laundry", false },
+            {"TV", false }
         };
     }
 

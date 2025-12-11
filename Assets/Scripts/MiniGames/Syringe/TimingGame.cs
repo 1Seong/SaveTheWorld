@@ -44,7 +44,7 @@ public class TimingGame : MonoBehaviour
         }
 
         bodyMat.color = Color.red;
-        MoveBar();
+        Invoke(nameof(MoveBar), MiniGameManager.instance.GameStartTime);
     }
 
     private void OnDisable()

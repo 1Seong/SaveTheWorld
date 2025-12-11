@@ -44,18 +44,18 @@ public class BottleUI : MonoBehaviour
         float appliedDelta = newRotation - currentRotation;
 
         // 회전 적용
-        transform.Rotate(Vector3.forward, appliedDelta, Space.World);
-        pixelBodyT.Rotate(Vector3.forward, appliedDelta, Space.World);
+        transform.Rotate(Vector3.forward, appliedDelta, Space.Self);
+        pixelBodyT.Rotate(Vector3.forward, appliedDelta, Space.Self);
         currentRotation = newRotation;
 
         // 회전 정도에 따른 y위치 보간
         float t = Mathf.InverseLerp(0, maxRotation, Mathf.Abs(currentRotation)); // 0~1
         float targetY = Mathf.Lerp(currentY, currentY + maxLift, t);
 
-        Vector3 pos = transform.position;
+        Vector3 pos = transform.localPosition;
         pos.y = targetY;
-        transform.position = pos;
-        pixelBodyT.position = pos;
+        transform.localPosition = pos;
+        pixelBodyT.localPosition = pos;
 
         if (Mathf.Abs(currentRotation) == maxRotation)
             IsComplete = true;

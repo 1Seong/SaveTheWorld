@@ -5235,7 +5235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a7b4f28012d4f43858e65f4427695c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeId: 0
+  typeId: 6
+  GameStartWaitTime: 3
   dialogueCSV1: {fileID: 4900000, guid: 4b5ed4de7382f8343ab3de69de400cff, type: 3}
   dialogueCSV2: {fileID: 4900000, guid: 74b75a82540f2f943bb94a2f15cc6bfa, type: 3}
   dialogueCSV3: {fileID: 4900000, guid: d25261b770accf64dbffea8a6c806f98, type: 3}

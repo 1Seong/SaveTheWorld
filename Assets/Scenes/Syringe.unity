@@ -1547,7 +1547,7 @@ MonoBehaviour:
   InstructionShowTime: 5
   GameStartTime: 5
   GameEndTime: 1.5
-  endFadeTime: 1.8
+  endFadeTime: 2.5
   IsPlaying: 0
   EndingTexts:
   - texts:

@@ -15,6 +15,7 @@ public class Movables : MonoBehaviour
 
     float totalTime = 0f;
     float currentTime = 0f;
+    bool ending = false;
 
     private void Update()
     {
@@ -27,21 +28,23 @@ public class Movables : MonoBehaviour
 
             velocity += acceleration * Time.deltaTime;
             spawnTime -= spawnIncreaseRate * Time.deltaTime;
+
+            if (currentTime > spawnTime)
+            {
+                currentTime = 0f;
+                spawner.Spawn();
+            }
+
+            if (totalTime >= gameDuration)
+            {
+                MiniGameManager.instance.IsPlaying = false;
+                ending = true;
+                player.Die();
+            }
         }
 
-        transform.position -= velocity * Time.deltaTime;
-
-        if(currentTime > spawnTime)
-        {
-            currentTime = 0f;
-            spawner.Spawn();
-        }
-
-        if (totalTime >= gameDuration)
-        {
-            MiniGameManager.instance.IsPlaying = false;
-            player.Die();
-        }
+        if(!ending)
+            transform.position -= velocity * Time.deltaTime;
     }
 
     public void SlowDown()

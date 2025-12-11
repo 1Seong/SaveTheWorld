@@ -12,6 +12,8 @@ public class TVManager : MonoBehaviour
 
     public static event Action<Item.Interactives> OnClearEvent;
 
+    public float GameStartWaitTime = 3f;
+
     public TextAsset dialogueCSV1;
     public TextAsset dialogueCSV2;
     public TextAsset dialogueCSV3;
@@ -60,13 +62,19 @@ public class TVManager : MonoBehaviour
 
         seq1Background.SetActive(true);
 
-        DialogueUI.SetActive(true);
+        //DialogueUI.SetActive(true);
 
         blackBackground.DOFade(1f, 0f);
         blackBackground.DOFade(0f, fadeOutTime).OnComplete(() =>
         {
-            ShowDialogue(0);
+            Invoke(nameof(ShowFirstDialogue), GameStartWaitTime);
         });
+    }
+
+    private void ShowFirstDialogue()
+    {
+        DialogueUI.SetActive(true);
+        ShowDialogue(0);
     }
 
     void Update()
@@ -166,7 +174,7 @@ public class TVManager : MonoBehaviour
 
     private void returnToMain()
     {
-        OnClearEvent?.Invoke(typeId);
+        OnClearEvent.Invoke(typeId);
 
         SceneTransition.Instance.UnloadScene();
     }

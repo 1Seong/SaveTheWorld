@@ -34,6 +34,7 @@ public class InteractiveObject : MonoBehaviour
         {
             GetComponent<Button>().interactable = false;
             GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
+            NoteManager.Instance.BlurrUnlockEvent += unlockBlurr;
         }
         else
             GetComponent<Button>().interactable = true;
@@ -42,7 +43,7 @@ public class InteractiveObject : MonoBehaviour
         if(hasDropItem && Item.IsDropped(typeId))
             DropInit();
         */
-        NoteManager.Instance.BlurrUnlockEvent += unlockBlurr;
+
         ItemManager.Instance.ReturnFromCloseUpEvent += buttonInteractiveOn;
     }
 
@@ -133,7 +134,10 @@ public class InteractiveObject : MonoBehaviour
                 Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
                 {
                     //ItemManager.Instance.ReturnFromCloseUpEvent += deactiveItems;
-                    MiniGameManager.OnClearEvent += giveRewards;
+                    if (typeId == Item.Interactives.TV)
+                        TVManager.OnClearEvent += giveRewards;
+                    else
+                        MiniGameManager.OnClearEvent += giveRewards;
                     ItemManager.Instance.TurnOnReturnFromCloseUpButton();
                     SceneTransition.Instance.LoadSceneAdditive(sceneName);
 

@@ -30,6 +30,7 @@ public class ItemManager : MonoBehaviour, ISaveable
     [SerializeField] private GameObject inventoryItemPrefab;
     [SerializeField] private List<InventoryItem> inventoryItems;
     [SerializeField] private RectTransform targetGroup;
+    [SerializeField] private RectTransform contents;
 
     [SerializeField] private InventoryItem _selectedItem;
 
@@ -250,7 +251,7 @@ public class ItemManager : MonoBehaviour, ISaveable
     public void AddItem(ItemData d, Vector3 startPos)
     {
         StartCoroutine(AddItemCoroutine(d, startPos));
-        
+        contents.sizeDelta = new Vector2(contents.sizeDelta.x, contents.sizeDelta.y + 60f);
     }
 
     private IEnumerator AddItemCoroutine(ItemData d, Vector3 startPos)
@@ -303,6 +304,7 @@ public class ItemManager : MonoBehaviour, ISaveable
     {
         inventoryItems.Remove(SelectedItem);
         Destroy(SelectedItem.gameObject);
+        contents.sizeDelta = new Vector2(contents.sizeDelta.x, contents.sizeDelta.y - 60f);
     }
 
     //--------------------------------------------------------- UI Control ----------------------------------------------------------------
