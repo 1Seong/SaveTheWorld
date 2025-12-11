@@ -800,7 +800,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 4.71}
-  m_LocalScale: {x: 0.23, y: 0.23, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1860772831}
@@ -885,8 +885,8 @@ MonoBehaviour:
   trailMaterial: {fileID: 2100000, guid: d8e795f6ee94426458fca6b955b0abf7, type: 2}
   leftHand: {fileID: 1674958919}
   rightHand: {fileID: 267699194}
-  handMoveOffset: 0.02
-  handMoveSpeed: 2
+  handMoveOffset: 0.035
+  handMoveSpeed: 2.5
   pathGenerator: {fileID: 406002908}
   cam: {fileID: 156030152}
   shakeStartCooltimes:
@@ -901,7 +901,7 @@ MonoBehaviour:
   - 5
   - 5
   - 6
-  shakeMagnitude: 3
+  shakeMagnitude: 2
   urpData: {fileID: 11400000, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
   fullScreenShaderMat: {fileID: -876546973899608171, guid: 35096b33d34e3f041b600f16e3da5a84, type: 3}
 --- !u!50 &156264516
@@ -942,7 +942,6 @@ GameObject:
   - component: {fileID: 177770785}
   - component: {fileID: 177770788}
   - component: {fileID: 177770787}
-  - component: {fileID: 177770786}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -965,27 +964,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 156030153}
   m_LocalEulerAnglesHint: {x: -46.537, y: 0, z: 0}
---- !u!65 &177770786
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177770784}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &177770787
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3116,8 +3094,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3510,14 +3488,14 @@ MonoBehaviour:
   - 1
   - 0.9
   - 0.8
+  - 0.75
   - 0.7
-  - 0.6
   pathNoises:
   - 0.3
   - 0.4
   - 0.5
   - 0.6
-  - 0.7
+  - 0.65
   cnt: 0
 --- !u!1 &1284915834
 GameObject:
@@ -4643,9 +4621,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.72506726, g: 0, b: 0, a: 1}
-      key1: {r: 0.72506726, g: 0, b: 0, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 1, g: 0, b: 0, a: 1}
+      key1: {r: 1, g: 0, b: 0, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -4661,8 +4639,8 @@ TrailRenderer:
       ctime7: 0
       atime0: 0
       atime1: 65535
-      atime2: 0
-      atime3: 0
+      atime2: 56008
+      atime3: 65535
       atime4: 0
       atime5: 0
       atime6: 0
@@ -4711,7 +4689,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -2.37}
-  m_LocalScale: {x: 0.6, y: 1.0354, z: 0.6}
+  m_LocalScale: {x: 0.89652, y: 1.0354, z: 1.476761}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2009460420}
@@ -4929,8 +4907,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5065,8 +5043,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5287,8 +5265,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

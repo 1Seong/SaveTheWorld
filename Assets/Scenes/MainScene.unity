@@ -15499,7 +15499,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 0e2ff2f75bb032048a44290f0691d287, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17554,6 +17554,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 2058507435820207395, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e2ff2f75bb032048a44290f0691d287, type: 2}
     - target: {fileID: 2499164878219267806, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
       propertyPath: hoverSprite
       value: 
@@ -17570,6 +17574,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a38edeff675aa5647acef85e0d632496, type: 2}
+    - target: {fileID: 3087224978342806139, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e2ff2f75bb032048a44290f0691d287, type: 2}
     - target: {fileID: 3138154273134574201, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
       propertyPath: m_Material
       value: 
@@ -17582,6 +17590,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4236704419729759619, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e2ff2f75bb032048a44290f0691d287, type: 2}
+    - target: {fileID: 4522396511636230579, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e2ff2f75bb032048a44290f0691d287, type: 2}
     - target: {fileID: 4738411829800546516, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
       propertyPath: m_Material
       value: 
@@ -17634,6 +17650,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.08
       objectReference: {fileID: 0}
+    - target: {fileID: 6719540757142182163, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e2ff2f75bb032048a44290f0691d287, type: 2}
     - target: {fileID: 7101036313963639707, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
       propertyPath: m_Material
       value: 
@@ -17666,6 +17686,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9083557
       objectReference: {fileID: 0}
+    - target: {fileID: 7783127226171496419, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e2ff2f75bb032048a44290f0691d287, type: 2}
     - target: {fileID: 8027460976325602104, guid: f543cbf14d5c7644cb6857e95371fec6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -17757,7 +17781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 927928428766736667, guid: 95a570e65dabdc04e9211157fb651bf2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 940451860695361868, guid: 95a570e65dabdc04e9211157fb651bf2, type: 3}
       propertyPath: m_Spacing
@@ -21461,7 +21485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3038243503794992033, guid: af5871dc0e1b3674d9d6bc385a52f146, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3070277198988978105, guid: af5871dc0e1b3674d9d6bc385a52f146, type: 3}
       propertyPath: id
@@ -22921,6 +22945,10 @@ PrefabInstance:
     - target: {fileID: 3254702067287157842, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
       propertyPath: m_Name
       value: TransitionCanvasParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3254702067287157842, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3878788817143047362, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
       propertyPath: m_LocalPosition.x

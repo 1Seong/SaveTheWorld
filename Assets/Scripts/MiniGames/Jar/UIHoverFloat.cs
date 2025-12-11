@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class UIHoverFloat : MonoBehaviour
 {
+    public int moveDir = -1;
     public RectTransform target;      // 움직일 UI 이미지
     public float maxOffset = 20f;     // 최대 이동량 (px)
     public float followSpeed = 10f;   // 마우스 따라가는 속도
@@ -40,7 +41,7 @@ public class UIHoverFloat : MonoBehaviour
         if (hovering)
         {
             // 이동 방향 (local space)
-            Vector2 dir = -(localMouse - localCenter).normalized;
+            Vector2 dir = (localMouse - localCenter).normalized * moveDir;
 
             // 목표 offset 계산
             Vector3 targetPos = originalPos + (Vector3)(dir * maxOffset);

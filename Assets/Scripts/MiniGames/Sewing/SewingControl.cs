@@ -36,6 +36,8 @@ public class SewingControl : MonoBehaviour
     private Tween needleTween;
     private Vector3 rightOriginPosition;
     private Vector3 leftOriginPosition;
+    private bool rightReturning = false;
+    private bool leftReturning = false;
     private bool isShaking = false;
     private Tween leftShakeTween;
     private Tween rightShakeTween;
@@ -49,6 +51,8 @@ public class SewingControl : MonoBehaviour
     private void Start()
     {
         needleTween = needle.DOLocalMoveY(needle.localPosition.y + downDis, moveDur).SetLoops(-1, LoopType.Yoyo);
+        needleTween.Pause();
+
         rightOriginPosition = rightHand.localPosition;
         leftOriginPosition = leftHand.localPosition;
 
@@ -110,22 +114,48 @@ public class SewingControl : MonoBehaviour
             Vector3 targetPos = rightOriginPosition + (Vector3)arrowInput * handMoveOffset;
 
             // 보간
-            rightHand.localPosition = Vector3.Lerp(
-                rightHand.localPosition,
-                targetPos,
-                Time.deltaTime * handMoveSpeed
-            );
-        }
-        else
-        {
-            // 원래 위치로 천천히 복귀
-            rightHand.localPosition = Vector3.Lerp(
-                rightHand.localPosition,
-                rightOriginPosition,
-                Time.deltaTime * handMoveSpeed
-            );
-        }
+            if (!rightReturning)
+            {
+                rightHand.localPosition = Vector3.Lerp(
+                    rightHand.localPosition,
+                    targetPos,
+                    Time.deltaTime * handMoveSpeed
+                );
+                if ((rightHand.localPosition - rightOriginPosition).magnitude >= handMoveOffset * 0.8f)
+                {
+                    rightReturning = true;
+                }
+            }
+            else
+            {
+                // 현재 거리
+                float dist = (rightHand.localPosition - rightOriginPosition).magnitude;
 
+                // 복귀 진행도: 1 → 0
+                float progress = Mathf.Clamp01(dist / handMoveOffset);
+
+                // Z값을 올렸다가 내려보내는 곡선
+                // 최대 0.05f까지 올라간 후 다시 내려감
+                float lift = Mathf.Sin(progress * Mathf.PI) * 0.008f;
+
+                // 원점 방향 보간
+                Vector3 nextPos = Vector3.Lerp(
+                    rightHand.localPosition,
+                    rightOriginPosition,
+                    Time.deltaTime * handMoveSpeed
+                );
+
+                // 여기에 z곡선 추가
+                nextPos.z = rightOriginPosition.z + lift;
+
+                rightHand.localPosition = nextPos;
+                if ((rightHand.localPosition - rightOriginPosition).magnitude <= handMoveOffset * 0.2f)
+                {
+                    rightReturning = false;
+                }
+            }
+        }
+        
         // 2) WASD 입력 (Unity Input Manager 기본 설정 기준)
         Vector2 wasdInput = new Vector2(
             GetKeyAxisHor(KeyCode.A, KeyCode.D),
@@ -138,20 +168,46 @@ public class SewingControl : MonoBehaviour
             Vector3 targetPos = leftOriginPosition + (Vector3)wasdInput * handMoveOffset;
 
             // 보간
-            leftHand.localPosition = Vector3.Lerp(
-                leftHand.localPosition,
-                targetPos,
-                Time.deltaTime * handMoveSpeed
-            );
-        }
-        else
-        {
-            // 원래 위치로 천천히 복귀
-            leftHand.localPosition = Vector3.Lerp(
-                leftHand.localPosition,
-                leftOriginPosition,
-                Time.deltaTime * handMoveSpeed
-            );
+            if (!leftReturning)
+            {
+                leftHand.localPosition = Vector3.Lerp(
+                    leftHand.localPosition,
+                    targetPos,
+                    Time.deltaTime * handMoveSpeed
+                );
+                if ((leftHand.localPosition - leftOriginPosition).magnitude >= handMoveOffset * 0.8f)
+                {
+                    leftReturning = true;
+                }
+            }
+            else
+            {
+                // 현재 거리
+                float dist = (leftHand.localPosition - leftOriginPosition).magnitude;
+
+                // 복귀 진행도: 1 → 0
+                float progress = Mathf.Clamp01(dist / handMoveOffset);
+
+                // Z값을 올렸다가 내려보내는 곡선
+                // 최대 0.05f까지 올라간 후 다시 내려감
+                float lift = Mathf.Sin(progress * Mathf.PI) * 0.008f;
+
+                // 원점 방향 보간
+                Vector3 nextPos = Vector3.Lerp(
+                    leftHand.localPosition,
+                    leftOriginPosition,
+                    Time.deltaTime * handMoveSpeed
+                );
+
+                // 여기에 z곡선 추가
+                nextPos.z = leftOriginPosition.z + lift;
+
+                leftHand.localPosition = nextPos;
+                if ((leftHand.localPosition - leftOriginPosition).magnitude <= handMoveOffset * 0.2f)
+                {
+                    leftReturning = false;
+                }
+            }
         }
 
         // 3) 입력 결합
