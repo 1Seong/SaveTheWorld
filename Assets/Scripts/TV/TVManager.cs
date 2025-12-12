@@ -64,11 +64,8 @@ public class TVManager : MonoBehaviour
 
         //DialogueUI.SetActive(true);
 
-        blackBackground.DOFade(1f, 0f);
-        blackBackground.DOFade(0f, fadeOutTime).OnComplete(() =>
-        {
-            Invoke(nameof(ShowFirstDialogue), GameStartWaitTime);
-        });
+        Invoke(nameof(ShowFirstDialogue), fadeOutTime + GameStartWaitTime);
+        
     }
 
     private void ShowFirstDialogue()
@@ -128,10 +125,7 @@ public class TVManager : MonoBehaviour
         }
         else
         {
-            blackBackground.DOFade(1f, fadeOutTime).OnComplete(() =>
-            {
-                returnToMain();
-            });
+            returnToMain();
         }
     }
 

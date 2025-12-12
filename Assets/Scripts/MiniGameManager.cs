@@ -89,14 +89,16 @@ public class MiniGameManager : MonoBehaviour
     {
         IsPlaying = false;
 
-        background.DOFade(1f, endFadeTime);
-        StartCoroutine(typeWrite(EndingTexts[i].texts));
+        background.DOFade(1f, endFadeTime).OnComplete(() =>
+        {
+            StartCoroutine(typeWrite(EndingTexts[i].texts));
+        });
     }
 
     public void GameEnd(string[] texts)
     {
         IsPlaying = false;
-        background.DOFade(1f, 0.5f).OnComplete(() =>
+        background.DOFade(1f, endFadeTime).OnComplete(() =>
         {
             StartCoroutine(typeWrite(texts));
         });

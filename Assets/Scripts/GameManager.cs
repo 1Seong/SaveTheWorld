@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour, ISaveable
 
         isGameCleared = new Dictionary<string, bool>() 
         {
-            {"Test", false},
             {"Syringe", false},
             {"Crutches", false},
             {"Jar", false},

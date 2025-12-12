@@ -158,7 +158,7 @@ public class NoteManager : MonoBehaviour, ISaveable
         if (LetterCountGoal[type] == CompletedLetterCount[type])
         {
             BlurrUnlockEvent?.Invoke((Item.Interactives)type);
-            TargetImages[type].material.DOFloat(1f, "_DissolveStrength", 1f);
+            TargetImages[type].material.DOFloat(1f, "_DissolveStrength", 1.5f);
         }
     }
 

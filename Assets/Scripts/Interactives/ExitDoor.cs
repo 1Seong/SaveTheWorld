@@ -33,6 +33,7 @@ public class ExitDoor : MonoBehaviour
             {
                 SaveManager.Instance.SaveAll();
                 SceneManager.LoadScene("Ending");
+                whiteBackground.DOFade(0f, 1f);
             });
         }
         else
