@@ -460,11 +460,11 @@ RectTransform:
   m_Children:
   - {fileID: 62112016}
   - {fileID: 944692135}
+  - {fileID: 1154160953}
+  - {fileID: 1969169816}
   - {fileID: 689299517}
   - {fileID: 1024393939}
   - {fileID: 380591782}
-  - {fileID: 1154160953}
-  - {fileID: 1969169816}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

@@ -13252,7 +13252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f02b650ba1e3746872a4dd56e37fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTutorialCleared: 1
+  isTutorialCleared: 0
   stepNum: 1
   fullRaycastBlockImage: {fileID: 1091067301}
   roomRaycastBlockImage: {fileID: 903781935}

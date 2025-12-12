@@ -34,7 +34,7 @@ public class InteractiveObject : MonoBehaviour
         {
             GetComponent<Button>().interactable = false;
             GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
-            NoteManager.Instance.BlurrUnlockEvent += unlockBlurr;
+            NoteManager.BlurrUnlockEvent += unlockBlurr;
         }
         else
             GetComponent<Button>().interactable = true;
@@ -47,11 +47,19 @@ public class InteractiveObject : MonoBehaviour
         ItemManager.Instance.ReturnFromCloseUpEvent += buttonInteractiveOn;
     }
 
+    private void OnDestroy()
+    {
+        if(hasBlurr)
+            NoteManager.BlurrUnlockEvent -= unlockBlurr;
+
+        //ItemManager.Instance.ReturnFromCloseUpEvent -= buttonInteractiveOn;
+    }
+
     private void unlockBlurr(Item.Interactives id)
     {
         if (id != typeId) return;
 
-        GetComponentInChildren<ParticleSystem>().gameObject.SetActive(false);
+        GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(false);
         GetComponent<Button>().interactable = true;
     }
 
