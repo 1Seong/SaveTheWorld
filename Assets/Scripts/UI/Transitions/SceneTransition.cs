@@ -1,11 +1,12 @@
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneTransition : MonoBehaviour
 {
     private ITransition[] transitions;
     private IRoomTransition[] roomTransitions;
+
+    public Image WhiteBackground;
 
     public enum TransitionType { Fade }; // IMPORTANT ; ordering should be matched with the gameObject children
     public enum RoomTransitionType { Fade };

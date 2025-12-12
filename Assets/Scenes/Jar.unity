@@ -1815,7 +1815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC88C\uD074\uB9AD\uC73C\uB85C \uB2E6\uACE0 \n\uC6B0\uD074\uB9AD\uC73C\uB85C
+  m_text: "\uC88C\uD074\uB9AD\uC73C\uB85C \uB2E6\uACE0 \n\uC6B0\uD074\uB9AD \uB4DC\uB798\uADF8\uB85C
     \uD68C\uC804\uD558\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e14978d98ef307b49bceb76ec49adf8a, type: 2}
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -39.654755, y: 0, z: -31.92369, w: 0}
+  m_margin: {x: -89.75209, y: 0, z: -91.66609, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

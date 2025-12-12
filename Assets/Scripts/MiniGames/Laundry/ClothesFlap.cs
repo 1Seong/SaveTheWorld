@@ -1,4 +1,4 @@
-using DG.Tweening;
+
 using UnityEngine;
 
 public class ClothesFlap : MonoBehaviour

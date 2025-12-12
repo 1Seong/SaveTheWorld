@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
-using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class ScatterText : MonoBehaviour
 {

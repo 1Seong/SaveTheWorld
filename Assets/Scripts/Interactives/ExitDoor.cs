@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class ExitDoor : MonoBehaviour
 {
     [SerializeField] bool isUnlocked = false;
-    [SerializeField] Image whiteBackground;
 
     bool isActing = false;
 
-    private void Start()
+    private void Awake()
     {
         GameManager.GameAllClearedEvent += ActivateDoor;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         GameManager.GameAllClearedEvent -= ActivateDoor;
     }
@@ -28,12 +27,12 @@ public class ExitDoor : MonoBehaviour
         {
             ItemManager.Instance.gameObject.SetActive(false);
             NoteManager.Instance.TurnOff();
-            whiteBackground.gameObject.SetActive(true);
-            whiteBackground.DOFade(1f, 1f).OnComplete(() =>
+            SceneTransition.Instance.WhiteBackground.gameObject.SetActive(true);
+            SceneTransition.Instance.WhiteBackground.DOFade(1f, 1f).OnComplete(() =>
             {
                 SaveManager.Instance.SaveAll();
                 SceneManager.LoadScene("Ending");
-                whiteBackground.DOFade(0f, 1f);
+                SceneTransition.Instance.WhiteBackground.DOFade(0f, 1f);
             });
         }
         else

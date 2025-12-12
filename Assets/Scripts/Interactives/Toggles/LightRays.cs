@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.Rendering;
 
 public class LightRays : MonoBehaviour
 {

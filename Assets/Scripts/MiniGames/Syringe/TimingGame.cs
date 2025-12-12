@@ -1,10 +1,5 @@
 using DG.Tweening;
-using JetBrains.Annotations;
-using System.Collections;
-using System.Linq;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.LookDev;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 

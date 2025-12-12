@@ -1372,7 +1372,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"e3f12729eec27a24587d365997fd5418\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"04cc845501708d440a23f363d3c2768e\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -3606,8 +3606,8 @@
     "m_ObjectId": "8f9c40780a744cfdab2b671941826355",
     "m_Title": "Spiral",
     "m_Position": {
-        "x": -3992.571533203125,
-        "y": -20.571434020996095
+        "x": -3992.5712890625,
+        "y": -20.571430206298829
     }
 }
 

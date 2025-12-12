@@ -18762,6 +18762,10 @@ PrefabInstance:
       value: 1.87
       objectReference: {fileID: 0}
     - target: {fileID: 2125454988033683817, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125454988033683817, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1376792051}
@@ -19119,7 +19123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5793665992740684857, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
       propertyPath: isUnlocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5793665992740684857, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
       propertyPath: whiteBackground

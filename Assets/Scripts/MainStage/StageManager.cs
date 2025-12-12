@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System;
-using TMPro;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour

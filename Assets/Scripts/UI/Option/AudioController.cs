@@ -1,7 +1,6 @@
-using System.Threading;
+
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
 
 public class AudioController : MonoBehaviour
 {

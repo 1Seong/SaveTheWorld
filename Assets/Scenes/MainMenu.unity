@@ -3362,26 +3362,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1696152970975067764, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1696152970975067764, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1696152970975067764, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1696152970975067764, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1696152970975067764, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: -876546973899608171, guid: 2558d9975debdc24ba86f66efbfc72b2, type: 3}
     - target: {fileID: 3254702067287157842, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
       propertyPath: m_Name
       value: TransitionCanvasParent
@@ -3424,26 +3404,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3878788817143047362, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5635127029651081186, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_SortingOrder
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6592991375441893040, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6592991375441893040, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6592991375441893040, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6592991375441893040, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

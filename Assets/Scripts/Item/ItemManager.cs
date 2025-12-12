@@ -136,6 +136,8 @@ public class ItemManager : MonoBehaviour, ISaveable
             SaveManager.Instance.Unregister(this);
 
         _instance = null;
+
+        ItemObject.CollectEvent -= AddItem;
     }
 
     private void Start()
