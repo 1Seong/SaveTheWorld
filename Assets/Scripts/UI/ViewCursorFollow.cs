@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ViewCursorFollow : MonoBehaviour
 {
+    public static float angleApplyRate = 1f;
+
     public float maxAngle = 10f;
     public float sensitivity = 0.1f;
     public float smooth = 5f;
@@ -10,18 +12,7 @@ public class ViewCursorFollow : MonoBehaviour
 
     void Start()
     {
-        OptionPanel.MouseSensitivityOnValueChangedEvent += SetMaxAngle;
         originRot = transform.localRotation;
-    }
-
-    private void OnDestroy()
-    {
-        OptionPanel.MouseSensitivityOnValueChangedEvent -= SetMaxAngle;
-    }
-
-    private void SetMaxAngle(float value)
-    {
-        maxAngle = value;
     }
 
     void Update()
@@ -32,8 +23,8 @@ public class ViewCursorFollow : MonoBehaviour
         float mx = (Input.mousePosition.x / Screen.width - 0.5f) * 2f;
         float my = (Input.mousePosition.y / Screen.height - 0.5f) * 2f;
         
-        float tiltX = Mathf.Clamp(-my * maxAngle, -maxAngle, maxAngle);
-        float tiltY = Mathf.Clamp(mx * maxAngle, -maxAngle, maxAngle);
+        float tiltX = Mathf.Clamp(-my * maxAngle * angleApplyRate, -maxAngle * angleApplyRate, maxAngle * angleApplyRate);
+        float tiltY = Mathf.Clamp(mx * maxAngle * angleApplyRate, -maxAngle * angleApplyRate, maxAngle * angleApplyRate);
         
         Quaternion targetRot = originRot * Quaternion.Euler(tiltX, tiltY, 0f);
 

@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class OptionPanel : MonoBehaviour
 {
-    public static event Action<float> MouseSensitivityOnValueChangedEvent;
-
     [SerializeField] private Image background;
     [SerializeField] private GameObject panel;
     [SerializeField] private bool isActive = false;
@@ -73,9 +71,7 @@ public class OptionPanel : MonoBehaviour
 
     public void MouseSensitivityOnValueChanged(float value)
     {
-        var realValue = Mathf.Lerp(0f, 3f, value);
-
-        MouseSensitivityOnValueChangedEvent?.Invoke(realValue);
+        ViewCursorFollow.angleApplyRate = value;
     }
 
     public void Show()

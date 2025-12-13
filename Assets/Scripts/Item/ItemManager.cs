@@ -355,7 +355,20 @@ public class ItemManager : MonoBehaviour, ISaveable
         Camera.main.transform.DOMove(Vector3.zero, 0.6f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             ReturnFromCloseUpEvent?.Invoke();
-            TurnOnGoButtons();
+
+            if(StageManager.Instance.CurrentPlaneId == 4)
+            {
+                LeftButton.GetComponent<Image>().DOFade(1f, 0.3f).OnComplete(() =>
+                {
+                    LeftButton.GetComponent<Button>().interactable = true;
+                });
+                RightButton.GetComponent<Image>().DOFade(1f, 0.3f).OnComplete(() =>
+                {
+                    RightButton.GetComponent<Button>().interactable = true;
+                });
+            }
+            else
+                TurnOnGoButtons();
         });
     }
 

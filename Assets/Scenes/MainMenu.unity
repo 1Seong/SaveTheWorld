@@ -3414,6 +3414,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5635127029651081186, guid: 2def5ea940f75d04f885a42a15ae00da, type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6394,6 +6398,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5604580921468935272, guid: b6355472c149ede4ca35052e54482d24, type: 3}
+      propertyPath: m_SortingOrder
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 7131618469842003827, guid: b6355472c149ede4ca35052e54482d24, type: 3}
       propertyPath: m_Name
       value: OptionCanvasParent
@@ -6740,9 +6748,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1781885557}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1764972304}
+        m_TargetAssemblyTypeName: GameContinueButton, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6802,6 +6810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5753b1f79f432b488228e729eb1e847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNewStart: 0
 --- !u!1 &1779760924
 GameObject:
   m_ObjectHideFlags: 0
@@ -8235,6 +8244,7 @@ GameObject:
   - component: {fileID: 2084058248}
   - component: {fileID: 2084058247}
   - component: {fileID: 2084058246}
+  - component: {fileID: 2084058249}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -8306,21 +8316,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 356031598}
-        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
-        m_MethodName: DeleteSave
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1781885557}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 2084058249}
+        m_TargetAssemblyTypeName: GameContinueButton, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8368,6 +8366,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084058244}
   m_CullTransparentMesh: 1
+--- !u!114 &2084058249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084058244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5753b1f79f432b488228e729eb1e847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNewStart: 1
 --- !u!1 &2089774015
 GameObject:
   m_ObjectHideFlags: 0

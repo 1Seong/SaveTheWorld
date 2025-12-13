@@ -51,6 +51,7 @@ public class TutorialManager : MonoBehaviour, ISaveable
     public float step5WaitingTime = 3f;
     public float step5FadeTime = 0.8f;
     public float step5TextShowDuration = 3f;
+    public float step5NoteCloseWaitTime = 2f;
     public TextMeshProUGUI step5TMP;
     public GameObject nextPageHighlightImage;
     public GameObject InventoryHighightImage;
@@ -368,10 +369,17 @@ public class TutorialManager : MonoBehaviour, ISaveable
         letterTargetHighlightImage.SetActive(true);
     }
 
-    // Entry point : click letter target
+    // Entry point : click letter target - insert the letter
     public void step5LetterTargetOnClick()
     {
         if (isTutorialCleared || stepNum != 5) return;
+
+        StartCoroutine(step5LetterTargetCoroutine());
+    }
+
+    private IEnumerator step5LetterTargetCoroutine()
+    {
+        yield return new WaitForSeconds(step5NoteCloseWaitTime);
 
         letterTargetHighlightImage.SetActive(false);
         fullRaycastBlockImage.SetActive(true);

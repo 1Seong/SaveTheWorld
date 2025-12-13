@@ -27,7 +27,7 @@ public class EndingManager : MonoBehaviour
     [SerializeField] float nextTextWaitTime = 2.0f;
 
     [Header("Step1")]
-    [SerializeField] float step1BackgroundFadeTime = 1.0f;
+    //[SerializeField] float step1BackgroundFadeTime = 1.0f;
     [SerializeField] float step1WaitTime = 2.0f;
     [SerializeField] float step1MoveTime = 1.0f;
     [SerializeField] float step1GodBackgroundFadeTime = 1.0f;

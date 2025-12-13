@@ -4,11 +4,6 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private CreditPanel credits;
 
-    public void StartGame()
-    {
-        SceneTransition.Instance.LoadScene("MainScene");
-    }
-
     public void OpenOption()
     {
         OptionPanel.Instance.Show();

@@ -154,12 +154,6 @@ public class GameManager : MonoBehaviour, ISaveable
 
     }
 
-    public void MiniGameClear()
-    {
-        SetMiniGameClear(SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name);
-        SceneTransition.Instance.UnloadScene();
-    }
-
 
     // -------------------------------------- utility ----------------------------------------
 

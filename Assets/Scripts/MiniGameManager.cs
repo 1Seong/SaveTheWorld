@@ -188,7 +188,7 @@ public class MiniGameManager : MonoBehaviour
         tmp.alpha = targetAlpha;
     }
 
-    private void returnToMain()
+    public void returnToMain()
     {
         OnClearEvent?.Invoke(typeId);
 

@@ -43,8 +43,6 @@ public class InteractiveObject : MonoBehaviour
         if(hasDropItem && Item.IsDropped(typeId))
             DropInit();
         */
-
-        ItemManager.Instance.ReturnFromCloseUpEvent += buttonInteractiveOn;
     }
 
     private void OnDestroy()
@@ -115,6 +113,9 @@ public class InteractiveObject : MonoBehaviour
     public void CloseUpOnClick()
     {
         if(!hasCloseUp) return;
+
+        ItemManager.Instance.ReturnFromCloseUpEvent += buttonInteractiveOn;
+
         GetComponent<Button>().interactable = false;
         ItemManager.Instance.TurnOffGoButtons();
 
@@ -137,6 +138,21 @@ public class InteractiveObject : MonoBehaviour
 
         if (hasMiniGame)
         {
+            Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
+            {
+                //ItemManager.Instance.ReturnFromCloseUpEvent += deactiveItems;
+                if (!GameManager.Instance.IsMiniGameCleared(typeId.ToString()))
+                {
+                    if (typeId == Item.Interactives.TV)
+                        TVManager.OnClearEvent += giveRewards;
+                    else
+                        MiniGameManager.OnClearEvent += giveRewards;
+                }
+                ItemManager.Instance.TurnOnReturnFromCloseUpButton();
+                SceneTransition.Instance.LoadSceneAdditive(sceneName);
+
+            });
+            /*
             if (!GameManager.Instance.IsMiniGameCleared(sceneName))
             {
                 Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
@@ -158,14 +174,9 @@ public class InteractiveObject : MonoBehaviour
                     ItemManager.Instance.TurnOnReturnFromCloseUpButton();
 
                 });
-                /*
-                foreach (var i in GetComponentsInChildren<ItemObject>(true))
-                {
-                    i.gameObject.SetActive(!i.gameObject.activeSelf);
-                }
-                ItemManager.Instance.ReturnFromCloseUpEvent += deactiveItems;
-                */
+
             }
+            */
         }
         else
             Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc);
@@ -182,11 +193,16 @@ public class InteractiveObject : MonoBehaviour
         {
             i.gameObject.SetActive(true);
         }
+
+        TVManager.OnClearEvent -= giveRewards;
+        MiniGameManager.OnClearEvent -= giveRewards;
     }
 
     private void buttonInteractiveOn()
     {
         GetComponent<Button>().interactable = true;
+
+        ItemManager.Instance.ReturnFromCloseUpEvent -= buttonInteractiveOn;
     }
 
     private void deactiveItems()

@@ -108,6 +108,10 @@ public class SaveManager : MonoBehaviour
     {
         var path = Path.Combine(Application.persistentDataPath, saveFileName);
         if (File.Exists(path)) File.Delete(path);
+        else
+        {
+            Debug.Log($"Cannot find the save file :\n{path}");
+        }
     }
 
     public bool HasSave()

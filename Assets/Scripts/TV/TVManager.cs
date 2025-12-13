@@ -49,6 +49,8 @@ public class TVManager : MonoBehaviour
 
     bool skipPressed = true;
 
+
+
     void Start()
     {
         dialogues1 = CSVDialogueParser.Parse(dialogueCSV1);
@@ -168,7 +170,7 @@ public class TVManager : MonoBehaviour
 
     private void returnToMain()
     {
-        OnClearEvent.Invoke(typeId);
+        OnClearEvent?.Invoke(typeId);
 
         SceneTransition.Instance.UnloadScene();
     }
