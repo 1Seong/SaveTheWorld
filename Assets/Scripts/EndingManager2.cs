@@ -36,9 +36,13 @@ public class EndingManager2 : MonoBehaviour
         seq.Join(player2.DOFade(0f, 1f));
         yield return seq.WaitForCompletion();
 
+        yield return new WaitForSeconds(textWaitTime);
+
+        yield return StartCoroutine(FadeTMP(title, 1f, 1f));
         yield return new WaitForSeconds(backgroundFadeWaitTime);
 
         var t2 = background.DOFade(1f, 1f);
+        var t3 = title.DOColor(Color.black, 1f);
         yield return t2.WaitForCompletion();
 
         yield return StartCoroutine(FadeTMP(title, 1f, 1f));
