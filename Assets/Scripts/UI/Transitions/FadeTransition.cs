@@ -12,27 +12,91 @@ public class FadeTransition : MonoBehaviour, ITransition, IRoomTransition
         targetImage.transform.localScale = Vector3.zero;
         (targetImage.transform as RectTransform).anchoredPosition = Vector3.zero;
 
+        if(sceneName != "Ending2")
+            AudioManager.Instance.StopBgm();
+        AudioManager.Instance.LoopSfxOn(AudioType.SFX_Etc_SceneTrans);
+
         targetImage.transform.DOScale(250f, 1.5f).OnComplete(() =>
         {
-            if(isAdditive)
+            AudioManager.Instance.LoopSfxOff();
+
+            if (isAdditive) // TV, MiniGame
+            {
+                if(sceneName == "TV")
+                {
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_TV1);
+                }
+                else if(sceneName == "Syringe")
+                {
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_Syringe);
+                }
+                else if(sceneName == "Crutches")
+                {
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_Crutch);
+                }
+                else if(sceneName == "Jar")
+                {
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_Jar);
+                }
+                else if(sceneName == "Pencil")
+                {
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_Pencil);
+                }
+                else if(sceneName == "Sewing")
+                {
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_Sewing);
+                }
+                else if(sceneName == "Laundry")
+                {
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_Laundry);
+                }
+
                 SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            else
+            }
+            else // Ending, MainMenu, MainScene
+            {
+                if(sceneName == "Ending1")
+                {
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_Ending);
+                }
+                else if(sceneName == "MainMenu")
+                {
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_Title);
+                }
+
                 SceneManager.LoadScene(sceneName);
+            }
             targetImage.transform.localScale = Vector3.one * 250f;
-            targetImage.transform.DOScale(0f, 1.5f);
+
+            AudioManager.Instance.LoopSfxOn(AudioType.SFX_Etc_SceneTrans);
+            targetImage.transform.DOScale(0f, 1.5f).OnComplete(() =>
+            {
+                AudioManager.Instance.LoopSfxOff();
+            });
+
         });
     }
 
-    public void SceneUnloadTransition()
+    public void SceneUnloadTransition() // Used in MiniGame, TV Scenes
     {
         targetImage.transform.localScale = Vector3.zero;
         (targetImage.transform as RectTransform).anchoredPosition = Vector3.zero;
 
+        AudioManager.Instance.StopBgm();
+
+        AudioManager.Instance.LoopSfxOn(AudioType.SFX_Etc_SceneTrans);
         targetImage.transform.DOScale(250f, 1.5f).OnComplete(() =>
         {
+            AudioManager.Instance.LoopSfxOff();
+
             SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name);
             targetImage.transform.localScale = Vector3.one * 250f;
-            targetImage.transform.DOScale(0f, 1.5f);
+
+            AudioManager.Instance.LoopSfxOn(AudioType.SFX_Etc_SceneTrans);
+            targetImage.transform.DOScale(0f, 1.5f).OnComplete(() =>
+            {
+                AudioManager.Instance.LoopSfxOff();
+            });
         });
     }
 
