@@ -14,6 +14,7 @@ public class AudioController : MonoBehaviour
         m_AudioMixer.SetFloat("Master", 0f);
         m_AudioMixer.SetFloat("BGM", 0f);
         m_AudioMixer.SetFloat("SFX", 0f);
+        m_AudioMixer.SetFloat("SFX_Loop", 0f);
     }
 
     public void SetMasterVolume(float volume)
@@ -32,6 +33,7 @@ public class AudioController : MonoBehaviour
     {
         sfxVol = Mathf.Log10(volume) * 20;
         m_AudioMixer.SetFloat("SFX", sfxVol);
+        m_AudioMixer.SetFloat("SFX_Loop", sfxVol);
     }
 
     public void MuteMasterVolume()
@@ -73,12 +75,14 @@ public class AudioController : MonoBehaviour
             sfxMute = false;
 
             m_AudioMixer.SetFloat("SFX", sfxVol);
+            m_AudioMixer.SetFloat("SFX_Loop", sfxVol);
         }
         else // normal -> mute
         {
             sfxMute = true;
 
             m_AudioMixer.SetFloat("SFX", -80f);
+            m_AudioMixer.SetFloat("SFX_Loop", -80f);
         }
     }
 

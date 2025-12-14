@@ -991,8 +991,8 @@ MonoBehaviour:
   IsPlaying: 0
   EndingTexts:
   - texts:
-    - "\uB3C8\uC774 \uB354 \uB9CE\uC558\uB2E4\uBA74 \uC544\uB4E4\uC774 \uACF5\uBD80\uB97C
-      \uC798 \uD588\uC744\uAE4C..?"
+    - "\uB3C8\uC774 \uB354 \uB9CE\uC558\uB2E4\uBA74,\\n\uC544\uB4E4\uC774 \uACF5\uBD80\uB97C
+      \uB354 \uC798 \uD588\uC744\uAE4C..?"
     - "\uC804\uBD80 \uBBF8\uC548\uD55C \uAE30\uC5B5\uB4E4 \uBFD0\uC774\uB124..."
   instruction: {fileID: 482684928}
   background: {fileID: 1969169817}
