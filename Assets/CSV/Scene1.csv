@@ -1,11 +1,11 @@
 id(int),leftCharacter(string),rightCharacter(string),isSpeakerLeft(bool),dialogue(string)
 0,,,,"194X년 겨울 한 시골 마을,"
-1,,,,얇은 눈이 쌓인 마당에서 오빠와 동생이 눈싸움을 하고 있다.
-2,,,,아이들의 엄마도 웃으며 눈을 던지며 짧은 웃음이 오간다.
+1,,,,"얇은 눈이 쌓인 마당에서 오빠와 동생이\n눈싸움을 하고 있다."
+2,,,,"아이들의 엄마도 웃으며 눈을 던지고,\n짧은 웃음이 오간다."
 3,,,,저 멀리 마을 어귀에서는 사람들끼리 조심스레 이야기를 나눈다.
 4,,,,“""중공군이 내려온다던데…”""
 5,,,,“""피난 준비해야 한대…”""
-6,boy_peaceful,grandpa,,"소년이 숨을 몰아쉬며 현관에 앉자, 할아버지가 다가와 조용히 말한다."
+6,boy_peaceful,grandpa,,"소년이 숨을 몰아쉬며 현관에 앉자,\n할아버지가 다가와 조용히 말한다."
 7,boy_peaceful,grandpa,0,세상이 계속 흉흉하구나.
 8,boy_peaceful,grandpa,0,애비가 있었다면 걱정을 덜텐데...
 9,boy_peaceful,grandpa,0,할애비도 늙어서 힘이 없구나.

@@ -83,41 +83,26 @@ public class NoteManager : MonoBehaviour, ISaveable
     [System.Serializable]
     private class NoteManagerData
     {
-        public IntArrayWrapper countData;
         public SerializableIntBoolDict insertedData;
     }
 
     public string Save()
     {
-        var d = new NoteManagerData() { countData = new IntArrayWrapper { values = CompletedLetterCount }, insertedData = new SerializableIntBoolDict(LetterInserted) };
+        var d = new NoteManagerData() { insertedData = new SerializableIntBoolDict(LetterInserted) };
 
         return JsonUtility.ToJson(d);
     }
 
     public void Load(string json)
     {
-        
-            var d = JsonUtility.FromJson<NoteManagerData>(json);
+        var d = JsonUtility.FromJson<NoteManagerData>(json);
 
-            CompletedLetterCount = d.countData.values;
+        LetterInserted = d.insertedData.ToDictionary();
 
-            for (int i = 0; i != CompletedLetterCount.Length; ++i)
-            {
-                if (LetterCountGoal[i] <= CompletedLetterCount[i])
-                {
-                    BlurrUnlockEvent?.Invoke((Item.Interactives)i);
-                    TargetImages[i].material.DOFloat(1f, "_DissolveStrength", 1f);
-                }
-            }
-
-            LetterInserted = d.insertedData.ToDictionary();
-
-            foreach (var i in letterTargets)
-            {
-                i.ApplyLetterData(LetterInserted);
-            }
-        
-        
+        foreach (var i in letterTargets)
+        {
+            i.ApplyLetterData(LetterInserted);
+        }
     }
 
     public void TurnOff()
@@ -185,11 +170,5 @@ public class NoteManager : MonoBehaviour, ISaveable
                 dict[keys[i]] = values[i];
             return dict;
         }
-    }
-
-    [System.Serializable]
-    public class IntArrayWrapper
-    {
-        public int[] values;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [System.Serializable]
 public class DialogueData
@@ -31,8 +32,12 @@ public static class CSVDialogueParser
         {
             string line = lines[i].Trim();
             if (string.IsNullOrWhiteSpace(line)) continue;
-
             var cols = ParseCsvLine(line);
+
+            for (int j = 0; j < cols.Count; j++)
+            {
+                cols[j] = cols[j].Replace("\\n", "\n");
+            }
 
             // 컬럼 개수가 다르면 skip
             if (cols.Count < 5) continue;

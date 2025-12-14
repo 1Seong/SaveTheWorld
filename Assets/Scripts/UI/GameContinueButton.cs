@@ -16,6 +16,7 @@ public class GameContinueButton : MonoBehaviour
         if(isNewStart)
         {
             SaveManager.Instance.DeleteSave();
+            GameManager.Instance.ResetGameCleared();
         }
 
         SceneTransition.Instance.LoadScene("MainScene");

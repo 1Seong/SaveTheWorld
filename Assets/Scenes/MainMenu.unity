@@ -3175,11 +3175,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582280989}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &596922912 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2161166835284999400, guid: b6355472c149ede4ca35052e54482d24, type: 3}
-  m_PrefabInstance: {fileID: 1691171523}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &598841828
 GameObject:
   m_ObjectHideFlags: 0
@@ -6354,10 +6349,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 356031598}
-    - target: {fileID: 2861207191579745747, guid: b6355472c149ede4ca35052e54482d24, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SaveAll
-      objectReference: {fileID: 0}
     - target: {fileID: 5589020003524715364, guid: b6355472c149ede4ca35052e54482d24, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6398,18 +6389,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5604580921468935272, guid: b6355472c149ede4ca35052e54482d24, type: 3}
-      propertyPath: m_SortingOrder
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 7131618469842003827, guid: b6355472c149ede4ca35052e54482d24, type: 3}
       propertyPath: m_Name
       value: OptionCanvasParent
       objectReference: {fileID: 0}
-    - target: {fileID: 8553357616355850101, guid: b6355472c149ede4ca35052e54482d24, type: 3}
-      propertyPath: returnButton
-      value: 
-      objectReference: {fileID: 596922912}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -65,7 +65,12 @@ public class GameManager : MonoBehaviour, ISaveable
 
         DOTween.SetTweensCapacity(200, 50);
 
-        isGameCleared = new Dictionary<string, bool>() 
+        ResetGameCleared();
+    }
+
+    public void ResetGameCleared()
+    {
+        isGameCleared = new Dictionary<string, bool>()
         {
             {"Syringe", false},
             {"Crutches", false},
