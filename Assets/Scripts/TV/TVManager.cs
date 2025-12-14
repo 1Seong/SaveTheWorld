@@ -113,8 +113,15 @@ public class TVManager : MonoBehaviour
             leftCharImage.SetActive(false);
             rightCharImage.SetActive(false);
 
+            AudioManager.Instance.StopBgm();
+
             blackBackground.DOFade(1f, fadeOutTime).OnComplete(() =>
             {
+                if (seq == 0)
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_TV2);
+                else if (seq == 1)
+                    AudioManager.Instance.PlayBgm(AudioType.BGM_TV3);
+
                 seqs[seq].background.SetActive(false);
                 seqs[seq + 1].background.SetActive(true);
 
