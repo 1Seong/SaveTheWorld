@@ -15,13 +15,15 @@ public class AudioUI : MonoBehaviour
         {
             isMute = false;
             slider.interactable = true;
-            targetIamge.sprite = normalSprite;
+            targetIamge.color = Color.white;
+            //targetIamge.sprite = normalSprite;
         }
         else // normal -> mute
         {
             isMute = true;
             slider.interactable = false;
-            targetIamge.sprite = muteSprite;
+            targetIamge.color = Color.yellow;
+            //targetIamge.sprite = muteSprite;
         }
     }
 }

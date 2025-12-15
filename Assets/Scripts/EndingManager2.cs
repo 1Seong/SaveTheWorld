@@ -38,10 +38,10 @@ public class EndingManager2 : MonoBehaviour
 
         yield return new WaitForSeconds(textWaitTime);
 
-        AudioManager.Instance.PlaySfx(AudioType.SFX_End_End);
         yield return StartCoroutine(FadeTMP(title, 1f, 1f));
         yield return new WaitForSeconds(backgroundFadeWaitTime);
 
+        AudioManager.Instance.PlaySfx(AudioType.SFX_End_End);
         var t2 = background.DOFade(1f, 1f);
         var t3 = title.DOColor(Color.black, 1f);
         yield return t2.WaitForCompletion();

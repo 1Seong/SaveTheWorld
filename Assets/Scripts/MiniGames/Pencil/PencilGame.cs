@@ -70,6 +70,8 @@ public class PencilGame : MonoBehaviour
             slider.value = 1f;
             sharpnerArm.DOKill();
 
+            AudioManager.Instance.LoopSfxOff();
+
             pencil.DOLocalMoveZ(pencil.localPosition.z + 0.1f, 1.2f).SetEase(Ease.OutBack).OnComplete(() =>
             {
                 pencil.gameObject.SetActive(false);
@@ -121,7 +123,7 @@ public class PencilGame : MonoBehaviour
             boyAnim.transform.DOLocalMoveY(-2.9f, 0f);
 
             boyAnim.SetTrigger("Start");
-            Invoke(nameof(showPencilCase), gameStartTime);
+            Invoke(nameof(showPencilCase), gameStartTime + 1);
         }
     }
 

@@ -103,6 +103,7 @@ public class StageManager : MonoBehaviour
         if (GameManager.Instance.IsTurning) return;
         GameManager.Instance.IsTurning = true;
 
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_RoomTrans);
         //planes[CurrentPlaneId].DeactivateInteractives();
 
         tempPlaneId = CurrentPlaneId;
@@ -128,6 +129,8 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.IsTurning = true;
 
         //planes[CurrentPlaneId].DeactivateInteractives();
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_RoomTrans);
 
         CurrentPlaneId = tempPlaneId;
 

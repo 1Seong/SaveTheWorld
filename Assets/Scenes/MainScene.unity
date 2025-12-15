@@ -13459,7 +13459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f02b650ba1e3746872a4dd56e37fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTutorialCleared: 0
+  isTutorialCleared: 1
   stepNum: 1
   fullRaycastBlockImage: {fileID: 1091067301}
   roomRaycastBlockImage: {fileID: 903781935}
@@ -18009,7 +18009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 927928428766736667, guid: 95a570e65dabdc04e9211157fb651bf2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 940451860695361868, guid: 95a570e65dabdc04e9211157fb651bf2, type: 3}
       propertyPath: m_Spacing
@@ -21982,7 +21982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2537797186876143180, guid: af5871dc0e1b3674d9d6bc385a52f146, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -29.499725
+      value: -29.499756
       objectReference: {fileID: 0}
     - target: {fileID: 2565109037205019069, guid: af5871dc0e1b3674d9d6bc385a52f146, type: 3}
       propertyPath: m_IsActive
@@ -22058,7 +22058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3038243503794992033, guid: af5871dc0e1b3674d9d6bc385a52f146, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3070277198988978105, guid: af5871dc0e1b3674d9d6bc385a52f146, type: 3}
       propertyPath: id

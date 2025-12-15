@@ -3,8 +3,13 @@ using UnityEngine;
 
 public class Curtain : ToggleInteractives
 {
-    public float fullScale = 1.395f;
+    public float fullScale;
     public float foldScale = .4f;
+
+    private void Start()
+    {
+        fullScale = transform.localScale.x;
+    }
 
     protected override void On()
     {

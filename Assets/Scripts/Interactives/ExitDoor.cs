@@ -29,13 +29,13 @@ public class ExitDoor : MonoBehaviour
             NoteManager.Instance.TurnOff();
             SceneTransition.Instance.WhiteBackground.gameObject.SetActive(true);
 
-            SceneTransition.Instance.WhiteBackground.DOFade(1f, 1f).OnComplete(() =>
+            SceneTransition.Instance.WhiteBackground.DOFade(1f, 4f).OnComplete(() =>
             {
                 AudioManager.Instance.PlayBgm(AudioType.BGM_Ending);
 
                 SaveManager.Instance.SaveAll();
                 SceneManager.LoadScene("Ending");
-                SceneTransition.Instance.WhiteBackground.DOFade(0f, 3f);
+                SceneTransition.Instance.WhiteBackground.DOFade(0f, 4f);
             });
         }
         else
