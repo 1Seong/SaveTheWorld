@@ -12,6 +12,9 @@ public class Bedding : ToggleInteractives
     protected override void On()
     {
         isActing = true;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Beddings);
+
         OnEvents?.Invoke();
         transform.DOMoveY(transform.position.y + targetMove, duration).SetEase(Ease.OutBack).OnComplete(() =>
         {
@@ -22,6 +25,9 @@ public class Bedding : ToggleInteractives
     protected override void Off()
     {
         isActing = true;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Beddings);
+
         OffEvents?.Invoke();
         transform.DOMoveY(transform.position.y - targetMove, duration).SetEase(Ease.InBack).OnComplete(() =>
         {

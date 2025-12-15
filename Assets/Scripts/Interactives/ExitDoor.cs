@@ -28,8 +28,11 @@ public class ExitDoor : MonoBehaviour
             ItemManager.Instance.gameObject.SetActive(false);
             NoteManager.Instance.TurnOff();
             SceneTransition.Instance.WhiteBackground.gameObject.SetActive(true);
+
             SceneTransition.Instance.WhiteBackground.DOFade(1f, 1f).OnComplete(() =>
             {
+                AudioManager.Instance.PlayBgm(AudioType.BGM_Ending);
+
                 SaveManager.Instance.SaveAll();
                 SceneManager.LoadScene("Ending");
                 SceneTransition.Instance.WhiteBackground.DOFade(0f, 3f);
@@ -38,6 +41,9 @@ public class ExitDoor : MonoBehaviour
         else
         {
             isActing = true;
+
+            AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Door);
+
             transform.DOShakePosition(0.3f, 0.12f, 20).OnComplete(() =>
             {
                 isActing = false;

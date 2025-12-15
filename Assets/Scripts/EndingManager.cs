@@ -126,6 +126,7 @@ public class EndingManager : MonoBehaviour
         god.eulerAngles = new Vector3(0f, 180f, 0f);
         yield return StartCoroutine(dialogueCoroutine(dialogue4));
 
+        AudioManager.Instance.PlaySfx(AudioType.SFX_End_Change);
         playerAnim.SetTrigger("Fade");
         yield return new WaitForSeconds(step3PlayerFadeTime);
 

@@ -99,6 +99,8 @@ public class BalanceGame : MonoBehaviour
         {
             MiniGameManager.instance.stop();
 
+            AudioManager.Instance.PlaySfx(AudioType.SFX_L_Die);
+
             background.DOFade(1f, 0f);
 
             Invoke(nameof(miniGameEnd), MiniGameManager.instance.GameEndTime);

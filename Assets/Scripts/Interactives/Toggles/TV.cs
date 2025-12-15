@@ -30,6 +30,8 @@ public class TV : ToggleInteractives
 
     protected override void On()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_TVButton);
+
         isActing = true;
         onMonitor.DOScaleX(0.6f, 0.1f).OnComplete(() =>
         {
@@ -44,6 +46,8 @@ public class TV : ToggleInteractives
 
     protected override void Off()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_TVButton);
+
         isActing = true;
         if (ChannelOn)
             channelMonitor.SetActive(false);

@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     {
         if (!isInvincible && collision.CompareTag("Bullet"))
         {
+            AudioManager.Instance.PlaySfx(AudioType.SFX_C_Hit);
+
             isInvincible = true;
 
             foreach (var i in spriters)
@@ -69,9 +71,13 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
+            AudioManager.Instance.PlaySfx(AudioType.SFX_C_Jump);
+
             isJumping = true;
             rigid.DOJump(rigid.position, jumpPower, 1, jumpDur).OnComplete(() =>
             {
+                AudioManager.Instance.PlaySfx(AudioType.SFX_C_Land);
+
                 isJumping = false;
             });
         }
@@ -83,6 +89,8 @@ public class Player : MonoBehaviour
         {
             transform.DOMoveX(transform.position.x + 1f, 3.1f).SetEase(Ease.Linear).OnComplete(() =>
             {
+                AudioManager.Instance.PlaySfx(AudioType.SFX_C_Explode);
+
                 cam.DOShakePosition(0.2f, 0.5f, 20);
                 explotionAnim.SetTrigger("Explode");
                 anim.SetTrigger("Die");

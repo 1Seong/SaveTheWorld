@@ -8,6 +8,7 @@ public class PencilGame : MonoBehaviour
     public float[] fillAmounts;
     public float[] pencilScales;
     public float gameStartTime = 3.5f;
+    public float idleSfxThreshold = 0.4f;
 
     public Transform pencil;
     public Slider slider;
@@ -19,6 +20,9 @@ public class PencilGame : MonoBehaviour
 
     private float currentValue = 0f;
     private int cnt = 0;
+
+    private bool loopSfxPlaying = false;
+    float lastPressTime = -999f;
 
     private void Start()
     {
@@ -34,10 +38,24 @@ public class PencilGame : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            lastPressTime = Time.time;
+
+            if(!loopSfxPlaying)
+            {
+                loopSfxPlaying = true;
+                AudioManager.Instance.LoopSfxOn(AudioType.SFX_P_Sharpner);
+            }
+
             sharpner.DOShakePosition(0.2f, 0.01f, 15);
             sharpnerArm.DOLocalRotate(new Vector3(0, 180f, 0), 0.3f, RotateMode.LocalAxisAdd);
             currentValue += fillAmounts[cnt];
             currentValue = Mathf.Clamp01(currentValue);
+        }
+
+        if(loopSfxPlaying && (Time.time - lastPressTime > idleSfxThreshold))
+        {
+            loopSfxPlaying = false;
+            AudioManager.Instance.LoopSfxOff();
         }
 
         slider.value = currentValue;

@@ -12,8 +12,7 @@ public class FadeTransition : MonoBehaviour, ITransition, IRoomTransition
         targetImage.transform.localScale = Vector3.zero;
         (targetImage.transform as RectTransform).anchoredPosition = Vector3.zero;
 
-        if(sceneName != "Ending2")
-            AudioManager.Instance.StopBgm();
+        AudioManager.Instance.StopBgm();
         AudioManager.Instance.LoopSfxOn(AudioType.SFX_Etc_SceneTrans);
 
         targetImage.transform.DOScale(250f, 1.5f).OnComplete(() =>
@@ -55,11 +54,7 @@ public class FadeTransition : MonoBehaviour, ITransition, IRoomTransition
             }
             else // Ending, MainMenu, MainScene
             {
-                if(sceneName == "Ending1")
-                {
-                    AudioManager.Instance.PlayBgm(AudioType.BGM_Ending);
-                }
-                else if(sceneName == "MainMenu")
+                if(sceneName == "MainMenu")
                 {
                     AudioManager.Instance.PlayBgm(AudioType.BGM_Title);
                 }

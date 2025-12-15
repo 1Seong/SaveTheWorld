@@ -63,6 +63,8 @@ public class BottleUI : MonoBehaviour
 
     private void flowOut()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_BottleDrain);
+
         GetComponentInChildren<ParticleSystem>().Play();
         Invoke(nameof(giveItem), 0.7f);
     }

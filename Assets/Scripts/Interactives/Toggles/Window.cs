@@ -6,6 +6,8 @@ public class Window : ToggleInteractives
 
     protected override void On()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Window);
+
         isActing = true;
         transform.DOMoveX(transform.position.x - moveDis, 0.6f).SetEase(Ease.InCirc).OnComplete(() =>
         {
@@ -15,6 +17,8 @@ public class Window : ToggleInteractives
 
     protected override void Off()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Window);
+
         isActing = true;
         transform.DOMoveX(transform.position.x + moveDis, 0.6f).SetEase(Ease.InCirc).OnComplete(() =>
         {

@@ -31,13 +31,10 @@ public class InventoryItem : MonoBehaviour
         
     }
 
-    private void OnDestroy()
-    {
-        
-    }
-
     private void activateItemFollow()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_InvItemOn);
+
         var screenPosC = RectTransformUtility.WorldToScreenPoint(null, item.position);
         
         Vector2 localPosC;
@@ -54,6 +51,8 @@ public class InventoryItem : MonoBehaviour
 
     public void DeactivateItemFollow()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_InvItemOff);
+
         Destroy(itemTemp.gameObject);
         itemTemp = null;
         item.gameObject.SetActive(true);

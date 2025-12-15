@@ -17,6 +17,8 @@ public class JarText : MonoBehaviour
 
     public void Show()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_J_Show);
+
         StartCoroutine(FadeTMP(tmp, 1f, 1f));
         img.DOFade(0.31f, 1f);
     }

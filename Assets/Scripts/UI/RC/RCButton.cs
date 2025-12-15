@@ -8,6 +8,8 @@ public class RCButton : MonoBehaviour
 
     private void OnMouseDown()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_RemoteButton);
+
         pixelButton.Translate(new Vector3(0f, -0.1f, 0f), Space.Self);
 
         if(num == "-1")

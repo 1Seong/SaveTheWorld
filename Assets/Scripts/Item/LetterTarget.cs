@@ -19,15 +19,15 @@ public class LetterTarget : ItemTarget
         InsertLetter();
     }
 
-    private void InsertLetter()
+    private void InsertLetter(bool playSFX = true)
     {
         transform.GetChild(1).GetComponent<Image>().DOFade(1f, 0.3f);
-        NoteManager.Instance.OnInsertLetter((int)interactiveType, letterId);
+        NoteManager.Instance.OnInsertLetter((int)interactiveType, letterId, playSFX);
     }
 
     public void ApplyLetterData(Dictionary<int, bool> dic)
     {
         if (dic[letterId])
-            InsertLetter();
+            InsertLetter(false);
     }
 }

@@ -19,6 +19,7 @@ public class GameContinueButton : MonoBehaviour
             GameManager.Instance.ResetGameCleared();
         }
 
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_MainButton);
         SceneTransition.Instance.LoadScene("MainScene");
     }
 }

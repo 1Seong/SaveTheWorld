@@ -30,6 +30,8 @@ public class ItemTarget : MonoBehaviour
             case Item.Items.Bottle:
                 if (filledBottle != null)
                 {
+                    AudioManager.Instance.PlaySfx(AudioType.SFX_Room_BottleFill);
+
                     //filledBottle.gameObject.SetActive(true);
                     filledBottle.Collect();
                 }

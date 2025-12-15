@@ -54,6 +54,7 @@ public class SewingControl : MonoBehaviour
         leftOriginPosition = leftHand.localPosition;
 
         InvokeRepeating(nameof(ShakeHand), shakeStartCooltimes[0] - shakeDurations[0], shakeStartCooltimes[0]);
+
     }
 
     private void ShakeHand()
@@ -66,6 +67,9 @@ public class SewingControl : MonoBehaviour
         }
 
         isShaking = true;
+
+        AudioManager.Instance.LoopSfxOn(AudioType.SFX_S_PTSD);
+
         leftShakeTween = leftHand.DOShakePosition(shakeDurations[cnt], 0.01f, 10);
         rightShakeTween = rightHand.DOShakePosition(shakeDurations[cnt], 0.01f, 10).OnComplete(() =>
         {
@@ -75,6 +79,10 @@ public class SewingControl : MonoBehaviour
                 rf.passMaterial = null;
                 rf.SetActive(false);
             }
+
+            AudioManager.Instance.LoopSfxOff();
+            if (needleTween.IsPlaying())
+                AudioManager.Instance.LoopSfxOn(AudioType.SFX_S_Sewing);
 
             isShaking = false;
         });
@@ -216,9 +224,19 @@ public class SewingControl : MonoBehaviour
         // 格钎 加档
         Vector2 targetVelocity = desiredDirection * maxSpeed;
         if (targetVelocity.magnitude > 0)
+        {
             needleTween.Play();
+
+            if (!isShaking)
+                AudioManager.Instance.LoopSfxOn(AudioType.SFX_S_Sewing);
+        }
         else
+        {
             needleTween.Pause();
+
+            if (!isShaking)
+                AudioManager.Instance.LoopSfxOff();
+        }
 
         // 4) 包己 贸府
         if (desiredDirection.sqrMagnitude > 0.01f)

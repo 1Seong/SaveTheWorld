@@ -145,6 +145,8 @@ public class StageManager : MonoBehaviour
 
     private void ConvertView()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_RoomTrans);
+
         var targetRot = -90f * CurrentPlaneId;
 
         Camera.main.transform.DORotate(new Vector3(0f, targetRot, 0f), 0.9f).SetUpdate(true).SetEase(Ease.OutExpo).OnComplete(() =>

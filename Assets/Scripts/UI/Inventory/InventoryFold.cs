@@ -20,6 +20,8 @@ public class InventoryFold : MonoBehaviour
         {
             if (_isFolded != value)
             {
+                AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_InvFold);
+
                 if (value) // Fold
                 {
                     Fold();

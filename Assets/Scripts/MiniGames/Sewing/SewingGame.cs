@@ -24,6 +24,8 @@ public class SewingGame : MonoBehaviour
 
     public void GameEnd()
     {
+        AudioManager.Instance.LoopSfxOff();
+
         MiniGameManager.instance.IsPlaying = false;
 
         ++cnt;

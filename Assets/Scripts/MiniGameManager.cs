@@ -125,6 +125,8 @@ public class MiniGameManager : MonoBehaviour
             string s = "";
 
             bool skipped = false;
+
+            AudioManager.Instance.LoopSfxOn(AudioType.SFX_MG_Type);
             for (int j = 0; j < texts[i].Length; ++j)
             {
                 if (skipPressed)
@@ -141,6 +143,7 @@ public class MiniGameManager : MonoBehaviour
             {
                 endingTmps[i].text = texts[i];
             }
+            AudioManager.Instance.LoopSfxOff();
 
             skipPressed = false;
             float t = 0f;

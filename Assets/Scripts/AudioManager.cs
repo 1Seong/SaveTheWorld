@@ -146,4 +146,10 @@ public class AudioManager : MonoBehaviour
                      .OnComplete(() => sfxLoopSource.Stop());
         currentSfxLoop = null;
     }
+
+    public bool IsLoopSfxPlaying(AudioType type)
+    {
+        if (currentSfxLoop.type == type) return true;
+        else return false;
+    }
 }

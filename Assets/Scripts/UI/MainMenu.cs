@@ -6,11 +6,15 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOption()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_MainButton);
+
         OptionPanel.Instance.Show();
     }
 
     public void OpenCredits()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_MainButton);
+
         credits.Show();
     }
 

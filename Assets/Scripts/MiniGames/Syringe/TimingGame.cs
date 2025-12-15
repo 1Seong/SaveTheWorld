@@ -94,9 +94,13 @@ public class TimingGame : MonoBehaviour
 
     void SuccessFeedback()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_SY_Success);
+
         ++savedCount;
         targetZoneImage.color = Color.green;
         bodyMat.color = Color.green;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_SY_Syringe);
 
         syringe.DOLocalMoveZ(syringe.transform.localPosition.z + syringeTargetDis, 0.8f).SetEase(Ease.OutExpo).OnComplete(() =>
         {
@@ -107,6 +111,8 @@ public class TimingGame : MonoBehaviour
 
     void FailFeedback()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_SY_Fail);
+
         targetZoneImage.color = Color.red;
         cameraTransform.DOShakePosition(0.3f, 0.1f, 20).OnComplete(() =>
         {

@@ -172,6 +172,8 @@ public class TVManager : MonoBehaviour
             yield return null;
         }
 
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_TVNext);
+
         NextDialogue(seq);
     }
 

@@ -131,13 +131,19 @@ public class NoteManager : MonoBehaviour, ISaveable
         noteUIGrid.DOLocalMoveY(-6.9f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
     }
 
-    public void OnInsertLetter(int type, int id)
+    public void OnInsertLetter(int type, int id, bool playSFX = true)
     {
         ++CompletedLetterCount[type];
         LetterInserted[id] = true;
 
+        if (playSFX)
+            AudioManager.Instance.PlaySfx(AudioType.SFX_Note_Letter);
+
         if (LetterCountGoal[type] <= CompletedLetterCount[type])
         {
+            if (playSFX)
+                AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_ShowBlurr);
+
             BlurrUnlockEvent?.Invoke((Item.Interactives)type);
             TargetImages[type].material.DOFloat(1f, "_DissolveStrength", 1.5f);
         }

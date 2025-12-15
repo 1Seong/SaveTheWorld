@@ -11,6 +11,9 @@ public class RoomLight : ToggleInteractives
     protected override void On()
     {
         isActing = true;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Light);
+
         localVolume.SetActive(true);
 
         var seq = DOTween.Sequence(lineEnd);
@@ -25,7 +28,10 @@ public class RoomLight : ToggleInteractives
     protected override void Off()
     {
         isActing = true;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Light);
         localVolume.SetActive(false);
+
         var seq = DOTween.Sequence(lineEnd);
         seq.Append(lineEnd.DOMoveY(lineEnd.transform.position.y+targetY, duration / 2f))
             .Append(lineEnd.DOMoveY(lineEnd.transform.position.y, duration / 2f).SetEase(Ease.OutElastic).OnComplete(() =>

@@ -140,6 +140,8 @@ public class DustCleaner : MonoBehaviour
 
     void End()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_J_End);
+
         whiteBackground.DOFade(1f, 3f).OnComplete(() =>
         {
             MiniGameManager.instance.GameEnd();

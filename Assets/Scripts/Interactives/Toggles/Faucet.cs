@@ -11,6 +11,8 @@ public class Faucet : ToggleInteractives
     {
         isActing = true;
 
+        AudioManager.Instance.LoopSfxOn(AudioType.SFX_Room_Sink);
+
         waterParticleObj.Play();
         waterTargetObj.SetActive(true);
         transform.DORotate(transform.rotation.eulerAngles + new Vector3(0f, -90f, 0f), 0.15f).SetEase(Ease.OutExpo).SetLoops(3).OnComplete(() =>
@@ -24,6 +26,8 @@ public class Faucet : ToggleInteractives
         if (otherFaucet.IsActive) return;
 
         isActing = true;
+
+        AudioManager.Instance.LoopSfxOff();
 
         waterParticleObj.Stop();
         transform.DORotate(transform.rotation.eulerAngles + new Vector3(0f, 90f, 0f), 0.15f).SetEase(Ease.OutExpo).SetLoops(3).OnComplete(() =>

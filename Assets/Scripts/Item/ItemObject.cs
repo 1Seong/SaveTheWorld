@@ -12,6 +12,8 @@ public class ItemObject : MonoBehaviour
     {
         if (data.id != Item.Items.FilledBottle && ItemManager.Instance.IsHolding) return;
 
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Item);
+
         ItemManager.Instance.SetCollected(data.id);
         CollectEvent?.Invoke(data, transform.position);
         Destroy(gameObject);
