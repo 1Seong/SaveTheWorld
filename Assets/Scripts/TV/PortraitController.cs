@@ -10,7 +10,8 @@ public class PortraitController : MonoBehaviour
     public Sprite GetSprite(string character)
     {
         // 예: "Portraits/Player/Smile"
-        string path = $"Assets/Portraits/{character}";
+        Debug.Log(character);
+        string path = $"Portraits/{character}";
         return Resources.Load<Sprite>(path);
     }
 
@@ -20,6 +21,7 @@ public class PortraitController : MonoBehaviour
         {
             leftImage.sprite = GetSprite(leftCharacter);
             leftImage.gameObject.SetActive(true);
+            leftImage.SetNativeSize();
         }
         else
         {
@@ -29,8 +31,12 @@ public class PortraitController : MonoBehaviour
 
         if (rightCharacter != "")
         {
-            rightImage.DOFade(1f, 0f);
+            rightImage.sprite = GetSprite(rightCharacter);
             rightImage.gameObject.SetActive(true);
+            rightImage.SetNativeSize();
+
+            if(rightCharacter == "mom_n_sister")
+                rightImage.rectTransform.localScale = Vector3.one;
         }
         else
         {
@@ -40,18 +46,18 @@ public class PortraitController : MonoBehaviour
 
         if (isLeftSpeaker == null) // narrative
         {
-            leftImage.color = new Color(1, 1, 1, hideAlpha);
-            rightImage.color = new Color(1, 1, 1, hideAlpha);
+            leftImage.color = Color.gray;
+            rightImage.color = Color.gray;
         }
         else if (isLeftSpeaker.Value) // left speaker
         {
             // 말하고 있으므로 강조 효과 예시 (원하는 스타일로 변경)
             leftImage.color = Color.white;
-            rightImage.color = new Color(1, 1, 1, hideAlpha);
+            rightImage.color = Color.gray;
         }
         else // right speaker
         {
-            leftImage.color = new Color(1, 1, 1, hideAlpha);
+            leftImage.color = Color.gray;
             rightImage.color = Color.white;
         }
     }
