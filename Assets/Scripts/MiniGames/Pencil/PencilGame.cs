@@ -8,6 +8,7 @@ public class PencilGame : MonoBehaviour
     public float[] fillAmounts;
     public float[] pencilScales;
     public float gameStartTime = 3.5f;
+    public float pencilGetWaitingTime = 0f;
     public float idleSfxThreshold = 0.4f;
 
     public Transform pencil;
@@ -17,6 +18,7 @@ public class PencilGame : MonoBehaviour
     public GameObject instruction;
     public GameObject sliderObject;
     public Transform cam;
+    public Animator boyAnim;
 
     private float currentValue = 0f;
     private int cnt = 0;
@@ -26,7 +28,7 @@ public class PencilGame : MonoBehaviour
 
     private void Start()
     {
-        init();
+        Invoke(nameof(GameStart), gameStartTime);
     }
 
     private void Update()
@@ -78,18 +80,21 @@ public class PencilGame : MonoBehaviour
 
                 // get pencil animation, and then
 
-                Invoke(nameof(gameEnd), 2f);
+                Invoke(nameof(gameEnd), pencilGetWaitingTime);
             });
         }
     }
 
     private void init()
     {
-        // child study - break pencil - cry
-        Invoke(nameof(gameStart), gameStartTime);
+        boyAnim.transform.DOKill();
+        boyAnim.transform.DOLocalMoveY(-2.9f, 0f);
+
+        boyAnim.SetTrigger("Start");
+        Invoke(nameof(GameStart), gameStartTime);
     }
 
-    private void gameStart()
+    public void GameStart()
     {
         pencil.localScale = new Vector3(1f, 1f, pencilScales[cnt]);
         pencil.gameObject.SetActive(true);
@@ -112,8 +117,11 @@ public class PencilGame : MonoBehaviour
         }
         else
         {
-            // child final animation : study - break pencil - cry
-            Invoke(nameof(showPencilCase), 3.5f);
+            boyAnim.transform.DOKill();
+            boyAnim.transform.DOLocalMoveY(-2.9f, 0f);
+
+            boyAnim.SetTrigger("Start");
+            Invoke(nameof(showPencilCase), gameStartTime);
         }
     }
 
