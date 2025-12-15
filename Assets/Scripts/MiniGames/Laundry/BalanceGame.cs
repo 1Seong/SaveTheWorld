@@ -9,6 +9,8 @@ public class BalanceGame : MonoBehaviour
     public float failAngle = 60f;
     public float controlStrengthStep = 0.1f;
 
+    public Sprite[] playerSprites;
+
     public Image background;
    
     float velocity = 0f;
@@ -93,6 +95,13 @@ public class BalanceGame : MonoBehaviour
 
         // 0~360 범위를 -180~180 범위로 변환
         if (tilt > 180f) tilt -= 360f;
+
+        if(Mathf.Abs(tilt) < failAngle * 0.3f)
+            player.GetComponent<SpriteRenderer>().sprite = playerSprites[0];
+        else if(Mathf.Abs(tilt) < failAngle * 0.6f)
+            player.GetComponent<SpriteRenderer>().sprite = playerSprites[1];
+        else
+            player.GetComponent<SpriteRenderer>().sprite = playerSprites[2];
 
         // 실패 판정
         if (Mathf.Abs(tilt) > failAngle)
