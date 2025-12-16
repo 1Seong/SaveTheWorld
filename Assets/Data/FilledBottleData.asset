@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: FilledBottleData
   m_EditorClassIdentifier: 
   id: 3
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 6f9d26601145be44e9ed6a004a2f87d3, type: 3}
+  targetScale: 1.2

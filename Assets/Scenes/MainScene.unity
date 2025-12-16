@@ -13459,7 +13459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f02b650ba1e3746872a4dd56e37fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTutorialCleared: 1
+  isTutorialCleared: 0
   stepNum: 1
   fullRaycastBlockImage: {fileID: 1091067301}
   roomRaycastBlockImage: {fileID: 903781935}
@@ -18982,12 +18982,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1701108686593427291, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701108686593427291, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701108686593427291, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.041821245
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701108686593427291, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.041821245
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701108686593427291, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.041821245
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701108686593427291, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -3.99
       objectReference: {fileID: 0}
     - target: {fileID: 1701108686593427291, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.87
+      value: 1.94
       objectReference: {fileID: 0}
     - target: {fileID: 2125454988033683817, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
       propertyPath: m_Transition
@@ -19361,6 +19381,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1376792051}
+    - target: {fileID: 6168313395501775985, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168313395501775985, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4ae064adde1c5b740baa9f3b273ea40c, type: 3}
     - target: {fileID: 6319069242087661885, guid: 7f072df4e6d7c1840b45a66942f277a3, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2529994
