@@ -42,7 +42,14 @@ public enum AudioType
 
     SFX_MG_Type,
 
-    SFX_End_Change, SFX_End_End
+    SFX_End_Change, SFX_End_End,
+
+    SFX_C_Bullet,
+    SFX_Room_Drawer,
+    SFX_Note_Show,
+    SFX_Tutorial_Fade,
+    SFX_Tutorial_Syringe,
+    SFX_Room_ZoomInOut
 }
 
 [System.Serializable]

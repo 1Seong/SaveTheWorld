@@ -21,6 +21,9 @@ public class Door : ToggleInteractives
     protected override void Off()
     {
         isActing = true;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Closet);
+
         transform.DORotate(transform.rotation.eulerAngles + new Vector3(0f, -targetRot, 0f), duration).SetEase(Ease.InOutCirc).OnComplete(() =>
         {
             isActing = false;

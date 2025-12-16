@@ -11,6 +11,9 @@ public class Drawer : ToggleInteractives
     protected override void On()
     {
         isActing = true;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Drawer);
+
         innerTransform.DOScaleY(targetScale, duration).SetEase(Ease.InOutCubic);
         transform.DOMoveY(transform.position.y + targetMove, duration).SetEase(Ease.InOutCubic).OnComplete(() =>
         {
@@ -21,6 +24,9 @@ public class Drawer : ToggleInteractives
     protected override void Off()
     {
         isActing = true;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_Drawer);
+
         innerTransform.DOScaleY(0f, duration).SetEase(Ease.InOutCubic);
         transform.DOMoveY(transform.position.y - targetMove, duration).SetEase(Ease.InOutCubic).OnComplete(() =>
         {

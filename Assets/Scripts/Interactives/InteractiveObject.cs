@@ -138,6 +138,8 @@ public class InteractiveObject : MonoBehaviour
 
         if (hasMiniGame)
         {
+            AudioManager.Instance.PlaySfx(AudioType.SFX_Room_ZoomInOut);
+
             Camera.main.transform.DOMove(res, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
             {
                 //ItemManager.Instance.ReturnFromCloseUpEvent += deactiveItems;

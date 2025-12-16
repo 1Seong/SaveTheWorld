@@ -138,6 +138,8 @@ public class TutorialManager : MonoBehaviour, ISaveable
     // activate right navigation button
     private void step1Enter()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Tutorial_Fade);
+
         step1TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step1TMP, 1f, step1FadeTime));
         background.gameObject.SetActive(true);
@@ -177,6 +179,8 @@ public class TutorialManager : MonoBehaviour, ISaveable
 
     private void step2FadeIn()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Tutorial_Fade);
+
         step2TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step2TMP, 1f, step2FadeTime));
         background.gameObject.SetActive(true);
@@ -216,6 +220,8 @@ public class TutorialManager : MonoBehaviour, ISaveable
 
     private void step3FadeIn()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Tutorial_Fade);
+
         background.gameObject.SetActive(true);
         //background.material.DOFloat(0f, "_DissolveStrength", step3FadeTime);
         background.DOFade(1f, step3FadeTime).OnComplete(() =>
@@ -296,6 +302,8 @@ public class TutorialManager : MonoBehaviour, ISaveable
 
     private void step4FadeIn()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Tutorial_Fade);
+
         doorHighlightImage.SetActive(false);
         step4TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step4TMP, 1f, step4FadeTime));
@@ -386,6 +394,8 @@ public class TutorialManager : MonoBehaviour, ISaveable
         noteButton.OnClick();
         syringeHighlightImage.SetActive(true);
 
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Tutorial_Syringe);
+
         FadeParticleAlphaTween(syringeParticle, 1f, 0f, 1f).SetLoops(6, LoopType.Yoyo).OnComplete(() =>
         {
             syringeHighlightImage.SetActive(false);
@@ -395,6 +405,8 @@ public class TutorialManager : MonoBehaviour, ISaveable
 
     private void step5FadeIn()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Tutorial_Fade);
+
         step5TMP.gameObject.SetActive(true);
         StartCoroutine(FadeTMP(step5TMP, 1f, step5FadeTime));
         background.gameObject.SetActive(true);

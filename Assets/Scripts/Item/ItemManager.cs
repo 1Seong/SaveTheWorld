@@ -352,6 +352,8 @@ public class ItemManager : MonoBehaviour, ISaveable
 
     public void ReturnFromCloseUpOnClick()
     {
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Room_ZoomInOut);
+
         Camera.main.transform.DOMove(Vector3.zero, 0.6f).SetUpdate(true).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             ReturnFromCloseUpEvent?.Invoke();

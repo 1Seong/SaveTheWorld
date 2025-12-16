@@ -217,6 +217,8 @@ public class EndingManager : MonoBehaviour
                 yield return null;
             }
 
+            AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_TVNext);
+
             playerTextTail.gameObject.SetActive(false);
             godTextTail.SetActive(false);
             wifeTextTail.SetActive(false);

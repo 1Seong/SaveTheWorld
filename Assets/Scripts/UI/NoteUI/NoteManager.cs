@@ -120,6 +120,9 @@ public class NoteManager : MonoBehaviour, ISaveable
     public void Show()
     {
         isActive = true;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Note_Show);
+
         noteUIParent.DOAnchorPosY(0f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
         noteUIGrid.DOLocalMoveY(0f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
     }
@@ -127,6 +130,9 @@ public class NoteManager : MonoBehaviour, ISaveable
     public void Hide()
     {
         isActive = false;
+
+        AudioManager.Instance.PlaySfx(AudioType.SFX_Note_Show);
+
         noteUIParent.DOAnchorPosY(-403f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
         noteUIGrid.DOLocalMoveY(-6.9f, 0.7f).SetUpdate(true).SetEase(Ease.OutExpo);
     }

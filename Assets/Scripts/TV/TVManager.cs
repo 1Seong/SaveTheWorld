@@ -145,6 +145,8 @@ public class TVManager : MonoBehaviour
 
         bool skippedTyping = false;
 
+        AudioManager.Instance.LoopSfxOn(AudioType.SFX_MG_Type);
+
         for (int i = 0; i < line.Length; i++)
         {
             if (skipPressed)
@@ -156,6 +158,8 @@ public class TVManager : MonoBehaviour
             dialogueText.text += line[i];
             yield return new WaitForSeconds(textAppendTime);
         }
+
+        AudioManager.Instance.LoopSfxOff();
 
         if (skippedTyping)
             dialogueText.text = line;
