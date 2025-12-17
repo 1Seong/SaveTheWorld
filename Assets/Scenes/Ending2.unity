@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 156030152}
   - component: {fileID: 156030151}
   - component: {fileID: 156030154}
+  - component: {fileID: 156030155}
   m_Layer: 0
   m_Name: MiniGameCamera
   m_TagString: Untagged
@@ -364,6 +365,20 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 652072069}
+--- !u!114 &156030155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156030150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2761b5f19e9a2345801a4bf7b91c5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiCamera: {fileID: 0}
+  targetAspect: 1.7777778
 --- !u!1 &251991252
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +447,7 @@ Canvas:
   m_GameObject: {fileID: 251991252}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 156030152}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

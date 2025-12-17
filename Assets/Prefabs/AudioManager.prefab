@@ -265,6 +265,30 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c1da3b9517c980b41969b584cd553b9f, type: 3}
     isLoop: 0
     isBgm: 0
+  - type: 53
+    clip: {fileID: 8300000, guid: 5227971a16d3f47459e6b0a81e96a38f, type: 3}
+    isLoop: 0
+    isBgm: 0
+  - type: 54
+    clip: {fileID: 8300000, guid: e26feb0dbbac3604987320ec13ec4b60, type: 3}
+    isLoop: 0
+    isBgm: 0
+  - type: 55
+    clip: {fileID: 8300000, guid: 3bfd5ef78f382df458396f8f783fdb59, type: 3}
+    isLoop: 0
+    isBgm: 0
+  - type: 56
+    clip: {fileID: 8300000, guid: e14e29d07208b3447b8b824155ed2bc5, type: 3}
+    isLoop: 0
+    isBgm: 0
+  - type: 57
+    clip: {fileID: 8300000, guid: 79780227c47b0534d9c5b4fb9e742920, type: 3}
+    isLoop: 0
+    isBgm: 0
+  - type: 58
+    clip: {fileID: 8300000, guid: ed82fd743954bbe4fa6fb3556fdbfafb, type: 3}
+    isLoop: 0
+    isBgm: 0
 --- !u!82 &6328921888147434632
 AudioSource:
   m_ObjectHideFlags: 0

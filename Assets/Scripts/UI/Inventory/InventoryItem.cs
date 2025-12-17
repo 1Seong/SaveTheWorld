@@ -35,11 +35,11 @@ public class InventoryItem : MonoBehaviour
     {
         AudioManager.Instance.PlaySfx(AudioType.SFX_Etc_InvItemOn);
 
-        var screenPosC = RectTransformUtility.WorldToScreenPoint(null, item.position);
+        var screenPosC = RectTransformUtility.WorldToScreenPoint(Camera.main, item.position);
         
         Vector2 localPosC;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            GetComponentInParent<Canvas>().transform as RectTransform, screenPosC, null, out localPosC);
+            GetComponentInParent<Canvas>().transform as RectTransform, screenPosC, Camera.main, out localPosC);
 
         item.gameObject.SetActive(false);
         itemTemp = Instantiate(item, NoteManager.Instance.transform);

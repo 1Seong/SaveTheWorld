@@ -17,7 +17,7 @@ public class FollowMouse : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
             Input.mousePosition,
-            null,
+            Camera.main,
             out pos
         );
 

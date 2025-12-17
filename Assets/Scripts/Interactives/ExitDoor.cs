@@ -25,17 +25,19 @@ public class ExitDoor : MonoBehaviour
 
         if (isUnlocked)
         {
-            ItemManager.Instance.gameObject.SetActive(false);
+            //ItemManager.Instance.gameObject.SetActive(false);
             NoteManager.Instance.TurnOff();
-            SceneTransition.Instance.WhiteBackground.gameObject.SetActive(true);
+            ItemManager.Instance.WhiteBackground.gameObject.SetActive(true);
 
-            SceneTransition.Instance.WhiteBackground.DOFade(1f, 4f).OnComplete(() =>
+            ItemManager.Instance.WhiteBackground.DOFade(1f, 4f).OnComplete(() =>
             {
+                //ItemManager.Instance.gameObject.SetActive(false);
+
                 AudioManager.Instance.PlayBgm(AudioType.BGM_Ending);
 
                 SaveManager.Instance.SaveAll();
                 SceneManager.LoadScene("Ending");
-                SceneTransition.Instance.WhiteBackground.DOFade(0f, 4f);
+                //SceneTransition.Instance.WhiteBackground.DOFade(0f, 4f);
             });
         }
         else

@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour, ISaveable
             DontDestroyOnLoad(gameObject);
         }
 
+
+        Screen.SetResolution(2560, 1440, FullScreenMode.Windowed);
         SaveManager.Instance.Register(this);
 
         DOTween.SetTweensCapacity(200, 50);

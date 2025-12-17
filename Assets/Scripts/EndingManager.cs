@@ -57,6 +57,8 @@ public class EndingManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        whiteBackground.DOFade(1f, 0f);
+
         StartCoroutine(EndingSequenceCoroutine());
     }
 
@@ -73,6 +75,9 @@ public class EndingManager : MonoBehaviour
         // wait for some seconds
         // player walk right(3.2), door and God move left(-1.8)
         // All stop moving, God background fade
+
+        whiteBackground.DOFade(0f, 4f);
+
         yield return new WaitForSeconds(step1WaitTime + 1f);
 
         playerAnim.SetBool("Walk", true);

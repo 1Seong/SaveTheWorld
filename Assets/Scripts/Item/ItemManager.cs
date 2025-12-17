@@ -25,6 +25,7 @@ public class ItemManager : MonoBehaviour, ISaveable
     [SerializeField] GameObject RightButton;
     [SerializeField] GameObject UpButton;
     [SerializeField] GameObject ReturnFromCloseUpButton;
+    public Image WhiteBackground;
 
     [Header("# Inventory Item")]
     [SerializeField] private GameObject inventoryItemPrefab;
@@ -278,7 +279,7 @@ public class ItemManager : MonoBehaviour, ISaveable
         // screen pos to canvas pos
         Vector2 localPos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            GetComponent<RectTransform>(), screenPos, null, out localPos);
+            GetComponent<RectTransform>(), screenPos, Camera.main, out localPos);
 
         itemTemp.anchoredPosition = localPos;
         //Debug.Log(localPos.ToString());
@@ -287,11 +288,11 @@ public class ItemManager : MonoBehaviour, ISaveable
         itemUi.gameObject.SetActive(true);
         yield return new WaitForEndOfFrame(); // must wait for the update so that we can get the element position of vertical layout group
 
-        var screenPosC = RectTransformUtility.WorldToScreenPoint(null, item.position);
+        var screenPosC = RectTransformUtility.WorldToScreenPoint(Camera.main, item.position);
         //Debug.Log(screenPosC.ToString());
         Vector2 localPosC;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            GetComponent<RectTransform>(), screenPosC, null, out localPosC);
+            GetComponent<RectTransform>(), screenPosC, Camera.main, out localPosC);
         //Debug.Log(localPosC.ToString());
 
         itemTemp.DOAnchorPos3D(localPosC, 0.5f).SetUpdate(true).SetEase(Ease.OutExpo).OnComplete(() =>
