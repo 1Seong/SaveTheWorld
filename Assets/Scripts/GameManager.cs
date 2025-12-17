@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour, ISaveable
         }
 
 
-        Screen.SetResolution(2560, 1440, FullScreenMode.Windowed);
+        //Screen.SetResolution(2560, 1440, FullScreenMode.Windowed);
         SaveManager.Instance.Register(this);
 
         DOTween.SetTweensCapacity(200, 50);

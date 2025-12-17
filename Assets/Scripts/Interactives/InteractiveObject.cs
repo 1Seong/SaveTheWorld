@@ -27,8 +27,7 @@ public class InteractiveObject : MonoBehaviour
     [SerializeField] private bool hasMiniGame = false;
     [SerializeField] private string sceneName;
 
-
-    private void Start()
+    private void Awake()
     {
         if (hasBlurr)
         {
@@ -38,11 +37,6 @@ public class InteractiveObject : MonoBehaviour
         }
         else
             GetComponent<Button>().interactable = true;
-
-        /*
-        if(hasDropItem && Item.IsDropped(typeId))
-            DropInit();
-        */
     }
 
     private void OnDestroy()
