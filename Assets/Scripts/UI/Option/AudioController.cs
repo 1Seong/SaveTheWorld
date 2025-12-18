@@ -9,14 +9,6 @@ public class AudioController : MonoBehaviour
     [SerializeField] float masterVol = 0f, bgmVol = 0f, sfxVol = 0f;
     public bool masterMute = false, bgmMute = false, sfxMute = false;
 
-    private void Start()
-    {
-        m_AudioMixer.SetFloat("Master", 0f);
-        m_AudioMixer.SetFloat("BGM", 0f);
-        m_AudioMixer.SetFloat("SFX", 0f);
-        m_AudioMixer.SetFloat("SFX_Loop", 0f);
-    }
-
     public void SetMasterVolume(float volume)
     {
         masterVol = Mathf.Log10(volume) * 20;

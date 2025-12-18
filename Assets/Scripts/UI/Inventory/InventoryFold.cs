@@ -87,6 +87,8 @@ public class InventoryFold : MonoBehaviour
 
     public void OnButtonClick()
     {
+        if (IsActing) return;
+
         IsFolded = !IsFolded;
     }
 

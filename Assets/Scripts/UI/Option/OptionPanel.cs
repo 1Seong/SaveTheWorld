@@ -1,11 +1,12 @@
 using DG.Tweening;
-using System;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class OptionPanel : MonoBehaviour
 {
+    [SerializeField] private AudioMixer mixer;
     [SerializeField] private Image background;
     [SerializeField] private GameObject panel;
     [SerializeField] private bool isActive = false;
@@ -46,6 +47,11 @@ public class OptionPanel : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        mixer.SetFloat("Master", 0f);
+        mixer.SetFloat("BGM", 0f);
+        mixer.SetFloat("SFX", 0f);
+        mixer.SetFloat("SFX_Loop", 0f);
     }
 
     private void Update()

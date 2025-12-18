@@ -9188,6 +9188,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8553357616355850101, guid: b6355472c149ede4ca35052e54482d24, type: 3}
+      propertyPath: mixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 941915ecd90ed274682f4d3463a8c021, type: 2}
     - target: {fileID: 8793259011438332776, guid: b6355472c149ede4ca35052e54482d24, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
