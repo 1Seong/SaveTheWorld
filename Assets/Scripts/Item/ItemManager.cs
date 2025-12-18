@@ -205,6 +205,8 @@ public class ItemManager : MonoBehaviour, ISaveable
         
         if(IsHolding)
         {
+            bool letterMatched = false;
+
             var enumName = Enum.GetName(typeof(Item.Items), SelectedItem.Data.id); // get enum name
 
             if (Input.GetMouseButtonDown(0))
@@ -224,7 +226,7 @@ public class ItemManager : MonoBehaviour, ISaveable
                         var target = result.gameObject.GetComponent<LetterTarget>();
                         if(target != null)
                         {
-                            target.OnInteract(SelectedItem.Data);
+                            letterMatched = target.OnInteract(SelectedItem.Data);
                             break;
                         }
                     }
@@ -245,6 +247,9 @@ public class ItemManager : MonoBehaviour, ISaveable
                         }
                     }
                 }
+
+                if (!TutorialManager.Instance.isTutorialCleared && !letterMatched)
+                    return;
 
                 IsHolding = false;
             }

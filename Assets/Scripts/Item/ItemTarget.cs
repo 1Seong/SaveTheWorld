@@ -12,15 +12,17 @@ public class ItemTarget : MonoBehaviour
     [Header("# Fly")]
     [SerializeField] private Button letter;
 
-    public void OnInteract(ItemData data)
+    public bool OnInteract(ItemData data)
     {
         if(id == data.id)
         {
             itemMatched();
             Debug.Log("Item Matched");
             ItemManager.Instance.RemoveItem();
+
+            return true;
         }
-        
+        return false;
     }
 
     protected virtual void itemMatched()
