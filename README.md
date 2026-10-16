@@ -1,69 +1,54 @@
 # Save The World
 
-## 1. 개요
+![Save The World 플레이 화면](https://1seong.github.io/assets/projects/stw/room.png)
 
-* 장르: 포인트 앤 클릭
-* 플랫폼: Windows
-* 개발 환경 / 엔진: Unity
-* 빌드 버전: v1.0.0
+## 프로젝트 개요
 
----
+| 항목 | 내용 |
+| --- | --- |
+| 개발 기간 | 2025.06 ~ 2025.12 |
+| 개발 인원 | 3인 팀 |
+| 장르 | 포인트 앤 클릭 / 룸 이스케이프 |
+| 플랫폼 | PC(Windows) |
 
-## 2. 실행 방법
+## 게임 소개
 
-### Windows
+Save The World는 6·25 전쟁유공자의 삶을 회고하는 스토리 중심 포인트 앤 클릭 게임입니다.
 
-1. 압축 파일 해제
-2. `SaveTheWorld.exe` 실행
+플레이어는 1인칭 시점에서 방을 탐색하고 아이템을 수집·사용하며, 여러 미니게임과 회상 장면을 통해 이야기를 따라갑니다. 탐색과 퍼즐, 대화 및 비주얼 연출을 연결해 인물의 삶을 경험하도록 구성했습니다.
 
----
+## 플레이 및 관련 링크
 
-## 3. 조작 방법
+| 항목 | 링크 |
+| --- | --- |
+| 게임 빌드 / 플레이 | [게임 빌드](https://drive.google.com/drive/u/0/folders/1U_Dh2vRMxM6RLzvLdlB24sk-XuiHqxuw) |
+| 시연 영상 / 트레일러 | [트레일러 보기](https://1seong.github.io/assets/projects/stw/trailer.mp4)|
+| 팀 문서 허브 | [프로젝트 문서](https://drive.google.com/drive/u/0/folders/1R1nXdQBDilDXkxfdgRZK6MDpsjeSJuxS) |
 
-* 마우스와 키보드 사용
+**실행 방법:** 게임 빌드를 내려받아 압축을 해제한 뒤 `SaveTheWorld.exe`를 실행합니다. 마우스와 키보드를 사용합니다. 메인 메뉴로 이동하거나 엔딩에 도달하면 자동 저장되며, 새 게임을 시작하면 진행 상태가 초기화됩니다.
 
----
+## 팀 구성 및 역할
 
-## 4. 저장 데이터
+| 팀원 | 역할 |
+| --- | --- |
+| 김동우 | 기획, PM, Sound Manager |
+| 최성원 | Programmer, Graphic Art |
 
-* 저장 위치: C:\Users\<사용자이름>\AppData\LocalLow\SaveTheWorld\SaveTheWorld\
 
-* 자동 저장 여부: "옵션" -> "메인메뉴"로 이동할 때, 그리고 "엔딩" 장면으로 갈 때 자동 저장
 
-* 초기화 방법: "메인메뉴"에서 "새 게임 시작" 하기, 또는 세이브파일 삭제
+## 기술 스택
 
----
+| 구분 | 사용 기술 |
+| --- | --- |
+| 엔진 / 언어 / 아키텍처 | Unity, C# |
+| 라이브러리 / 서비스 | Unity Shader Graph |
+| 협업 도구 | Git, Google Drive |
 
-## 5. 업데이트 이력
+## 샘플 코드
 
-* v1.0.0
+[핵심 구현 및 샘플 코드 보기](portfolio/README.md)
 
-  * 최초 배포
+## 크레딧 및 이용 안내
 
-* v1.0.1
+크레딧은 게임 내 안내를 참고합니다. 본 게임의 수정 및 재배포는 금지됩니다.
 
-  * 튜토리얼에서, 인벤토리의 글자를 클릭한 상황에서, 의도하지 않은 곳 클릭 시 진행이 막히던 문제 수정
-
-* v1.0.2
-
-  * 음량 설정이 화면 넘어갈 때 유지되지 않던 문제 수정
-  * 아이템창 접기 및 펴기를 계속 반복 수행할 시 UI가 깨지는 문제 수정
-
----
-
-## 6. 크레딧
-
-* 인게임 크레딧 참조
-
----
-
-## 7. 라이선스 및 이용 안내
-
-* 본 게임은 수정 및 재배포를 금지합니다.
-
----
-
-## 8. 문의
-
-* 이메일: qwik0102@gmail.com
-* GitHub: https://github.com/1Seong/SaveTheWorld
