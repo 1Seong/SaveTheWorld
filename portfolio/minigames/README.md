@@ -10,11 +10,13 @@ flowchart LR
   B --> C["개별 규칙 판정"]
   C --> D["GameEnd · 중복 종료 차단"]
   D --> E["페이드·결과 텍스트"]
-  E --> F["완료 이벤트"]
+  E --> F["Observer · 완료 이벤트"]
   F --> G["메인 씬 복귀"]
 ```
 
 **MiniGameManager:** 안내·시작·종료·결과 표시·복귀를 공통 관리합니다. **TimingGame:** 주사기 타이밍을 판정합니다. **PathGenerator · SewingControl:** 재봉틀 경로와 경계 이탈을 판단합니다. 개별 게임은 공통 매니저의 플레이 상태를 확인하고 종료를 요청합니다.
+
+완료 이벤트의 Observer 구조로 결과 처리와 보상 수신자를 분리합니다. 공통 매니저를 사용한다는 이유만으로 Template Method나 State 객체 패턴으로 분류하지는 않습니다.
 
 ```csharp
 private bool completionSent;
@@ -123,6 +125,7 @@ public bool IsInTheRoad(float x, float y)
 
 - 원본: `Assets/Scripts/MiniGameManager.cs`, `MiniGames/Syringe/TimingGame.cs`, `MiniGames/Sewing/PathGenerator.cs`·`SewingControl.cs`. 기준 커밋: `8a05e4251547a6c7cdecbcd1f97b84af051603eb`.
 - 공통 매니저는 GameEnd(string[]) → typeWrite → returnToMain 흐름을 Finish 코루틴으로 합쳤습니다.
+- `completionSent`의 중복 종료 방지와 `CancelInvoke`·`StopAllCoroutines`는 발췌를 안전하게 읽도록 보완한 처리이며, 기준 원본에는 없습니다. 원본 OnDisable은 머티리얼 상태와 instance를 정리합니다.
 - GameEnd(int), showInstruction·play·typeWrite의 본문과 instance 설정은 원본 의존성입니다. 입력 스킵·반복 횟수·타이핑 사운드·결과 페이드는 생략했습니다.
 - 이동 바·주사기·카메라 연출, 다음 라운드의 속도·구간 폭 조절은 원본 피드백 함수와 ResetGame이 담당합니다.
 - 재봉틀 미니게임은 제어점 생성·손 조작·바늘 이동·LineRenderer 표시를 생략했습니다.
