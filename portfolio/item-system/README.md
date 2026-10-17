@@ -7,16 +7,18 @@
 **Type Object:** 월드 아이템과 인벤토리가 아이템 정의 에셋을 참조합니다. **Observer:** 습득·해금·미니게임 완료를 이벤트로 알리고 각 수신자가 자기 상태만 갱신합니다.
 
 ```mermaid
+%%{init: {"htmlLabels": false, "themeVariables": {"fontFamily": "Arial, sans-serif"}, "flowchart": {"padding": 20, "diagramPadding": 20}, "sequence": {"diagramMarginX": 24, "diagramMarginY": 16, "wrap": true}}}%%
 classDiagram
   ItemObject --> ItemData : 월드에 배치한 아이템의 정의
   InventoryItem --> ItemData : 보관 아이템의 정의
   ItemData : id
   ItemData : sprite
   ItemData : targetScale
-  note for ItemData "공유 정의와 실행 중 인벤토리 상태 분리"
+  note for ItemData "공유 아이템 정의와 개별 상태 분리"
 ```
 
 ```mermaid
+%%{init: {"htmlLabels": false, "themeVariables": {"fontFamily": "Arial, sans-serif"}, "flowchart": {"padding": 20, "diagramPadding": 20}, "sequence": {"diagramMarginX": 24, "diagramMarginY": 16, "wrap": true}}}%%
 sequenceDiagram
   participant O as ItemObject
   participant M as ItemManager
