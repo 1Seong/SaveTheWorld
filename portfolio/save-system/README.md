@@ -4,6 +4,20 @@
 
 ## 코드
 
+```mermaid
+sequenceDiagram
+  participant T as ISaveable 구현체
+  participant M as SaveManager
+  participant F as 로컬 저장 파일
+  T->>M: Awake에서 Register
+  M->>T: Save 요청
+  T-->>M: 시스템별 JSON
+  M->>F: 키별 JSON을 묶어 암호화 저장
+  F-->>M: 복원할 파일
+  M->>T: SaveKey에 맞는 JSON으로 Load
+  T->>T: 자기 상태·진행 조건 복원
+```
+
 **ISaveable:** 시스템별 저장 키·직렬화·복원 계약입니다. **SaveManager:** 등록된 대상만 순회해 데이터를 파일로 묶습니다. **RoomInitializer:** 방 시작 시 복원을 요청합니다. **ItemManager · GameManager · NoteManager:** 각자의 상태를 저장·복원합니다. **SecureStorage:** 로컬 파일 암·복호화를 담당합니다.
 
 ```csharp

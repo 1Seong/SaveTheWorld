@@ -4,6 +4,21 @@
 
 ## 코드
 
+```mermaid
+sequenceDiagram
+  participant O as ItemObject
+  participant M as ItemManager
+  participant T as ItemTarget
+  participant R as 보상·해금 구독자
+  O->>M: CollectEvent
+  M->>M: 인벤토리 항목 생성
+  M->>T: 선택 아이템으로 상호작용
+  T->>T: 아이템 ID 일치 검사
+  T->>R: itemMatched
+  T->>M: 사용 아이템 소비
+  R->>R: 진행 기록·보상 공개
+```
+
 **ItemData · ItemObject · ItemManager:** 아이템 정의와 습득·인벤토리를 연결합니다. **ItemTarget:** ID로 사용 대상을 판정합니다. **NoteManager · InteractiveObject:** 아이템 사용의 결과를 보상과 오브젝트 해금으로 연결합니다.
 
 ```csharp
