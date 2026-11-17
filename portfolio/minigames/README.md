@@ -2,6 +2,12 @@
 
 **담당자:** 최성원 — 미니게임 진행·결과·복귀 구조 및 개별 게임 구현
 
+안내부터 결과 표시·방 복귀까지 공통 매니저에 두고, 주사기 타이밍과 재봉틀 경로 이탈의 판정은 각 게임에서 처리합니다.
+
+- **발췌** [공통 종료와 방 복귀](#공통-종료와-방-복귀) · [주사기 타이밍 판정](#주사기-타이밍-판정) · [재봉틀 경로 이탈 판정](#재봉틀-경로-이탈-판정)
+- **원본** [공통 종료 처리](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/MiniGameManager.cs#L98) · [주사기 타이밍](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/MiniGames/Syringe/TimingGame.cs#L76) · [재봉틀 경계 검사 호출](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/MiniGames/Sewing/SewingControl.cs#L320)
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 ```mermaid
@@ -18,6 +24,8 @@ flowchart LR
 **MiniGameManager:** 안내·시작·종료·결과 표시·복귀를 공통 관리합니다. **TimingGame:** 주사기 타이밍을 판정합니다. **PathGenerator · SewingControl:** 재봉틀 경로와 경계 이탈을 판단합니다. 개별 게임은 공통 매니저의 플레이 상태를 확인하고 종료를 요청합니다.
 
 완료 이벤트의 Observer 구조로 결과 처리와 보상 수신자를 분리합니다. 공통 매니저를 사용한다는 이유만으로 Template Method나 State 객체 패턴으로 분류하지는 않습니다.
+
+### 공통 종료와 방 복귀
 
 ```csharp
 private bool completionSent;
@@ -58,6 +66,8 @@ private void OnDisable()
 }
 ```
 
+### 주사기 타이밍 판정
+
 ```csharp
 // TimingGame.CheckTiming: 대상 구간에 타이밍 바가 들어왔는지 판정
 private void CheckTiming()
@@ -89,6 +99,8 @@ private void ShowTimingResult()
     });
 }
 ```
+
+### 재봉틀 경로 이탈 판정
 
 ```csharp
 // PathGenerator: 이웃 제어점 네 개로 재봉 경로의 곡선 위치 계산

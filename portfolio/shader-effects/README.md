@@ -2,11 +2,17 @@
 
 **담당자:** 최성원 — 픽셀 렌더링·깊이 합성 및 물 반사 연출 구현
 
+픽셀 카메라의 저해상도 색상·깊이를 합성하고, 물 반사는 별도 카메라의 화면을 뒤집어 수면 UV로 왜곡합니다. 각 그래프 연결을 HLSL 의사코드로 옮겼습니다.
+
+- **발췌** [픽셀 렌더링과 가림 처리](#픽셀-렌더링과-가림-처리) · [물 반사와 수면 왜곡](#물-반사와-수면-왜곡)
+- **원본** [픽셀 합성 그래프](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Shaders/Pixel/PixelEffect.shadergraph) · [물 반사 그래프](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Shaders/Water.shadergraph)
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 **PixelEffect.shadergraph:** 픽셀 카메라의 저해상도 색상과 깊이를 합성합니다. **Water.shadergraph:** WaterCamera의 화면을 뒤집어 읽고 수면 텍스처로 UV를 왜곡합니다. 아래 코드는 원본 그래프 연결을 HLSL 형태로 재구성한 **설명용 의사코드**이며, 원본 HLSL 파일이나 그대로 실행하는 셰이더가 아닙니다.
 
-**픽셀 렌더링과 가림 처리**
+### 픽셀 렌더링과 가림 처리
 
 ```mermaid
 %%{init: {"htmlLabels": false, "themeVariables": {"fontFamily": "Arial, sans-serif"}, "flowchart": {"padding": 20, "diagramPadding": 20}, "sequence": {"diagramMarginX": 24, "diagramMarginY": 16, "wrap": true}}}%%
@@ -46,7 +52,7 @@ float alpha = saturate(ceil(center + correction - SceneDepth(uv)));
 float3 color = SamplePixelColor(uv).rgb;
 ```
 
-**물 반사와 수면 왜곡**
+### 물 반사와 수면 왜곡
 
 ```mermaid
 %%{init: {"htmlLabels": false, "themeVariables": {"fontFamily": "Arial, sans-serif"}, "flowchart": {"padding": 20, "diagramPadding": 20}, "sequence": {"diagramMarginX": 24, "diagramMarginY": 16, "wrap": true}}}%%

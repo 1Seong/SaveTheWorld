@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// 창 크기가 바뀌면 기본 16:9 화면을 중앙에 맞추고 남는 영역에 여백을 둡니다.
+// UI 카메라가 지정되어 있으면 같은 뷰포트 영역을 적용합니다.
 [RequireComponent(typeof(Camera))]
 public class AspectRatioKeeper : MonoBehaviour
 {
@@ -33,7 +35,7 @@ public class AspectRatioKeeper : MonoBehaviour
 
         if (scale < 1.0f)
         {
-            // ���Ʒ� ����
+            // 위아래 여백
             rect = new Rect(
                 0,
                 (1 - scale) / 2,
@@ -43,7 +45,7 @@ public class AspectRatioKeeper : MonoBehaviour
         }
         else
         {
-            // �¿� ����
+            // 좌우 여백
             float invScale = 1 / scale;
             rect = new Rect(
                 (1 - invScale) / 2,

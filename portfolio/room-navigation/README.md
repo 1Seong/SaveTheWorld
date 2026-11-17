@@ -2,6 +2,12 @@
 
 **담당자:** 최성원 — 방 시점 전환과 카메라 연출 구현
 
+네 벽면과 천장 사이의 카메라 전환을 처리하고, 트윈 중 입력을 잠근 뒤 완료 시 다시 받습니다.
+
+- **발췌** [시점 전환과 트윈 완료 처리](#시점-전환과-트윈-완료-처리)
+- **원본** [방 시점 전환](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/MainStage/StageManager.cs#L69)
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 ```mermaid
@@ -21,6 +27,8 @@ sequenceDiagram
 ```
 
 **StageManager:** 네 벽면과 천장 사이의 시점을 전환합니다. **GameManager:** 회전 중 중복 입력을 막는 상태를 보관합니다. **RoomPlane:** 면별 상호작용 묶음을 켜고 끄는 API를 제공합니다.
+
+### 시점 전환과 트윈 완료 처리
 
 ```csharp
 private enum ViewChange { Left, Right, Ceiling, ReturnToSide }

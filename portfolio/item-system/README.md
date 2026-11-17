@@ -2,6 +2,12 @@
 
 **담당자:** 최성원 — 아이템 데이터·인벤토리·사용 대상·보상·해금 연동
 
+아이템 정의 에셋을 습득과 인벤토리에서 공유하고, 대상의 요구 ID와 일치하면 보상·해금 흐름으로 연결합니다.
+
+- **발췌** [아이템 정의와 습득](#아이템-정의와-습득) · [선택 아이템과 사용 대상 검사](#선택-아이템과-사용-대상-검사)
+- **원본** [아이템 습득 이벤트](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/Item/ItemObject.cs#L9) · [사용 대상 판정](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/Item/ItemTarget.cs#L15)
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 **Type Object:** 월드 아이템과 인벤토리가 아이템 정의 에셋을 참조합니다. **Observer:** 습득·해금·미니게임 완료를 이벤트로 알리고 각 수신자가 자기 상태만 갱신합니다.
@@ -34,6 +40,8 @@ sequenceDiagram
 ```
 
 **ItemData · ItemObject · ItemManager:** 아이템 정의와 습득·인벤토리를 연결합니다. **ItemTarget:** ID로 사용 대상을 판정합니다. **NoteManager · InteractiveObject:** 아이템 사용의 결과를 보상과 오브젝트 해금으로 연결합니다.
+
+### 아이템 정의와 습득
 
 ```csharp
 [CreateAssetMenu(menuName = "Items/ItemData")]
@@ -68,6 +76,8 @@ private void AddItem(ItemData data, Vector3 startPosition)
 }
 ```
 
+### 선택 아이템과 사용 대상 검사
+
 ```csharp
 // ItemManager.Update의 월드 오브젝트 분기: 클릭 위치에서 사용 대상 탐색
 private void UseSelectedItem()
@@ -93,6 +103,8 @@ public bool OnInteract(ItemData data)
     return true;
 }
 ```
+
+### 보상과 해금 이벤트
 
 ```csharp
 // NoteManager: 글자 조각을 완성하면 해당 오브젝트의 해금 이벤트 전달

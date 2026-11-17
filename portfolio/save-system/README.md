@@ -2,6 +2,12 @@
 
 **담당자:** 최성원 — 저장 대상 등록과 각 시스템의 상태 복원 구조 구현
 
+저장 매니저가 등록된 대상을 `ISaveable`로 순회하고, 각 시스템은 자기 키와 데이터로 진행 상태를 복원합니다.
+
+- **발췌** [저장 대상 등록과 파일 처리](#저장-대상-등록과-파일-처리) · [게임 상태 복원](#게임-상태-복원)
+- **원본** [등록 대상 저장](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/SaveSystem/SaveManager.cs#L47) · [진행 상태 읽기](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/SaveSystem/SaveManager.cs#L69)
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 ```mermaid
@@ -20,6 +26,8 @@ sequenceDiagram
 ```
 
 **ISaveable:** 시스템별 저장 키·직렬화·복원 계약입니다. **SaveManager:** 등록된 대상만 순회해 데이터를 파일로 묶습니다. **RoomInitializer:** 방 시작 시 복원을 요청합니다. **ItemManager · GameManager · NoteManager:** 각자의 상태를 저장·복원합니다. **SecureStorage:** 로컬 파일 암·복호화를 담당합니다.
+
+### 저장 대상 등록과 파일 처리
 
 ```csharp
 // 파일명은 ISavable.cs지만 실제 인터페이스 이름은 ISaveable이다.
@@ -75,6 +83,8 @@ public void LoadAll()
         target.Load(byKey.TryGetValue(target.SaveKey, out var json) ? json : "");
 }
 ```
+
+### 게임 상태 복원
 
 ```csharp
 // GameManager: 자신이 저장할 내용을 ISaveable 계약으로 제공

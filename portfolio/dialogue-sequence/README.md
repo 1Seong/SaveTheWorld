@@ -2,9 +2,17 @@
 
 **담당자:** 최성원 — 대사 데이터 분리와 초상화·장면 연출 구현
 
+CSV의 발화자·초상화·대사를 분리해 읽고, 회상 장면의 화자 강조와 스킵 가능한 타이핑에 연결합니다.
+
+- **발췌** [CSV 대사 파싱](#csv-대사-파싱) · [초상화 갱신과 대사 재생](#초상화-갱신과-대사-재생)
+- **원본** [CSV 행 파싱](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/TV/CSVDialogueParser.cs#L60) · [회상 대사 전환](https://github.com/1Seong/SaveTheWorld/blob/8a05e4251547a6c7cdecbcd1f97b84af051603eb/Assets/Scripts/TV/TVManager.cs#L102)
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 **CSVDialogueParser:** CSV를 발화자·초상화·대사 데이터로 변환합니다. **PortraitController:** 화자에 맞춰 좌우 초상화를 강조합니다. **TVManager:** 대사와 회상 장면을 재생합니다.
+
+### CSV 대사 파싱
 
 ```csharp
 // CSVDialogueParser.ParseCsvLine: 따옴표 안의 쉼표와 "" 이스케이프 구분
@@ -54,6 +62,8 @@ private static DialogueData ReadDialogue(string line)
     };
 }
 ```
+
+### 초상화 갱신과 대사 재생
 
 ```csharp
 // TVManager.ShowDialogue: 데이터로 초상화와 대사를 함께 갱신
